@@ -18,6 +18,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
+app.get('/homepage', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/homepage.html'));
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
