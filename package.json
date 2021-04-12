@@ -1,0 +1,22 @@
+{
+  "name": "newteamwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "\u001b[D\u001b[D\u001b[D\u001bapp.js\u001b[3~\u001b[C\u001bapp.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrooo/NewTeamWork.git"
+  },
+  "author": "Daniella Rosendahl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrooo/NewTeamWork/issues"
+  },
+  "homepage": "https://github.com/darrooo/NewTeamWork#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
