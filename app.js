@@ -15,11 +15,15 @@ app.use(express.static(path.join(__dirname, 'public/')));
 //});
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/index.html'));
+  res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 app.get('/homepage', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/homepage.html'));
+  res.sendFile(path.join(__dirname, 'public/views/homepage.html'));
+});
+
+app.get('/about', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
 
