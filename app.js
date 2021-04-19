@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -7,11 +9,22 @@ var io = require('socket.io')(server);
 //var io = require('socket.io')(http, {cookie: false});
 
 var path = require('path');
-var port = 3000;
+const io = require('socket.io')(http);
+const port = 3000;
 
-// app.get('/', (req, res) => {
-// //res.send('Hello World!')
-// });
+
+//Agnes testar sockets här
+//const express = require('express');
+//const app = express();
+//const http = require('http');
+//const server = http.createServer(app);
+//const port = 3000;
+// till hit
+
+
+//app.get('/', (req, res) => {
+//  res.send('Hello World!')
+//});
 //app.use(express.static(path.join(__dirname, 'public/')));
 app.use(express.static(path.join(__dirname, 'public/')));
 
@@ -19,24 +32,21 @@ app.use(express.static(path.join(__dirname, 'public/')));
 //  res.sendFile(path.join(__dirname, 'views/teamworkpage.html'));
 //});
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/chatti.html'));
+
+ app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, 'public/views/index.html'));
+ });
+
+ app.get('/homepage', function (req, res) {
+   res.sendFile(path.join(__dirname, 'public/views/homepage.html'));
+ });
+
+ app.get('/about', function (req, res) {
+   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
-io.on('connection', function (socket) {
-  console.log('connected');
-});
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
-
-app.get('/homepage', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/homepage.html'));
-});
-
-app.get('/about', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/about.html'));
+app.get('/chat', (req, res) => {
+  res.sendFile(__dirname + '/public/views/chat.html');
 });
 //hit har du suddat till
 
@@ -49,11 +59,20 @@ app.get('/about', function (req, res) {
 
 //var io = require('socket.io')(http, {cookie: false});
 
-//io.on('connection', function (socket) {
-  //Script(this, socket, script);
-//   console.log('connected');
-// });
+io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
-app.listen(port, () => {
+io.on('connection', (socket) => {
+  //console.log('a user connected');
+  //socket.on('disconnect', () => {
+  //console.log('user disconnected');
+  //  });
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);   //Här vill vi lägga in typ "[userName]: + msg"
+    console.log('message: ' + msg);
+
+  });
+});
+
+http.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 });
