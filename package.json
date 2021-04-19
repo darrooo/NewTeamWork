@@ -18,6 +18,7 @@
   "homepage": "https://github.com/darrooo/NewTeamWork#readme",
   "dependencies": {
     "bootstrap": "^5.0.0-beta3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "socket.io": "^4.0.1"
   }
 }
