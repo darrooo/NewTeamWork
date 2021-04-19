@@ -8,6 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <!--  <link rel="stylesheet" href="public\views\style.css">-->
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="https://vuejs.org/js/vue.js"></script>
+  <script src="js/vue_script.js" defer></script>
+  <script src="/vue/vue.js" defer></script>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <script type="text/javascript" src="js/script.js"> </script>
   <title>TeamWork</title>
@@ -34,18 +38,22 @@
 
   </div>
 
-  <div class="loginbox">
-  <!--  <h1>Log in</h1> -->
-    <form class="" action="https://teamworkunited.site/teamwork/" method="post">
+  <div class="loginbox" id="mapnbutton">
+
+    <form >
       <label for="uname"><b>Username : </b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input id="txtEmail" type="email" name = "uname" placeholder="Enter Email">
       <br>
       <label for="psw"><b>Password : </b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-      <br>
-      <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="button">Login</button>
-      <!--<input class="button" type="submit" value="Login" -->
+      <input id="txtPassword" type="password" name = "psw" placeholder="Enter Password">
+      <button type="button" class="button" id="myButtonID" v-on:click="buttonClicked()"> Login (DB)</button>  <!-- den här redirectar inte-->
+      <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="button">Login (homepage)</button>
+      <!--<button id="signupButton" class="button">Sign up</button>
+      <button id="logoutButton" class="button hide">Log out</button>-->
     </form>
+
+
+
 
   </div>
 
@@ -62,7 +70,6 @@
   </div>
 
 </body>
-<!-- <link rel="stylesheet" href="C:\Users\Daniella\test\darrooo\websitetest\css\style.css"> -->
-<!--<img src="C:\Users\Daniella\test\darrooo\websitetest\images\Teamwork.png" alt="logga" width="80%">-->
+
 
 </html>
