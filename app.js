@@ -44,6 +44,10 @@ app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
 
+app.get('/calendar', (req, res) => {
+  res.sendFile(__dirname + '/public/views/calendar.html');
+});
+
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
 io.on('connection', (socket) => {
@@ -54,7 +58,6 @@ io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);   //Här vill vi lägga in typ "[userName]: + msg"
     console.log('message: ' + msg);
-
   });
 });
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calendar</title>
+  </head>
+<body>
+<div class="calendar" id="calendar">
+  <div class="calendarButton monthButton" onclick="$('#months').toggle('fast')">
+    <span id="currentMonth"></span>
+    <div class="months dropdown" id="months"></div>
+  </div>
+
+  <div class="calendarButton yearButton" onclick="$('#years').toggle('fast')">
+    <span id="currentYear"></span>
+    <div id="years" class="years dropdown"></div>
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="calendarDates">
+    <div class="days">
+      <div class="day label">Monday</div>
+      <div class="day label">Tuesday</div>
+      <div class="day label">Wensday</div>
+      <div class="day label">Thursday</div>
+      <div class="day label">Friday</div>
+
+      <div class="clear"></div>
+    </div>
+
+    <div id="calendarDays" class="days">
+    </div>
+  </div>
+</div>
+
+<script>
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  function drawCalendarMonths()
+  {
+      for(var i = 0; i < months.length; i++)
+      {
+          var doc = document.createElement("div");
+          doc.innerHTML = months[i];
+          doc.classList.add("dropdownItem");
+
+          doc.onclick = (function () {
+              var selectedMonth = i;
+              return function ()
+              {
+                  month = selectedMonth;
+                  document.getElementById("currentMonth").innerHTML = months[month];
+                  loadCalendarDays();
+                  return month;
+              }
+          })();
+
+          document.getElementById("months").appendChild(doc);
+      }
+  }
+
+</script>
+
+<script>
+  function loadYears()
+{
+    // whichever date range makes the most sense
+    var startYear = 2000;
+    var endYear = 2050;
+
+    for(var i = startYear; i <= endYear; i++)
+    {
+        var doc = document.createElement("div");
+        doc.innerHTML = i;
+        doc.classList.add("dropdownItem");
+
+        doc.onclick = (function(){
+            var selectedYear = i;
+            return function(){
+                year = selectedYear;
+                document.getElementById("currentYear").innerHTML = year;
+                loadCalendarDays();
+                return year;
+            }
+        })();
+
+        document.getElementById("years").appendChild(doc);
+    }
+}
+</script>
+</body>
+</html>
