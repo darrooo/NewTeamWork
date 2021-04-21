@@ -2,15 +2,13 @@
 
 const express = require('express');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-var io = require('socket.io')(server);
-
-//var io = require('socket.io')(http, {cookie: false});
-
+var http = require('http').Server(app);
 var path = require('path');
 const io = require('socket.io')(http);
 const port = 3000;
+//var io = require('socket.io')(server);
+
+//var io = require('socket.io')(http, {cookie: false});
 
 
 //Agnes testar sockets här
@@ -48,16 +46,6 @@ app.use(express.static(path.join(__dirname, 'public/')));
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
-//hit har du suddat till
-
-
-//const Script = require("./script.js");
-//var io = require('socket.io')(server);
-
-//let homepage = new Homepage();
-//homepage.initializeData();
-
-//var io = require('socket.io')(http, {cookie: false});
 
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
