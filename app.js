@@ -7,8 +7,8 @@ var http = require('http').Server(app);
 var path = require('path');
 const io = require('socket.io')(http);
 const port = 3000;
-var email ; //dani e rätt
-var password ; //danicompass e rätt
+var email ; //dani / hanneg / aggepagge e rätt
+var password ; //daniellacompass / hannecompass / angescompass e rätt
 var dbPassword ; //
 var dbEmail ;
 
@@ -25,7 +25,8 @@ var dbEmail ;
 
 //koppling till mongodb
 async function main() {
-  const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@cluster0.voh9h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  //const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@cluster0.voh9h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  const uri = "mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";;
 	const client = new MongoClient(uri, { useUnifiedTopology: true });;
 
   try {
@@ -50,7 +51,7 @@ async function listDatabases(client){ //listar Databaser
 };
 
 async function findUserByEmail(client, email) {  //kollar om email finns i DB
-    const result = await client.db("teamwork").collection("teamwork").findOne({ username: email });
+    const result = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email });
     if (result) {
         console.log(`Found a listing in the collection with the username '${email}':`);
         console.log(result);
