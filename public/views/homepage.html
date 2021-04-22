@@ -6,6 +6,10 @@
     <!--  <link rel="stylesheet" href="public\views\style.css">-->
     <link rel="stylesheet" type="text/css" href="\css\homepagestyle.css">
     <script type="text/javascript" src="js/homepagescript.js"> </script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/vue_script.js" defer></script>
+    <script src="/vue/vue.js" defer></script>
     <title>TeamWork</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap">
@@ -20,12 +24,14 @@
         </div>
 
       </header>
-      <div class="profile">
+      <div class="profile" id="mapnbutton">
         <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" > Chat </button>
         <br>
         <button onclick="location.href='https://teamworkunited.site/profile/';" type="button" name="button" class="invisiblebutton" > My profile </button>
         <br>
         <button onclick="location.href='https://teamworkunited.site/settings/';" type="button" name="button" class="invisiblebutton" >  settings </button>
+        <br>
+        <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" >  Logout </button>
 
       </div>
       <nav>
