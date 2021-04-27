@@ -142,6 +142,7 @@ app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
 
+
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
 io.on('connection', (socket) => {
