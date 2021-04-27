@@ -14,10 +14,6 @@ var vm = new Vue({
       this.userInformation = getUserInfo(); //skickas till script.js
       //console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
-      //if(click){
-      //  window.location = "http://localhost:3000/homepage"
-      //}
-
     },
     //skickar till app.js
     sendInformation: function(event) {
@@ -26,6 +22,26 @@ var vm = new Vue({
       socket.emit("sendInformation", {
         userInfo: this.userInformation,
       });
+    },
+    logoutButtonClicked: function(event){
+      socket.emit("sendLogout",{
+        userInfo: this.userInformation,
+      });
     }
   }
 });
+
+  socket.on('sendLogin', function(access){
+    console.log('access i vue_script' + access);
+    if (window.location == "http://localhost:3000/" && access == true){
+      window.location = "http://localhost:3000/homepage";
+    }
+    if(window.location == "http://localhost:3000/homepage" && access ==false){
+      window.location = "http://localhost:3000/";
+
+    }
+    //else{
+    //  window.location = "http://localhost:3000/";
+
+    //}
+  });

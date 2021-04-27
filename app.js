@@ -11,6 +11,7 @@ var email ; //dani / hanneg / aggepagge e rätt
 var password ; //daniellacompass / hannecompass / angescompass e rätt
 var dbPassword ; //
 var dbEmail ;
+var access = false;
 
 //Agnes testar sockets här
 //const express = require('express');
@@ -23,11 +24,15 @@ var dbEmail ;
 
 
 
+
+
+
+
 //koppling till mongodb
 async function main() {
-  //const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@cluster0.voh9h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-  const uri = "mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";;
-	const client = new MongoClient(uri, { useUnifiedTopology: true });;
+  //const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+	const client = new MongoClient(uri, { useUnifiedTopology: true});
 
   try {
     await client.connect();
@@ -75,8 +80,9 @@ async function findUserByEmail(client, email) {  //kollar om email finns i DB
 
 // ska redirectas till /homepage
 function userLogin(){
-  console.log("är i userLogin");
-  //window.location.assign("localhost:3000/homepage");  //window is not defined
+  access = true
+  console.log("är i userLogin" + access);
+  io.emit('sendLogin', access); //laddar om sendLogin
 }
 
 //sparar users
@@ -103,19 +109,22 @@ Data.prototype.getAllUsers = function () {
 var data = new Data();
 
 
-// tar emot information från vue_script
-io.on('connection', function (socket) {
+// tar emot information från vue_script skickar info till vue_script
+io.on('connection', (socket) => {
   // When a connected client emits an "addOrder" message
-  socket.on('sendInformation', function (orderInformation) {
-    console.log("socket on " + Object.values(orderInformation)); // socket on email , password
-
-    data.addUser(orderInformation);
-
+  socket.on('sendInformation', function (userInformation) {
+    console.log("socket on " + Object.values(userInformation)); // socket on email , password
+    data.addUser(userInformation);
   });
+  socket.on('sendLogout', function (userInformation){
+    if(access){
+      access= false;
+    }
+    io.emit('sendLogin', access);
+  });
+  socket.emit('sendLogin', access);
+  console.log("access i io app.js" + access);
 });
-
-
-
 
 
 
