@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body onload="initClock">
 
       <div class="container">
         <div class="calendar">
@@ -64,10 +64,71 @@
             <div>16</div>
             <div>17</div>
           </div>
+          <div class="mon"></div>
+          <div class="tus"></div>
+          <div class="wed"></div>
+          <div class="thu"></div>
+          <div class="fri"></div>
         </div>
       </div>
 
-
     <script src="js/calendar.js"></script> <!-- ändra om vi flyttar koden till annat script -->
+
+
+<!-- Klocka -->
+<div class="datetime">
+  <div class="datum">
+    <h1><span id="dayName">Day</span>,
+    <span id="mounthName">Month</span>
+    <span id="dayNumber">00</span>,
+    <span id="year">Year</span></h1>
+    <!-- <span id="dayName">Day</span>,
+    <span id="mounthName">Month</span>
+    <span id="dayNumber">00</span>,
+    <span id="year">Year</span> -->
+    <!-- <p><span id="hour">00</span>:
+    <span id="minutes">00</span>:
+    <span id="seconds">00</span>
+    <span id="period">AM</span></p> -->
+  </div>
+
+  <div class="tid">
+    <span id="hour">00</span>:
+    <span id="minutes">00</span>:
+    <span id="seconds">00</span>
+    <span id="period">AM</span>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+function updateClock(){
+  var now = new Date();
+  var dname = now.getDay(),
+      mo = now.getMonth(),
+      dnum = now.getDate(),
+      yr = now.getFullYear(),
+      hou = now.getHours(),
+      min = now.getMinutes(),
+      sec = now.getSeconds(),
+      pe = "AM";
+
+      var monts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var weeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      var ids = ["dayName", "mounthName", "dayNumber", "year", "hour", "minutes", "seconds", "period"];
+      var values = [weeek[dname], monts[mo], dnum, yr, hou, min, sec, pe];
+
+      for(var a = 0; a < ids.length; a++)
+      document.getElementById(ids[a]).firstCild.nodeValue = values[a];
+}
+
+function initClock() {
+  updateClock();
+  windw.setInterval("updateClock()", 1);
+}
+
+</script>
+
+
   </body>
 </html>

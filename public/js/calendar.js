@@ -14,11 +14,13 @@ const renderCalendar = () => {
 
   const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 
-  const firstDayIndex = date.getDay() -1;
-  //console.log(firstDayIndex);
+  //const firstDayIndex = date.getDay()-2;
+  const firstDayIndex = new Date(date.getFullYear(), date.getMonth(), 0).getDay();
+  //const firstDayIndex = new Date(date.getDay);
+//  console.log(firstDayIndex);
 
   const lastDayIndex = new Date(date.getFullYear(), date.getMonth() +1, 0).getDay();
-
+//console.log(lastDayIndex);
   const nextDays = 7 - lastDayIndex;
 
   const months = [
@@ -45,7 +47,8 @@ const renderCalendar = () => {
 
   //fylla på början av månadsvyn med datumen från förra månaden
   for(let x = firstDayIndex; x > 0; x--){
-    days += `<div class = "prevDate">${prevLastDay - x + 1}</div>`
+    //console.log(firstDayIndex);
+    days += `<div class = "prevDate">${prevLastDay - x +1}</div>`
   };
 
   // "lastDay" så det blr 30 vs 31 dagar på rätt månad
@@ -90,9 +93,32 @@ const renderWeekCalendar = () => {
   //console.log(lastDay);
 
   const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-
   const firstDayIndex = date.getDay();
   const lastDayIndex = new Date(date.getFullYear(), date.getMonth() +1, 0).getDay();
+
+   Date.prototype.getWeek = function () {
+     var firstJan = new Date(this.getFullYear(), 0, 1);
+     //return Math.ceil((((this - firstJan) / 86400000) + firstJan.getDay() + 1) / 7);
+   return Math.ceil((((new Date(this.getFullYear(), this.getMonth(), this.getDate()) - firstJan) / 86400000) + firstJan.getDay()) / 7);
+ };
+
+ var myDate = new Date("2022-01-01");
+ var thisWeek = myDate.getWeek() -1; //=> 5
+ //console.log(thisWeek);
+
+// Date.prototype.getWeek = function () {
+//
+//   //  const today = new Date();
+//     var firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+//     var pastDaysOfYear = (myDate - firstDayOfYear) / 86400000;
+//     //return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() -1) / 7);
+//     return Math.ceil((((this - firstDayOfYear) / 86400000) + firstDayOfYear.getDay() - 1) / 7);
+// };
+//
+//  var myDate = new Date("2020-12-26");
+//  //console.log(myDate);
+//  var thisWeek = myDate.getWeek()-1;
+//  console.log(thisWeek);
 
   const weekDays = [
     "Monday",
@@ -132,3 +158,29 @@ const renderWeekCalendar = () => {
 // });
 //
 renderWeekCalendar();
+
+
+// function updateClock(){
+//   var now = new Date();
+//   var dname = now.getDay(),
+//       mo = now.getMonth(),
+//       dnum = now.getDate(),
+//       yr = now.getFullYear(),
+//       hou = now.getHours(),
+//       min = now.getMinutes(),
+//       sec = now.getSeconds(),
+//       pe = "AM";
+//
+//       var mounts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//       var weeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+//       var ids = ["dayName", "mounthName", "dayNumber", "year", "hour", "minutes", "seconds", "period"]
+//       var values = [weeek[dname], mounts[mo], dnum, yr, hou, min, sec, pe];
+//
+//       for(var a = 0; a < ids.length; a++)
+//       document.getElementById(ids[a]).firstCild.nodeValue = values[a];
+// }
+//
+// function initClock() {
+//   updateClock();
+//   windw.setInterval("updateClock()", 1);
+// }

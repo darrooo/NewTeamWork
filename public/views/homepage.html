@@ -9,10 +9,11 @@
     <title>TeamWork</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap">
-
+    <link rel="stylesheet" href="/css/calendarstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body onload="initClock">
     <section id="page">
       <header>
         <div class="headerimage">
@@ -33,7 +34,30 @@
       <nav>
 
        </nav>
-      <main> Main </main>
+      <main>
+
+          <div class="container">
+            <div class="calendar">
+              <div class="month">
+                <i class="fas fa-angle-left prev"></i>
+                <div class="date">
+                  <h1></h1>
+                  <p></p>
+                </div>
+                <i class="fas fa-angle-right next"></i>
+              </div>
+              <div class="weekdays">
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+                <div>Sunday</div>
+              </div>
+              <div class="days"></div>
+            </div>
+          </div></main>
       <footer> Footer </footer>
 
     </section>
