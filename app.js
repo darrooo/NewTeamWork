@@ -24,8 +24,8 @@ var access = false;
 
 //koppling till mongodb
 async function main() {
-  const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-  //const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+  //HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
+
 	const client = new MongoClient(uri, { useUnifiedTopology: true});
 
   try {
