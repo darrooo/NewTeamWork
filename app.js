@@ -22,12 +22,6 @@ var access = false;
 // till hit
 
 
-
-
-
-
-
-
 //koppling till mongodb
 async function main() {
   const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
