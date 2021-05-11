@@ -1,89 +1,607 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Tenor+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Cinzel', serif;
-
+  font-family: 'Bitter', serif;
 }
 
 html{
   font-size: 62.5%;
+  background: #dbe2ff;
+  overflow-y: scroll;
 }
-/*loggan*/
+
+#page{
+  min-width: 450px;
+  overflow: visible;
+}
+
+/*liten skärm*/
+img{
+  height: 90px;
+}
+
 .headerimage{
-  margin-top: 1%;
-  margin-left: 1%;
+  position: relative;
+  display: block;
+  overflow-x: hidden;
 }
+
+.invisiblebutton{display: none;}
+
+.colleagues{
+  display: flex;
+  justify-content: center;
+  width: 96%;
+  margin: 2%;
+  padding-bottom: 2%;
+  height: auto;
+  background: #e5eaff;
+  border-radius: 12px;
+}
+
+.myColleagues div{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: #dbe2ff;
+  border-radius: 100px;
+  border-style: solid;
+  border-color: #333;
+  border-width: thin;
+  text-align: center;
+  padding-top: 50px;
+  margin: 3%;
+}
+
 /*knapparna*/
-.invisiblebutton{
-  background: none!important;
-  border: none;
-  padding: 0!important;
-  /*optional*/
-  font-family: 'Cinzel', serif;
-  /*input has OS specific font-family*/
-  text-transform: uppercase;
-  margin: 15px;
-  color: #fff;
-  font-size: 30px;
-  cursor: pointer;
-  z-index: 1;
+/*.invisiblebutton{
+position: absolute;
+top: 3%;
+right: 2%;
+display: inline-block;
+width: auto;
+background: none!important;
+border: none;
+margin-left: 5%;
+text-align: center;
+vertical-align: bottom;
+letter-spacing: 0.3rem;
+font-family: 'Bitter', serif;
+text-transform: uppercase;
+color: #fff;
+font-size: 200%;
+cursor: pointer;
+line-height: 350%;
 }
-
-
 
 /*grid set-up*/
-#page {
+/* #page {
 display: grid;
 width: 100%;
-height: 100%;
-grid-template-areas: "head prof"
-                     "main  nav"
-                     "foot foot";
-grid-template-rows: 15% 80% 5%;
-grid-template-columns: 70% 30% ;
-}
-
-#page > header {
-grid-area: head;
-/*background-color: #9195f4;*/
-/*background-color: #dbe2ff;*/
-background-color: #e5eaff;
-display: flex;
-}
-
-.profile{
-  grid-area: prof;
-  /*background-color: #9195f4;*/
-  /*background-color: #dbe2ff;*/
-  background-color: #e5eaff;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-}
-
-#page > nav {
-grid-area: nav;
-width: 100%;
-height: 80vh;
-background-color: #dbe2ff; /*gridens bakgrundsfärg*/
-color: #eee;/*siffrorna och dagarna*/
-justify-content: center;
-align-items: center;
-
-}
-
-#page > main {
-grid-area: main;
+height: 100vh;
 background-color: #dbe2ff;
-/*background-color: #9195f4;*/
+grid-template-areas: "head head"
+"main  nav"
+"foot foot";
+grid-template-rows: 10% 83% 3%;
+grid-template-columns: 60% 40% ;
+} */
+
+/* #page > header {
+grid-area: head;
+position: sticky;
+padding: 10px 3%;
+background-color: #333;
+display: flex;
+line-height: 200px;
+overflow: hidden;
+} */
+
+/* .profile{
+display: block;
+width: 70%;
+text-align: right;
+line-height: 100%;
+height: 100%;
+} */
+
+.ham {
+  position: absolute;
+  /* keep the hamburger button above everything */
+  z-index: 100;
+  bottom: 2.4rem;
+  right: 4.1rem;
+  width: 4rem;
+  height: 4rem;
+  border: #333 solid 1px;
+  border-radius: 100px;
+  background: white;
+  cursor: pointer;
+  overflow-y: hidden;
 }
+
+.menuIcon{
+  padding: 0.7rem;
+}
+.xIcon {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  color: white;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+  list-style: none;
+  padding-top: 4rem;
+}
+
+.showMenu {
+  transform: translateY(0);
+}
+
+li {
+  padding: 1rem 0;
+}
+
+.menuLink {
+  display: inline;
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.menuLink:hover {
+  text-decoration: underline;
+}
+
+/* #page > nav {
+display: grid;
+grid-area: nav;
+margin: 3rem 3rem 0rem 3rem;
+background-color: #e5eaff; /*gridens bakgrundsfärg*/
+/* border-radius: 12px; */
+/* color: #eee;/*siffrorna och dagarna*/
+/* grid-template-areas:  "nav_head" */
+/*                        "nav_thisisme"
+"nav_calendar";
+grid-template-rows: 8% 20% 72%;
+} */
+.nav{
+  display: block;
+  width: 96%;
+  margin: 2%;
+  background: #e5eaff;
+  border-radius: 12px;
+}
+
+.nav_head{
+  /* grid-area: nav_head; */
+  text-align: right;
+  line-height: 200%;
+  margin-right: 5%;
+  letter-spacing: 0.1rem;
+  font-size: 14px;
+  color: #333;
+}
+
+.nav_thisisme{
+  border-radius:100px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  float: left;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  background: #dbe2ff;
+  border-style: solid;
+  border-width: thin;
+  border-color: #333;
+  color: #333;
+  display: block;
+  text-align: left;
+}
+
+.nav_thisisme p{
+  display: inline-block;
+  width: auto;
+  letter-spacing: 0.1rem;
+  margin-top: 25px;
+  margin-left: 120px;
+  line-height: 30px;
+  font-size: 16px;
+}
+
+.nav_calendar{
+  display: block;
+  margin: 50px 2% 2% 2%;
+  /* justify-content: center;
+  align-items: center; */
+  color: #333;
+  height: 100%;
+  width: 96%;
+  padding-bottom: 2%;
+}
+
+.dailyCalendar{
+  display: block;
+  height: 95%;
+  margin-top: 120px;
+  padding-bottom: 1%;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 3rem #rgba(0, 0, 0, 0.4);
+}
+
+.calendarHeader{
+  width: 100%;
+  height: 45px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.calendarHeader i {
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 1%;
+}
+
+.thisDay h1{display: none;}
+.thisDay p{font-size: 18px;}
+
+.event{
+  margin: 1%;
+  height: 89%;
+  width: 96%;
+  display: flex;
+}
+
+.hours{
+  width: 100%;
+  line-height: 350%;
+  color: #333;
+  margin-right: 1%;
+  display: inline-block;
+}
+
+.hours div{
+  margin: 0.5%;
+  display: inline-block;
+  /* height: calc(87%/11); */
+  border-bottom: 1px solid;
+  border-color: #BFBFBF;
+}
+
+/* .todayTime{
+display: inline-block;
+width: 70%;
+}
+
+.todayTime div{
+font-size: 1rem;
+height: calc(100%/11);
+display: inline-block; */
+/*}
+*/
+.hours div:hover{
+  background-color: #e5eaff;
+  border: 0.1rem solid #333;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+/* #page > main { */
+/*myCollegues{
+/* grid-area: main; */
+/*display: inline-block;
+margin: 3rem 3rem 0rem 3rem;
+width: 60%;
+background-color: #e5eaff; /*gridens bakgrundsfärg*/
+/*border-radius: 12px;
+}*/
 
 #page > footer {
-grid-area: foot;
-/*background-color: #dbe2ff;*/
-background-color: #e5eaff;
+  /* grid-area: foot; */
+  /*background-color: #dbe2ff;*/
+}
+
+
+/* CHAT */
+.wrapperChat{
+  padding: 2%;
+  position: relative;
+  height: 80vh;
+}
+
+.chats{
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  background: #e5eaff;
+  padding: 1%;
+  border-radius: 12px;
+  overflow-y: scroll;
+}
+
+.myChats div{
+  display: inline-block;
+  height: 50px;
+  width: 170px;
+  background: #dbe2ff;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #333;
+  border-width: thin;
+  text-align: center;
+  padding-top: 50px;
+  margin: 3% 4% 8%;
+}
+
+.chatHeader{
+  margin-left: 0 2% 2%;
+  padding-left: 2%;
+  display: block;
+  position: relative;
+  top: 0;
+  right: 0;
+  float: right;
+  width: 75%;
+  height: 50px;
+  background: #e5eaff;
+  border-radius: 12px;
+  line-height: 260%;
+  font-size: 20px;
+
+}
+.chatWindow{
+  display: block;
+  margin-left: 0 2% 2%;
+  padding-left: 2%;
+  position: absolute;
+  right: 2%;
+  top: 15%;
+  width: 72%;
+  height: 79%;
+  background: #e5eaff;
+  border-radius: 12px;
+  /* padding-bottom: 3rem; */
+}
+
+#form{
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  /* backdrop-filter: blur(10px); */
+}
+
+#input{
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+}
+
+#input:focus{
+  outline: none;
+}
+
+#form > button{
+  background: #333;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+}
+
+#messages{
+  list-style-type: none;
+  margin: 0;
+  height: 85%;
+  line-height: 130%;
+  font-size: 14px;
+  overflow-y: scroll;
+}
+
+#messages > li{
+  padding: 0.5rem 1rem;
+  margin-right: 60%;
+  border-radius: 12px;
+  width: 40%;
+  word-wrap: break-word;
+}
+
+#messages > li:nth-child(odd){
+  background: #efefef;
+  float: right;
+  margin-left: 60%;
+  margin-right: 0;
+}
+
+
+
+
+@media only screen and (min-width: 768px) {
+
+  .nav_head{
+    text-align: center;
+    width: 100%;
+    line-height: 40px;
+    font-size: 20px;
+  }
+
+  /* .nav_thisisme{
+    border-radius:100px;
+    width: 100px;
+    height: 100px;
+    display: block;
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 2%;
+  }
+
+  .nav_thisisme p{
+    margin-top: 25px;
+    margin-left: 120px;
+    line-height: 30px;
+    font-size: 16px;
+  } */
+
+  .dailyCalendar{
+    margin-top: 120px;
+    height: auto;
+  }
+
+  .hours{
+    width: 100%;
+    line-height: 350%;
+    color: #333;
+    margin-right: 1%;
+    display: inline-block;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  img{
+    height: 105px;
+  }
+
+  .headerimage{
+    position: relative;
+    display: block;
+    /* width: 100%; */
+  }
+  #buttonChat{
+    position: absolute;
+    bottom: 1%;
+    right: 56%;
+  }
+  #buttonProfile{
+    position: absolute;
+    bottom: 1%;
+    right: 35%;
+  }
+  #buttonSettings{
+    position: absolute;
+    bottom: 1%;
+    right: 17%;
+  }
+  #buttonLogout{
+    position: absolute;
+    bottom: 1%;
+    right: 2%;
+  }
+  .invisiblebutton{
+    position: absolute;
+    display: block;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    font-size: 200%;
+    cursor: pointer;
+    line-height: 300%;
+    text-transform: uppercase;
+    background: none!important;
+    border: none;
+    color: #fff;
+  }
+  .ham{display: none;}
+  .menu{display: none;}
+
+  .colleagues{
+    display: inline-block;
+    width: 56%;
+    margin: 2%;
+    height: 700px;
+    overflow-y: scroll;
+  }
+
+  .myColleagues div{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background: #dbe2ff;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: #333;
+    border-width: thin;
+    text-align: center;
+    padding-top: 50px;
+    margin: 3%;
+  }
+
+  .nav{
+    display: inline-block;
+    float: right;
+    height: 700px;
+    width: 36%;
+    margin: 2%;;
+  }
+
+  .nav_calendar{
+    height: auto;
+  }
+  .dailyCalendar{height: auto;}
+
+  .nav_head{
+    text-align: right;
+    line-height: 300%;
+    padding-right: 5%;
+    font-size: 14px;
+  }
+
+  .nav_thisisme{
+    margin-left: 5%;
+  }
+
+  .nav_thisisme p{
+    text-align: left;
+  }
+
+  .thisDay h1{
+    display: contents;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin: 0.2rem;
+    font-size: 16px;
+  }
+
+  .thisDay p{font-size: 14px;}
+
+  .hours{
+    width: 100%;
+    line-height: 350%;
+    color: #333;
+    margin-right: 1%;
+    display: inline-block;
+    font-size: 11px;
+  }
 }

@@ -158,6 +158,10 @@ app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
 
+app.get('/calendar', (req, res) => {
+  res.sendFile(__dirname + '/public/views/calendar.html');
+});
+
 app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
@@ -210,7 +214,6 @@ io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);   //Här vill vi lägga in typ "[userName]: + msg"
     console.log('message: ' + msg);
-
   });
 });
 

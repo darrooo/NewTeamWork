@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="/css/calendarstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  </head>
+  <body onload="initClock">
+
+      <div class="container">
+        <div class="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <div class="weekdays">
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednesday</div>
+            <div>Thursday</div>
+            <div>Friday</div>
+            <div>Saturday</div>
+            <div>Sunday</div>
+          </div>
+          <div class="days"></div>
+        </div>
+      </div>
+
+      <!-- Veckovy -->
+      <div class="container">
+        <div class="weekCalendar">
+          <div class="week">
+            <i class="fas fa-angle-left prevWeek"></i>
+            <div class="weekDay">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right nextWeek"></i>
+          </div>
+          <div class="week5days">
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednesday</div>
+            <div>Thursday</div>
+            <div>Friday</div>
+          </div>
+          <div class="time">
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+          </div>
+          <div class="mon"></div>
+          <div class="tus"></div>
+          <div class="wed"></div>
+          <div class="thu"></div>
+          <div class="fri"></div>
+        </div>
+      </div>
+
+    <script src="js/calendar.js"></script> <!-- ändra om vi flyttar koden till annat script -->
+
+
+<!-- Klocka -->
+<div class="datetime">
+  <div class="datum">
+    <h1><span id="dayName">Day</span>,
+    <span id="mounthName">Month</span>
+    <span id="dayNumber">00</span>,
+    <span id="year">Year</span></h1>
+    <!-- <span id="dayName">Day</span>,
+    <span id="mounthName">Month</span>
+    <span id="dayNumber">00</span>,
+    <span id="year">Year</span> -->
+    <!-- <p><span id="hour">00</span>:
+    <span id="minutes">00</span>:
+    <span id="seconds">00</span>
+    <span id="period">AM</span></p> -->
+  </div>
+
+  <div class="tid">
+    <span id="hour">00</span>:
+    <span id="minutes">00</span>:
+    <span id="seconds">00</span>
+    <span id="period">AM</span>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+function updateClock(){
+  var now = new Date();
+  var dname = now.getDay(),
+      mo = now.getMonth(),
+      dnum = now.getDate(),
+      yr = now.getFullYear(),
+      hou = now.getHours(),
+      min = now.getMinutes(),
+      sec = now.getSeconds(),
+      pe = "AM";
+
+      var monts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var weeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      var ids = ["dayName", "mounthName", "dayNumber", "year", "hour", "minutes", "seconds", "period"];
+      var values = [weeek[dname], monts[mo], dnum, yr, hou, min, sec, pe];
+
+      for(var a = 0; a < ids.length; a++)
+      document.getElementById(ids[a]).firstCild.nodeValue = values[a];
+}
+
+function initClock() {
+  updateClock();
+  windw.setInterval("updateClock()", 1);
+}
+
+</script>
+
+
+  </body>
+</html>

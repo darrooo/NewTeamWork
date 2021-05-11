@@ -37,7 +37,9 @@ var vm = new Vue({
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
     }
-    if(window.location == "http://localhost:3000/homepage" && access ==false){
+
+    //Har ändrat till true bör vara false
+    if(window.location == "http://localhost:3000/homepage" && access ==true){
       window.location = "http://localhost:3000/";
 
     }
