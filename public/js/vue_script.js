@@ -2,7 +2,7 @@ var socket = io();
 var click =false;
 
 var vm = new Vue({
-  el: '#mapnbutton',
+  el: '#sendbuttons',
   data: {
     click: false,
     userInformation: [],
@@ -31,8 +31,9 @@ var vm = new Vue({
   }
 });
 
+
   socket.on('sendLogin', function(access){
-    console.log('access i vue_script' + access);
+//Vet inte hur det funkar, console log printar inte.
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
     }
@@ -42,8 +43,6 @@ var vm = new Vue({
       window.location = "http://localhost:3000/";
 
     }
-    //else{
-    //  window.location = "http://localhost:3000/";
-
-    //}
   });
+
+  //TESTAR
