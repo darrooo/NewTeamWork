@@ -7,17 +7,13 @@ var vm = new Vue({
     click: false,
     userInformation: [],
   },
-  //kommer från index.html login 
+  //kommer från index.html login
   methods: {
     buttonClicked: function() { //från index send button
       this.click = true;
       this.userInformation = getUserInfo(); //skickas till script.js
       //console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
-      //if(click){
-      //  window.location = "http://localhost:3000/homepage"
-      //}
-
     },
     //skickar till app.js
     sendInformation: function(event) {
@@ -26,6 +22,28 @@ var vm = new Vue({
       socket.emit("sendInformation", {
         userInfo: this.userInformation,
       });
+    },
+    logoutButtonClicked: function(event){
+      socket.emit("sendLogout",{
+        userInfo: this.userInformation,
+      });
     }
   }
 });
+
+  socket.on('sendLogin', function(access){
+    console.log('access i vue_script' + access);
+    if (window.location == "http://localhost:3000/" && access == true){
+      window.location = "http://localhost:3000/homepage";
+    }
+
+    //Har ändrat till true bör vara false
+    if(window.location == "http://localhost:3000/homepage" && access ==true){
+      window.location = "http://localhost:3000/";
+
+    }
+    //else{
+    //  window.location = "http://localhost:3000/";
+
+    //}
+  });

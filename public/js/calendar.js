@@ -145,6 +145,8 @@ const renderWeekCalendar = () => {
   };
 }
 
+//  DAGSVY
+//  document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
 
 // document.querySelector('.prevWeek').addEventListener('click', () =>{
@@ -157,7 +159,7 @@ const renderWeekCalendar = () => {
 //   renderWeekCalendar();
 // });
 //
-renderWeekCalendar();
+// Agnes testar vecka renderWeekCalendar();
 
 
 // function updateClock(){
