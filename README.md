@@ -16,3 +16,8 @@ Vill vi skapa fler sidor till localhosten görs det på motsvarande sätt:
 paket att installera:
 
 npm install express@4
+
+Att göra för att få paketen att fungera:
+npm install express --save
+npm install body-parser --save
+npm install mongoose --save
