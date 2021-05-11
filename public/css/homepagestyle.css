@@ -84,5 +84,6 @@ background-color: #dbe2ff;
 
 #page > footer {
 grid-area: foot;
-background-color: #dbe2ff;
+/*background-color: #dbe2ff;*/
+background-color: #e5eaff;
 }
