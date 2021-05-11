@@ -25,14 +25,24 @@
       <div class="headerimage">
         <!--<img src="images/logo.png" alt="logga" height="80px">-->
         <img src="images/header.png" alt="logga" height="105px">
+        <div class="profile" id="sendbuttons">
+          <!-- <button onclick="location.href='/calendar';" type="button" name="button" class="invisiblebutton" > Calendar </button> -->
+          <!-- <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button> -->
+          <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
 
-        <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
+          <button onclick="location.href='https://teamworkunited.site/profile/';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
 
-        <button onclick="location.href='https://teamworkunited.site/profile/';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
+          <button onclick="location.href='https://teamworkunited.site/settings/';" type="button" name="button" class="invisiblebutton" id="buttonSettings">  Settings </button>
 
-        <button onclick="location.href='https://teamworkunited.site/settings/';" type="button" name="button" class="invisiblebutton" id="buttonSettings">  Settings </button>
+          <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button>
 
-        <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button>
+
+
+
+
+
+        </div>
+
 
         <button class="ham">
           <!-- material icons https://material.io/resources/icons/ -->
@@ -52,14 +62,7 @@
         </ul>
 
       </div>
-      <div class="profile" id="mapnbutton">
-        <!-- <button onclick="location.href='/calendar';" type="button" name="button" class="invisiblebutton" > Calendar </button> -->
 
-
-
-
-
-      </div>
     </header>
     <nav class="nav">
       <div class="nav_head">
@@ -101,30 +104,30 @@
       </div>
 
 
-      
+
       <!-- <div class="profile" id="sendbuttons">
-        <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" > Chat </button>
-        <br>
-        <button onclick="location.href='https://teamworkunited.site/profile/';" type="button" name="button" class="invisiblebutton" > My profile </button>
-        <br>
-        <button onclick="location.href='https://teamworkunited.site/settings/';" type="button" name="button" class="invisiblebutton" >  settings </button>
-        <br>
-        <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" >  Logout </button>
+      <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" > Chat </button>
+      <br>
+      <button onclick="location.href='https://teamworkunited.site/profile/';" type="button" name="button" class="invisiblebutton" > My profile </button>
+      <br>
+      <button onclick="location.href='https://teamworkunited.site/settings/';" type="button" name="button" class="invisiblebutton" >  settings </button>
+      <br>
+      <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" >  Logout </button>
 
-      </div>
-      <nav> -->
-      </nav>
-      <div class="colleagues">
-        <div class="myColleagues"></div>
-      </div>
+    </div>
+    <nav> -->
+  </nav>
+  <div class="colleagues">
+    <div class="myColleagues"></div>
+  </div>
 
-      <main>
-      </main>
-      <footer> Footer </footer>
+  <main>
+  </main>
+  <footer> Footer </footer>
 
-    </section>
-    <script src="js/homepagescript.js"></script>
+</section>
+<script src="js/homepagescript.js"></script>
 
-  </body>
+</body>
 
-  </html>
+</html>

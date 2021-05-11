@@ -17,7 +17,7 @@ var vm = new Vue({
     },
     //skickar till app.js
     sendInformation: function(event) {
-      //console.log("i mwthods send information" + event);
+      console.log("i mwthods send information" + event);
     //  console.log("i mwthods send this.userInformation" + this.userInformation);
       socket.emit("sendInformation", {
         userInfo: this.userInformation,
@@ -38,8 +38,8 @@ var vm = new Vue({
       window.location = "http://localhost:3000/homepage";
     }
 
-    //Har ändrat till true bör vara false
-    if(window.location == "http://localhost:3000/homepage" && access ==true){
+
+    if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
 
     }
