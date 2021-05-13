@@ -156,8 +156,20 @@ app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
+app.get('/contact', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/contact.html'));
+});
+
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
+});
+
+app.get('/settings', (req, res) => {
+  res.sendFile(__dirname + '/public/views/settings.html');
+});
+
+app.get('/myProfile', (req, res) => {
+  res.sendFile(__dirname + '/public/views/myProfile.html');
 });
 
 app.get('/calendar', (req, res) => {

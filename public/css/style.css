@@ -158,6 +158,27 @@ body{
   animation-delay: 3.5s;
 }
 
+.bild{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+.bildText{
+  margin-top: 2%;
+  line-height: 200%;
+  text-align: center;
+}
+
+.about{
+  margin-top: 15%;
+  text-align: center;
+}
+
+.about h1{
+  line-height: 300%;
+}
 
 @keyframes animate{
   0%{

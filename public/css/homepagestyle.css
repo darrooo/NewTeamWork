@@ -458,35 +458,35 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
   }
 
   /* .nav_thisisme{
-    border-radius:100px;
-    width: 100px;
-    height: 100px;
-    display: block;
-    float: left;
-    margin-left: 2%;
-    margin-bottom: 2%;
-  }
+  border-radius:100px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  float: left;
+  margin-left: 2%;
+  margin-bottom: 2%;
+}
 
-  .nav_thisisme p{
-    margin-top: 25px;
-    margin-left: 120px;
-    line-height: 30px;
-    font-size: 16px;
-  } */
+.nav_thisisme p{
+margin-top: 25px;
+margin-left: 120px;
+line-height: 30px;
+font-size: 16px;
+} */
 
-  .dailyCalendar{
-    margin-top: 120px;
-    height: auto;
-  }
+.dailyCalendar{
+  margin-top: 120px;
+  height: auto;
+}
 
-  .hours{
-    width: 100%;
-    line-height: 350%;
-    color: #333;
-    margin-right: 1%;
-    display: inline-block;
-    font-size: 16px;
-  }
+.hours{
+  width: 100%;
+  line-height: 350%;
+  color: #333;
+  margin-right: 1%;
+  display: inline-block;
+  font-size: 16px;
+}
 }
 
 @media only screen and (min-width: 1000px) {
@@ -499,31 +499,17 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
     display: block;
     /* width: 100%; */
   }
-  #buttonChat{
+
+  #sendbuttons{
     position: absolute;
-    bottom: 1%;
-    right: 56%;
+    bottom:1%;
+    right: 1%;
+    width: 650px;
   }
-  #buttonProfile{
-    position: absolute;
-    bottom: 1%;
-    right: 35%;
-  }
-  #buttonSettings{
-    position: absolute;
-    bottom: 1%;
-    right: 17%;
-  }
-  #buttonLogout{
-    position: absolute;
-    bottom: 1%;
-    right: 2%;
-  }
+
   .invisiblebutton{
-    position: absolute;
-    display: block;
-    letter-spacing: 0.3rem;
     text-align: center;
+    letter-spacing: 0.3rem;
     font-size: 200%;
     cursor: pointer;
     line-height: 300%;
@@ -531,77 +517,95 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
     background: none!important;
     border: none;
     color: #fff;
-  }
-  .ham{display: none;}
-  .menu{display: none;}
-
-  .colleagues{
+    /* display: grid; */
+    grid-template-areas:
+    "invisiblebutton invisiblebutton invisiblebutton invisiblebutton";
+    grid-area: invisiblebutton;
+    padding-left: 8%;
     display: inline-block;
-    width: 56%;
-    margin: 2%;
-    height: 700px;
-    overflow-y: scroll;
+    grid-template-columns: repeat(auto-fill, 20%);
   }
 
-  .myColleagues div{
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    background: #dbe2ff;
-    border-radius: 100px;
-    border-style: solid;
-    border-color: #333;
-    border-width: thin;
-    text-align: center;
-    padding-top: 50px;
-    margin: 3%;
-  }
 
-  .nav{
-    display: inline-block;
-    float: right;
-    height: 700px;
-    width: 36%;
-    margin: 2%;;
-  }
+/* FUNGERAR INTE ÄN */
+.invisiblebutton button:hover{
+  text-transform: scale(1.2)translate(0,0);
+}
 
-  .nav_calendar{
-    height: auto;
-  }
-  .dailyCalendar{height: auto;}
+.ham{display: none;}
+.menu{display: none;}
 
-  .nav_head{
-    text-align: right;
-    line-height: 300%;
-    padding-right: 5%;
-    font-size: 14px;
-  }
+.colleagues{
+  display: inline-block;
+  width: 56%;
+  margin: 2%;
+  height: 700px;
+  overflow-y: scroll;
+}
 
-  .nav_thisisme{
-    margin-left: 5%;
-  }
+.myColleagues div{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: #dbe2ff;
+  border-radius: 100px;
+  border-style: solid;
+  border-color: #333;
+  border-width: thin;
+  text-align: center;
+  padding-top: 50px;
+  margin: 3%;
+}
 
-  .nav_thisisme p{
-    text-align: left;
-  }
+.myColleagues div:hover{
+  transform: scale(1.2)translate(0,0);
+}
 
-  .thisDay h1{
-    display: contents;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    margin: 0.2rem;
-    font-size: 16px;
-  }
+.nav{
+  display: inline-block;
+  float: right;
+  height: 700px;
+  width: 36%;
+  margin: 2%;;
+}
 
-  .thisDay p{font-size: 14px;}
+.nav_calendar{
+  height: auto;
+}
+.dailyCalendar{height: auto;}
 
-  .hours{
-    width: 100%;
-    line-height: 350%;
-    color: #333;
-    margin-right: 1%;
-    display: inline-block;
-    font-size: 11px;
-  }
+.nav_head{
+  text-align: right;
+  line-height: 300%;
+  padding-right: 5%;
+  font-size: 14px;
+}
+
+.nav_thisisme{
+  margin-left: 5%;
+}
+
+.nav_thisisme p{
+  text-align: left;
+}
+
+.thisDay h1{
+  display: contents;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin: 0.2rem;
+  font-size: 16px;
+}
+
+.thisDay p{font-size: 14px;}
+
+.hours{
+  width: 100%;
+  line-height: 350%;
+  color: #333;
+  margin-right: 1%;
+  display: inline-block;
+  font-size: 11px;
+}
 }
