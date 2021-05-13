@@ -1,0 +1,299 @@
+/**{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Bitter', serif;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+.container{
+  width: 50rem;
+  height: 52rem;
+  /*background-color: #e5eaff;
+   color: #eee;  här kan vi ändra textfärg*/
+  /*margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar{
+  width: 45rem;
+  height: 48rem;
+  background-color: #dbe2ff; /*#e5eaff*/
+/*  box-shadow: 0 0.5rem 3rem #rgba(0, 0, 0, 0.4);
+}
+
+.month{
+  width: 100%;
+  height: 8rem;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+}
+
+.month i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.month h1{
+  font-size: 3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.month p{
+  font-size: 1.6rem;
+  letter-spacing: 0.08rem;
+}
+
+.weekdays{
+  width: 100%;
+  height: 5rem;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.weekdays div{
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(44.2rem/7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+}
+
+.days{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+}
+
+.days div{
+  font-size: 1.4rem;
+  margin: 0.3rem;
+  width: calc(40.2rem/7);
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s;
+}
+
+.days div:hover:not(.today){
+  background-color: #e5eaff;
+  border: 0.2rem solid #333;
+  cursor: pointer;
+}
+
+.prevDate,
+.nextDate{
+  opacity: 0.5;
+}
+
+.today{
+  background-color: #333;
+  color: #eee;
+}
+
+
+/* Veckovy */
+/*
+.weekContainer{
+  width: 100%;
+  height: 100vh;
+  background-color: #e5eaff;
+  /* color: #eee;  här kan vi ändra textfärg*/
+/*  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weekCalendar{
+  grid-gap: 0em;
+  display: grid;
+  width: 45rem;
+  height: 52.5rem;
+  /*border: 0.2rem solid #333;*/
+  /*grid-template-rows: 8rem 3.5rem calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10) calc(41rem/10);
+  grid-template-columns: 1.7rem calc(43.3rem/5) calc(43.3rem/5) calc(43.3rem/5) calc(43.3rem/5) calc(43.3rem/5);
+  grid-template-areas:
+  "weekHeader weekHeader weekHeader weekHeader weekHeader weekHeader"
+  "week5days week5days week5days week5days week5days week5days"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri"
+  "timeDiv timeMon timeTus timeWed timeThu timeFri";
+  background-color: #dbe2ff;
+  box-shadow: 0 0.5rem 3rem #rgba(0, 0, 0, 0.4);
+}
+
+.week5days{
+  grid-area: week5days;
+  /* width: 100%;
+  height: 5rem; */
+  /*padding: 0.5rem 0.4rem 0 2.2rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.1rem solid #333;
+}
+
+.week5days div{
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  width: calc(44.2rem/5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+}
+
+/* .week{
+  grid-area: weekHeader;
+  /* width: 100%;
+  height: 8rem; */
+/*  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  color: #eee;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+}
+
+.week i {
+  font-size: 2.5rem;
+  cursor: pointer;
+} */
+
+/* .week h1{
+  font-size: 3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+} */
+
+/* .week p{
+  font-size: 1.6rem;
+  letter-spacing: 0.08rem;
+} */
+
+/* .time{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+} */
+
+/* .time div{
+  grid-area: timeDiv;
+  font-size: 1.4rem;
+  margin: 0 0.2rem;
+  padding: 0 0.5rem;
+  /* width: calc(45rem);*/
+  /*height: calc(41rem/10);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem #rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s;
+  border-bottom: 0.1rem dotted #333;
+} */
+/*
+.time div:hover{
+  background-color: #e5eaff;
+  border: 0.2rem solid #333;
+  cursor: pointer;
+} */
+
+/*.prevDate,
+.nextDate{
+  opacity: 0.5;
+}*/
+
+/* .timeNow{
+    border-bottom: 0.1rem solid #333;
+}
+
+.mon{
+  grid-area: timeMon;
+}
+
+.tus{
+  grid-area: timeTus;
+  background-color: #e5eaff;
+}
+
+.wed{
+  grid-area: timeWed;
+}
+
+.thu{
+  grid-area: timeThu;
+  background-color: #e5eaff;
+}
+
+.fri{
+  grid-area: timeFri;
+}
+
+.datetime{
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5eaff;
+  color: #333;
+  font-size: 1.6rem;
+  letter-spacing: 0.02rem;
+}
+
+.datum {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+} */
+
+/* .tid {
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .tid span:not(:last-child){
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .tid span:last-child{
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+
+} */

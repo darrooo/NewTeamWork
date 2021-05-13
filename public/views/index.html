@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 
-<!-- test-->
+
 
 <html lang="en" dir="ltr">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <!--  <link rel="stylesheet" href="public\views\style.css">-->
+  <title>TeamWork</title>
+
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js"></script>
-  <script src="js/vue_script.js" defer></script>
   <script src="/vue/vue.js" defer></script>
+
+  <!--CSSen till index.html-->
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+  <!--JS till index.html-->
   <script type="text/javascript" src="js/script.js"> </script>
-  <title>TeamWork</title>
+  <script src="js/vue_script.js" defer></script>
+
 </head>
 
 <body>
@@ -46,8 +51,13 @@
       <br>
       <label for="psw"><b>Password : </b></label>
       <input id="txtPassword" type="password" name = "psw" placeholder="Enter Password">
+
       <button type="button" class="button" id="myButtonID" v-on:click="buttonClicked()"> Login (DB)</button>  <!-- den här redirectar inte-->
+
       <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="button">Login (homepage)</button>
+
+      <button onclick="location.href='/signup';" type="button" name="button" class="button">Sign Up</button>
+
       <!--<button id="signupButton" class="button">Sign up</button>
       <button id="logoutButton" class="button hide">Log out</button>-->
     </form>
@@ -68,6 +78,13 @@
     </ul>
 
   </div>
+
+<!--testar lite sockets här-->
+  <!-- <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script> -->
+<!--fram till hit..-->
 
 </body>
 

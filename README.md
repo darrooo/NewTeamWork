@@ -11,3 +11,13 @@ Vill vi skapa fler sidor till localhosten görs det på motsvarande sätt:
 2. skapa html fil i views och länka i den till dens css och js fil i respektive folder. Detta kan göras genom att i head lägga in:
 <link rel="stylesheet" type="text/css" href="\css\DinNyaSidasCSS.css">
 <script type="text/javascript" src="js/DinNyaSidasScript.js"> </script>
+
+--
+paket att installera:
+
+npm install express@4
+
+Att göra för att få paketen att fungera:
+npm install express --save
+npm install body-parser --save
+npm install mongoose --save

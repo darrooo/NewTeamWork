@@ -9,9 +9,9 @@ Data.prototype.addUser= function (user){
   this.users[user.userInformation] = user;
 //  console.log(Object.values(this.users)[0].userInfo[0]); //Email
 //  console.log(Object.values(this.users)[0].userInfo[1]); //psw
-  var emails= Object.values(this.users)[0].userInfo[0];
-  var passwords = Object.values(this.users)[0].userInfo[1];
-  var loginArray = [emails, passwords];
+  var email= Object.values(this.users)[0].userInfo[0];
+  var password = Object.values(this.users)[0].userInfo[1];
+  var loginArray = [email, password];
   return loginArray
    //kör om main för att uppdatera email och password globalt
 }
