@@ -6,6 +6,8 @@ var vm = new Vue({
   data: {
     click: false,
     userInformation: [],
+    dbID: "",
+    access: false,
   },
   //kommer från index.html login
   methods: {
@@ -30,9 +32,12 @@ var vm = new Vue({
     }
   }
 });
-
-  socket.on('sendLogin', function(access){
-    console.log('access i vue_script' + access);
+  //BAJS E DETTASAAA
+  socket.on('sendLogin',
+  function(d){
+    dbID = d.userID;
+    access = d.userAccess;
+    console.log('testar om det skickas till vue_script. Access: ' + access + "användar id är: "+ dbID);
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
     }
@@ -41,5 +46,3 @@ var vm = new Vue({
 
     }
   });
-
-  //TESTAR

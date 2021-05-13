@@ -11,6 +11,7 @@ var email ; //dani e rätt
 var password ; //danicompass e rätt
 var dbPassword ; //
 var dbEmail ;
+var dbID;
 var access = false;
 
 //Agnes testar sockets här
@@ -25,7 +26,8 @@ var access = false;
 //koppling till mongodb
 async function main() {
   //HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
-
+  const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  //const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 	const client = new MongoClient(uri, { useUnifiedTopology: true});
 
   try {
@@ -56,6 +58,8 @@ async function findUserByEmail(client, email) {  //kollar om email finns i DB
         console.log(result);
         dbPassword = result.password; //
         dbEmail = result.username;
+        dbID = result._id;
+        console.log("användar Id för inloggad användare: " + dbID);
   //      console.log(dbPassword );
   //      console.log(dbEmail);
         if (dbPassword == password && dbEmail == email) {
@@ -76,48 +80,42 @@ async function findUserByEmail(client, email) {  //kollar om email finns i DB
 function userLogin(){
   access = true
   console.log("är i userLogin" + access);
-  io.emit('sendLogin', access); //laddar om sendLogin
+  io.emit('sendLogin', {
+    userID:dbID,
+    userAccess: access
+  }); //laddar om sendLogin
 }
 
-//sparar users
-function Data(){
-  this.users={};
-}
-Data.prototype.addUser= function (user){
-    //Store the order in an "associative array" with orderinformation as key
-  this.users[user.userInformation] = user;
-//  console.log( Object.values(this.users)); // [{userInfo: ['email','psw']}]
-//  console.log(Object.values(this.users)[0].userInfo); // ["email", "psw"]
-//  console.log(Object.values(this.users)[0].userInfo[0]); //Email
-//  console.log(Object.values(this.users)[0].userInfo[1]); //psw
-  email= Object.values(this.users)[0].userInfo[0];
-  password = Object.values(this.users)[0].userInfo[1];
-  main(); //kör om main för att uppdatera email och password globalt
-}
-// om vi av någon anledning ska se alla användare, vet ej om den kommer behövas
-Data.prototype.getAllUsers = function () {
-  return this.users;
-};
+const teamworkData = require("./dataHandler.js");
 
-
-var data = new Data();
+let data = new teamworkData();
 
 
 // tar emot information från vue_script skickar info till vue_script
 io.on('connection', (socket) => {
   // When a connected client emits an "addOrder" message
   socket.on('sendInformation', function (userInformation) {
-    console.log("socket on " + Object.values(userInformation)); // socket on email , password
-    data.addUser(userInformation);
+    console.log(" user input information uname psw:  " + Object.values(userInformation)); // email , password
+    var loginArray = data.addUser(userInformation); //skickas till datahandler.js
+    email = loginArray[0]; //tilldelas globalt
+    password = loginArray[1]; //tilldelas globalt
+    //console.log("returnd array : " + loginArray); //fungerar
+    main(); //laddar om main med nytt email och psw
   });
   socket.on('sendLogout', function (userInformation){
     if(access){
       access= false;
     }
-    io.emit('sendLogin', access);
+    io.emit('sendLogin', {
+      userID:dbID,
+      userAccess: access
+    });
   });
-  socket.emit('sendLogin', access);
-  console.log("access i io app.js" + access);
+  socket.emit('sendLogin', {
+    userID:dbID,
+    userAccess: access
+  });
+  console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail + " id: " + dbID ); //fungerar
 });
 
 
