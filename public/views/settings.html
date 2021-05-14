@@ -23,49 +23,38 @@
   <section id="page">
     <header>
       <div class="headerimage">
-        <!--<img src="images/logo.png" alt="logga" height="80px">-->
         <img src="images/header.png" alt="logga" height="105px">
+
         <div class="profile" id="sendbuttons">
-          <!-- <button onclick="location.href='/calendar';" type="button" name="button" class="invisiblebutton" > Calendar </button> -->
           <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
-
           <button onclick="location.href='/myProfile';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
-
           <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Home </button>
-
           <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button>
-
         </div>
-
-        <button class="ham">
-          <!-- material icons https://material.io/resources/icons/ -->
-          <span class="menuIcon material-icons">
-            menu
-          </span>
-          <span class="xIcon material-icons">
-            close
-          </span>
-        </button>
-
-        <ul class="menu">
-          <li><a class="menuLink" onclick="location.href='/myProfile';">My profile</a></li>
-          <li><a class="menuLink" onclick="location.href='/chat';">Chat</a></li>
-          <li><a class="menuLink" onclick="location.href='/homepage';">Home</a></li>
-          <li><a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a></li>
-        </ul>
-
       </div>
-
     </header>
 
+    <div class="dropdown">
+      <button class="dropbtn"><img src="images/options.png" alt="test" height="50px" class="invisibledropdown"></button>
+      <div class="dropdown-content">
+        <a class="menuLink" onclick="location.href='/myProfile';">My profile</a>
+        <a class="menuLink" onclick="location.href='/chat';">Chat</a>
+        <a class="menuLink" onclick="location.href='/settings';">Settings</a>
+        <a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a>
+      </div>
+    </div>
 
-      <main>
-      </main>
-      <footer> Footer </footer>
+    <nav class="nav">
+      <div class="nav_head">
+        <h1>Vill vi ha en rubrik?</h1>
+      </div>
+      </nav>
 
-    </section>
-    <script src="js/homepagescript.js"></script>
+    <footer> Footer </footer>
 
-  </body>
+  </section>
+  <script src="js/homepagescript.js"></script>
 
-  </html>
+</body>
+
+</html>

@@ -22,7 +22,7 @@ body{
   font-size: 1.5em;
   text-align: center;
   color: #fff;
-  top: 65%;
+  bottom: 10%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -173,12 +173,14 @@ body{
 
 .bildText{
   margin-top: 2%;
+  padding: 0 10%;
   line-height: 200%;
   text-align: center;
 }
 
 .about{
   margin-top: 15%;
+  padding: 0 10%;
   text-align: center;
 }
 
@@ -330,7 +332,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 6rem;
   }
 
   .bildText{

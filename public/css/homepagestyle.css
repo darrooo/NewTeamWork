@@ -38,7 +38,18 @@ img{
 
 .invisiblebutton{display: none;}
 
-.colleagues{
+.nav{
+  display: flex;
+  justify-content: center;
+  width: 96%;
+  margin: 2%;
+  padding-bottom: 2%;
+  height: 100vh;
+  background: #e5eaff;
+  border-radius: 12px;
+}
+
+.navLeft{
   display: flex;
   justify-content: center;
   width: 96%;
@@ -62,58 +73,6 @@ img{
   padding-top: 50px;
   margin: 3%;
 }
-
-/*knapparna*/
-/*.invisiblebutton{
-position: absolute;
-top: 3%;
-right: 2%;
-display: inline-block;
-width: auto;
-background: none!important;
-border: none;
-margin-left: 5%;
-text-align: center;
-vertical-align: bottom;
-letter-spacing: 0.3rem;
-font-family: 'Bitter', serif;
-text-transform: uppercase;
-color: #fff;
-font-size: 200%;
-cursor: pointer;
-line-height: 350%;
-}
-
-/*grid set-up*/
-/* #page {
-display: grid;
-width: 100%;
-height: 100vh;
-background-color: #dbe2ff;
-grid-template-areas: "head head"
-"main  nav"
-"foot foot";
-grid-template-rows: 10% 83% 3%;
-grid-template-columns: 60% 40% ;
-} */
-
-/* #page > header {
-grid-area: head;
-position: sticky;
-padding: 10px 3%;
-background-color: #333;
-display: flex;
-line-height: 200px;
-overflow: hidden;
-} */
-
-/* .profile{
-display: block;
-width: 70%;
-text-align: right;
-line-height: 100%;
-height: 100%;
-} */
 
 .dropdown{
   display: inline-block;
@@ -150,7 +109,10 @@ height: 100%;
   z-index: 1;
 }
 
- .dropdown-content a:hover {background-color: #ddd;}
+ .dropdown-content a:hover {
+   background-color: #ddd;
+   border-radius: 12px;
+ }
 
 .dropdown:hover .dropdown-content {display: block;}
 
@@ -254,7 +216,7 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
 "nav_calendar";
 grid-template-rows: 8% 20% 72%;
 } */
-.nav{
+.navRight{
   display: block;
   width: 96%;
   margin: 2%;
@@ -581,11 +543,11 @@ font-size: 16px;
     /* width: 100%; */
   }
 
-  #sendbuttons{
+  .profile{
     position: absolute;
     bottom:1%;
     right: 1%;
-    width: 650px;
+    width: 660px;
     z-index: 1;
   }
 
@@ -618,7 +580,7 @@ font-size: 16px;
 .menu{display: none;}*/
 .dropbtn {display: none;}
 
-.colleagues{
+.navLeft{
   display: inline-block;
   width: 56%;
   margin: 2%;
@@ -644,7 +606,7 @@ font-size: 16px;
   transform: scale(1.2)translate(0,0);
 }
 
-.nav{
+.navRight{
   display: inline-block;
   float: right;
   height: 700px;
