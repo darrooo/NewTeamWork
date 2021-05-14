@@ -10,7 +10,7 @@
 
 html{
   font-size: 62.5%;
-  background: #dbe2ff;
+  background: #dbe2ff!important;
   overflow-y: scroll;
 }
 
@@ -42,12 +42,86 @@ img{
   display: flex;
   justify-content: center;
   width: 96%;
-  margin: 2%;
+  margin: 4% 2%;
   padding-bottom: 2%;
   height: 100vh;
   background: #e5eaff;
   border-radius: 12px;
 }
+
+/* Popup container - texten som triggar popupen */
+.popup{
+  text-align: left;
+  display: flex;
+  padding-left: 4%;
+}
+
+.popup:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 50%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  left: 25%;
+  bottom: 10%;
+  box-shadow: 5px 5px 7px 5px #888888;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+input{
+    font-family: 'Bitter', serif;
+    width: 80%;
+    font-size: 20px;
+    padding: 12px 20px;
+    margin: 8px;
+    border: none;
+    border-bottom: 2px solid #767474;
+}
+input[type=submit] {
+    font-family: 'Bitter', serif;
+    width: 50%;
+    background-color: #767474;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    border-radius: 10px;
+}
+
+.main h1{font-size: 30px; margin-left: 40px; line-height: 200%;}
 
 .navLeft{
   display: flex;
@@ -85,7 +159,7 @@ img{
   margin-left: 85%;
   position: relative;
   border: none;
-  background-color: none!important;
+  background: none!important;
   z-index: 1;
 }
 
@@ -219,7 +293,7 @@ grid-template-rows: 8% 20% 72%;
 .navRight{
   display: block;
   width: 96%;
-  margin: 2%;
+  margin: 4% 2%;
   background: #e5eaff;
   border-radius: 12px;
 }
@@ -364,6 +438,7 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
 
 /* CHAT */
 .wrapperChat{
+  margin: 2% 0;
   padding: 2%;
   position: relative;
   height: 80vh;
@@ -579,6 +654,17 @@ font-size: 16px;
 /*.ham{display: none;}
 .menu{display: none;}*/
 .dropbtn {display: none;}
+
+.wrapperChat{margin: 0;}
+
+.chatWindow{top: 18%;}
+
+.nav{margin: 2%;}
+
+#navSettings h1{
+  padding-left: 4%;
+  text-align: left;
+}
 
 .navLeft{
   display: inline-block;

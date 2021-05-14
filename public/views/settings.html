@@ -9,7 +9,6 @@
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
-  <script src="/vue/vue.js" defer></script>
   <title>settings</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap">
@@ -45,14 +44,62 @@
     </div>
 
     <nav class="nav">
-      <div class="nav_head">
-        <h1>Vill vi ha en rubrik?</h1>
+      <div class="nav_head" id="navSettings">
+        <h1>Settings</h1>
+
+        <div class="popup" onclick="myFunction()">
+          Add colleague
+          <span class="popuptext" id="myPopup">
+              <div class="row">
+                <div class="col-md-3">
+
+                </div>
+
+                <div class="col-md-6 main">
+
+                    <form action="/signup" method="post">
+
+                    <h1> Add colleague </h1>
+
+                    <input class="box" type="text" name="username" id="username"
+                    placeholder="Username"  required /><br>
+
+                    <input class="box" type="text" name="name" id="name"
+                    placeholder="Name " required /><br>
+
+                    <input class="box" type="password" name="password"
+                    id="password" placeholder="Password " required/><br>
+                                <br>
+                    <input type="submit" id="submitDetails" onclick="location.href='/settings';"
+                    name="submitDetails" value="Submit" /><br>
+
+
+                    </form>
+
+                </div>
+
+
+                <div class="col-md-3">
+                </div>
+
+            </div>
+          </span>
+        </div>
       </div>
       </nav>
 
     <footer> Footer </footer>
 
   </section>
+
+  <script>
+  // When the user clicks on div, open the popup
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+  </script>
+
   <script src="js/homepagescript.js"></script>
 
 </body>
