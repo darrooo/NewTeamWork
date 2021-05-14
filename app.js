@@ -16,6 +16,14 @@ var dbID;
 var access = false;
 
 ////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
+const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+//const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//
+
+//connects to database
+//Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
+//var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
@@ -29,7 +37,7 @@ async function main() {
   try {
   //  await client.connect();
   //  await listDatabases(client); //listar Databaser
-
+    await listAllUsers(client); //listar Användare
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
     //klickar på knappen, och inte på on page load som den gör nu.
@@ -48,17 +56,29 @@ async function main() {
   // } //removed - not needed
 }
 
-async function listDatabases(client){ //listar Databaser
+//async function listDatabases(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
-  const databasesList = await client.db().admin().listDatabases();
-  console.log("Databases:");
-  databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+//  const databasesList = await client.db().admin().listDatabases();
+//  console.log("Databases:");
+//  databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+//};
+async function listAllUsers(client){ //listar Databaser
+  //Kör denna funktion för att visa databasen
+  const allUsers = await client.db("teamwork").collection("teamworkcollection").find();
+  allUsers.forEach(users => {
+    //console.log(users)
+    //console.log(users.name)
+    data.addUserInData(users);
+
+  });
+
 };
 
 //hela denna funktion bör kollas över. variabler, mm.
 async function findUserByEmail(client, email) {
   //kör denna funktion för att hitta user med visst username och password
   const user = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email }); //om vi vill hämta information om en user, använd detta!! För att få tillgång till dens email = får all information. lägga till akelnder till denna.
+
   if (user) {
     console.log(`Found a listing in the collection with the username '${email}':`);
     console.log(user);
@@ -68,6 +88,9 @@ async function findUserByEmail(client, email) {
     dbID = user._id;
     if (dbPassword == password && dbEmail == email) {
       console.log("DET STÄMMER");
+      var allUsers = data.getAllUsers();
+      console.log("Följande är alla användare tillgängliga i data => allUsers");
+      console.log(allUsers);
       userLogin();
       //window.location.assign("localhost:3000/homepage");  //window is not defined
     }
