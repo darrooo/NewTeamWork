@@ -37,9 +37,9 @@ var vm = new Vue({
 //BAJS E DETTASAAA
 socket.on('sendLogin',
 function(d){
-  dbID = d.userID;
+  //dbID = d.userID;
   access = d.userAccess;
-  console.log('testar om det skickas till vue_script. Access: ' + access + "användar id är: "+ dbID);
+  console.log('testar om det skickas till vue_script. Access: ' + access );
 
 
 //  socket.on('sendLogin', function(access){
