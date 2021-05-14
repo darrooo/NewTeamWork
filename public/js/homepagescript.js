@@ -1,7 +1,7 @@
 // Att kollegorna syns på homepage
 var allColleagues = () => {
 
-const divColleagues = document.querySelector('.myColleagues');
+var divColleagues = document.querySelector('.myColleagues');
 
 let myColleagues = '';
 

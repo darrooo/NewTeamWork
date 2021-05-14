@@ -6,19 +6,21 @@ var vm = new Vue({
   data: {
     click: false,
     userInformation: [],
+    dbID: "",
+    access: false,
   },
   //kommer från index.html login
   methods: {
     buttonClicked: function() { //från index send button
       this.click = true;
       this.userInformation = getUserInfo(); //skickas till script.js
-      //console.log("i methods userinformation" + this.userInformation);
+      console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
     },
     //skickar till app.js
     sendInformation: function(event) {
       //console.log("i mwthods send information" + event);
-    //  console.log("i mwthods send this.userInformation" + this.userInformation);
+      console.log("i mwthods send this.userInformation" + this.userInformation);
       socket.emit("sendInformation", {
         userInfo: this.userInformation,
       });
@@ -31,8 +33,16 @@ var vm = new Vue({
   }
 });
 
+//Denna ska tillbaka när app.js är ändrad:
+//BAJS E DETTASAAA
+socket.on('sendLogin',
+function(d){
+  dbID = d.userID;
+  access = d.userAccess;
+  console.log('testar om det skickas till vue_script. Access: ' + access + "användar id är: "+ dbID);
 
-  socket.on('sendLogin', function(access){
+
+//  socket.on('sendLogin', function(access){
 //Vet inte hur det funkar, console log printar inte.
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
@@ -44,5 +54,3 @@ var vm = new Vue({
 
     }
   });
-
-  //TESTAR
