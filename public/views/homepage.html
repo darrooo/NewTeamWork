@@ -37,8 +37,7 @@
 
         </div>
 
-        <button class="ham">
-          <!-- material icons https://material.io/resources/icons/ -->
+        <!-- <button class="ham">
           <span class="menuIcon material-icons">
             menu
           </span>
@@ -47,16 +46,30 @@
           </span>
         </button>
 
-        <ul class="menu">
-          <li><a class="menuLink" onclick="location.href='/myProfile';">My profile</a></li>
-          <li><a class="menuLink" onclick="location.href='/chat';">Chat</a></li>
-          <li><a class="menuLink" onclick="location.href='/settings';">Settings</a></li>
-          <li><a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a></li>
-        </ul>
+<div class="wrapperMenu">
+  <ul class="menu">
+    <li><a class="menuLink" onclick="location.href='/myProfile';">My profile</a></li>
+    <li><a class="menuLink" onclick="location.href='/chat';">Chat</a></li>
+    <li><a class="menuLink" onclick="location.href='/settings';">Settings</a></li>
+    <li><a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a></li>
+  </ul>
+</div> -->
+</div>
 
-      </div>
+</header>
+<div class="dropdown">
+  <button class="dropbtn"><img src="images/button.png" alt="test" height="50px" class="invisibledropdown"></button>
+   <div class="dropdown-content">
+    <a class="menuLink" onclick="location.href='/myProfile';">My profile</a>
+    <a class="menuLink" onclick="location.href='/chat';">Chat</a>
+    <a class="menuLink" onclick="location.href='/settings';">Settings</a>
+    <a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a>
+  </div>
+</div>
 
-    </header>
+
+
+
     <nav class="nav">
       <div class="nav_head">
         <h1>My Profile</h1>

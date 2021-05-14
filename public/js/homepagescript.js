@@ -60,7 +60,7 @@ var ham = document.querySelector(".ham")
 var xIcon = document.querySelector(".xIcon")
 var menuIcon = document.querySelector(".menuIcon")
 
-ham.addEventListener("click", toggleMenu)
+// ham.addEventListener("click", toggleMenu)
 
 function toggleMenu() {
   if (menu.classList.contains("showMenu")) {

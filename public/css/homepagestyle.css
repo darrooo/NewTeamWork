@@ -14,6 +14,10 @@ html{
   overflow-y: scroll;
 }
 
+header{
+  height: 90px;
+}
+
 #page{
   min-width: 450px;
   overflow: visible;
@@ -21,12 +25,14 @@ html{
 
 /*liten skärm*/
 img{
-  height: 90px;
+  z-index: 1;
+  position: relative;
+/*  height: 100%;*/
 }
 
 .headerimage{
   position: relative;
-  display: block;
+  /*display: block;*/
   overflow-x: hidden;
 }
 
@@ -109,9 +115,49 @@ line-height: 100%;
 height: 100%;
 } */
 
-.ham {
+.dropdown{
+  display: inline-block;
   position: absolute;
-  /* keep the hamburger button above everything */
+  top: 25px;
+  right: 75px;
+}
+
+.dropbtn {
+  margin-left: 85%;
+  position: relative;
+  border: none;
+  background-color: none!important;
+  z-index: 1;
+}
+
+.dropdown-content {
+  border-radius: 12px;
+  display: none;
+  position: absolute;
+  right: -1px;
+  top: 30px;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  z-index: 1;
+}
+
+ .dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: none;}
+
+/*.ham {
+  position: absolute;
   z-index: 100;
   bottom: 2.4rem;
   right: 4.1rem;
@@ -126,45 +172,75 @@ height: 100%;
 
 .menuIcon{
   padding: 0.7rem;
+  z-index: 0.8
 }
+
+.wrapperMenu {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  position: fixed;
+  top: 6rem;
+  right: 7rem;
+  width: 100vw;
+  height: auto;
+  z-index: 1;
+}
+
+.menu {
+  background: #fff;
+  border: solid thin grey;
+  border-radius: 0.3em;
+  margin-left: 75%;
+  padding: 1em;
+}
+
 .xIcon {
+  width: 1.5em;
+  margin: 0%;
+}
+/*.xIcon {
   display: none;
 }
 
 .menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100vh;
-  background: black;
-  color: white;
+  display: flex;
+
+position: fixed;
+top: 5rem;
+left: 6rem;
+
+z-index: 1;
+   position: absolute;
+  top: 5rem;
+  right: 6rem;
+  width: 200px;
+  background: white;
+  color: black;
   transform: translateY(-100%);
   transition: transform 0.2s;
   list-style: none;
-  padding-top: 4rem;
-}
+  padding-top: 1rem;
 
-.showMenu {
+}*/
+/*.showMenu {
   transform: translateY(0);
 }
 
 li {
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 }
 
 .menuLink {
   display: inline;
   font-size: 2rem;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .menuLink:hover {
-  text-decoration: underline;
-}
+text-decoration: underline;
+}*/
 
 /* #page > nav {
 display: grid;
@@ -490,13 +566,18 @@ font-size: 16px;
 }
 
 @media only screen and (min-width: 1000px) {
+
+  header{
+    height: 105px;
+  }
+
   img{
     height: 105px;
   }
 
   .headerimage{
     position: relative;
-    display: block;
+    /*display: block;
     /* width: 100%; */
   }
 
@@ -505,6 +586,7 @@ font-size: 16px;
     bottom:1%;
     right: 1%;
     width: 650px;
+    z-index: 1;
   }
 
   .invisiblebutton{
@@ -527,13 +609,14 @@ font-size: 16px;
   }
 
 
-/* FUNGERAR INTE ÄN */
-.invisiblebutton button:hover{
-  text-transform: scale(1.2)translate(0,0);
+/* vill egentligen zooma men det ville inte...!!*/
+.invisiblebutton:hover{
+  text-decoration: underline;
 }
 
-.ham{display: none;}
-.menu{display: none;}
+/*.ham{display: none;}
+.menu{display: none;}*/
+.dropbtn {display: none;}
 
 .colleagues{
   display: inline-block;

@@ -23,7 +23,7 @@
   <body>
     <div class="headerimage">
       <img src="images/header.png" alt="logga" width="100%">
-      
+
 <div class="sendbuttons">
       <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Home </button>
 
@@ -44,10 +44,10 @@
       </button>
 
       <ul class="menu">
-        <li><a class="menuLink" href="#">My profile</a></li>
-        <li><a class="menuLink" href="#">Chat</a></li>
-        <li><a class="menuLink" href="#">Settings</a></li>
-        <li><a class="menuLink" href="#">Sign out</a></li>
+        <li><a class="menuLink" onclick="location.href='/myProfile';">My profile</a></li>
+        <li><a class="menuLink" onclick="location.href='/chat';">Chat</a></li>
+        <li><a class="menuLink" onclick="location.href='/settings';">Settings</a></li>
+        <li><a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a></li>
       </ul>
 
    </div>
