@@ -159,6 +159,10 @@ app.get('/', function (req, res) {
   main();
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
+app.get('/myProfile', function (req, res) {
+  main();
+  res.sendFile(path.join(__dirname, 'public/views/myProfile.html'));
+});
 
 app.get('/homepage', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/homepage.html'));
@@ -166,6 +170,9 @@ app.get('/homepage', function (req, res) {
 
 app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
+});
+app.get('/settings', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/settings.html'));
 });
 
 
