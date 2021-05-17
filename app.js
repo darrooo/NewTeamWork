@@ -12,6 +12,7 @@ var email ;
 var password ;
 var dbPassword ;
 var dbEmail ;
+var currentUsers;
 //var dbID;
 var access = false;
 
@@ -76,10 +77,7 @@ async function listAllUsers(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
-    //console.log(users)
-    //console.log(users.name)
     data.addUserInData(users);
-    //data.checkIfUserInDB(email, password);
   });
 };
 
@@ -97,47 +95,17 @@ function findUser(email, password) {
   if (valid == 0) {
     console.log("fel lösenord och användarnamn " + valid);
   }
-
-
-
 }
 
 
-//hela denna funktion bör kollas över. variabler, mm.
-//async function findUserByEmail(client, email) {
-  //kör denna funktion för att hitta user med visst username och password
 
-  //const user = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email }); //om vi vill hämta information om en user, använd detta!! För att få tillgång till dens email = får all information. lägga till akelnder till denna.
-  //TO DO: borde byta username till email
-
-  //if (user) {
-  //  console.log(`Found a listing in the collection with the username '${email}':`);
-  //  console.log(user);
-//     dbPassword = user.password;
-//     dbEmail = user.username;
-//
-//   //  dbID = user._id;
-//     if (dbPassword == password && dbEmail == email) {
-//       console.log("DET STÄMMER");
-//
-//       userLogin();
-//       //window.location.assign("localhost:3000/homepage");  //window is not defined
-//     }
-//     else{
-//       console.log("DET STÄMMER INTE PROVA NYTT LÖSENORD")
-//     }
-//   } else {
-//     console.log(`No listings found with the username '${email}'`);
-//     console.log("DET STÄMMER INTE PROVA NYTT INLOGG")
-//   }
-// }
 
 // ska redirectas till /homepage
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
 function userLogin(){
   access = true
   console.log("är i userLogin" + access);
-  var currentUsers = data.getAllUsers();
+  currentUsers = data.getAllUsers();
   console.log("Följande är alla användare tillgängliga i data => allMyUsers");
   console.log(currentUsers);
   io.emit('sendLogin', {
@@ -200,8 +168,12 @@ app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
+
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
+});
+app.get('/contact', (req, res) => {
+  res.sendFile(__dirname + '/public/views/contact.html');
 });
 
 app.get('/calendar', (req, res) => {
@@ -248,6 +220,13 @@ app.post('/signup', function(req, res){
   return res.redirect('/')
 });
 
+io.on('connection', (socket) => {
+  socket.on('getAllMyUsers', (getAllTheUsers) => {
+//    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
+    io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
+
+  });
+});
 
 
 

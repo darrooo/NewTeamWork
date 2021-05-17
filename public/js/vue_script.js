@@ -47,9 +47,8 @@ function(d){
       window.location = "http://localhost:3000/homepage";
     }
 
-    //Har ändrat till true bör vara false
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
-
     }
+  
   });
