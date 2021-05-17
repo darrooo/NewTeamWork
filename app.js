@@ -12,7 +12,7 @@ var email ;
 var password ;
 var dbPassword ;
 var dbEmail ;
-var dbID;
+//var dbID;
 var access = false;
 
 ////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
@@ -23,22 +23,26 @@ var access = false;
 //connects to database
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
 //var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-//var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
+
+
 
 //------------------------------------------------
 
 //allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
 // main behövs egentligen inte, går att skriva om.
 async function main() {
+
   //Körs först av allt
   try {
+    console.log("när körs jag?");
   //  await client.connect();
   //  await listDatabases(client); //listar Databaser
-    await listAllUsers(client); //listar Användare
+
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
     //klickar på knappen, och inte på on page load som den gör nu.
@@ -47,7 +51,12 @@ async function main() {
     //funktion som returnar true eller false, inte två funktioner som kollar det ena
     // eller det andra.
     //----------------
-    await findUserByEmail(client, email); //kollar om email finns i DB
+    //** SKA BÖRJA TESTA NUU
+    await listAllUsers(client); //listar Användare
+  //   findUser(email, password);
+
+    //await findUserByEmail(client, email); //kollar om email finns i DB
+
 
   } catch (e) {
     console.error(e);
@@ -57,6 +66,7 @@ async function main() {
   // } //removed - not needed
 }
 
+
 //async function listDatabases(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
 //  const databasesList = await client.db().admin().listDatabases();
@@ -65,62 +75,81 @@ async function main() {
 //};
 async function listAllUsers(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
-  const allUsers = await client.db("teamwork").collection("teamworkcollection").find();
+  var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
     //console.log(users)
     //console.log(users.name)
     data.addUserInData(users);
-
+    //data.checkIfUserInDB(email, password);
   });
-
 };
 
-//hela denna funktion bör kollas över. variabler, mm.
-async function findUserByEmail(client, email) {
-  //kör denna funktion för att hitta user med visst username och password
-  const user = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email }); //om vi vill hämta information om en user, använd detta!! För att få tillgång till dens email = får all information. lägga till akelnder till denna.
+function findUser(email, password) {
+  var valid =  data.checkIfUserInDB(email, password);
+  if (valid == 1) {
+    console.log("testa ett annat lösenord");
 
-  if (user) {
-    console.log(`Found a listing in the collection with the username '${email}':`);
-    console.log(user);
-    dbPassword = user.password;
-    //TO DO: borde byta username till email
-    dbEmail = user.username;
-    dbID = user._id;
-    if (dbPassword == password && dbEmail == email) {
-      console.log("DET STÄMMER");
-      var allUsers = data.getAllUsers();
-      console.log("Följande är alla användare tillgängliga i data => allUsers");
-      console.log(allUsers);
-      userLogin();
-      //window.location.assign("localhost:3000/homepage");  //window is not defined
-    }
-    else{
-      console.log("DET STÄMMER INTE PROVA NYTT LÖSENORD")
-    }
-  } else {
-    console.log(`No listings found with the username '${email}'`);
-    console.log("DET STÄMMER INTE PROVA NYTT INLOGG")
   }
+  if (valid == 2) {
+    console.log("login lyckades!");
+    userLogin();
+
+  }
+  if (valid == 0) {
+    console.log("fel lösenord och användarnamn " + valid);
+  }
+
+
+
 }
+
+
+//hela denna funktion bör kollas över. variabler, mm.
+//async function findUserByEmail(client, email) {
+  //kör denna funktion för att hitta user med visst username och password
+
+  //const user = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email }); //om vi vill hämta information om en user, använd detta!! För att få tillgång till dens email = får all information. lägga till akelnder till denna.
+  //TO DO: borde byta username till email
+
+  //if (user) {
+  //  console.log(`Found a listing in the collection with the username '${email}':`);
+  //  console.log(user);
+//     dbPassword = user.password;
+//     dbEmail = user.username;
+//
+//   //  dbID = user._id;
+//     if (dbPassword == password && dbEmail == email) {
+//       console.log("DET STÄMMER");
+//
+//       userLogin();
+//       //window.location.assign("localhost:3000/homepage");  //window is not defined
+//     }
+//     else{
+//       console.log("DET STÄMMER INTE PROVA NYTT LÖSENORD")
+//     }
+//   } else {
+//     console.log(`No listings found with the username '${email}'`);
+//     console.log("DET STÄMMER INTE PROVA NYTT INLOGG")
+//   }
+// }
 
 // ska redirectas till /homepage
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
 function userLogin(){
   access = true
   console.log("är i userLogin" + access);
-
-
-  //SKA ÄNDRAS T DETTA: DATAHANDLER + vue_script
+  var allMyUsers = data.getAllUsers();
+  console.log("Följande är alla användare tillgängliga i data => allMyUsers");
+  console.log(allMyUsers);
   io.emit('sendLogin', {
-    userID:dbID,
     userAccess: access
-  }); //laddar om sendLogin
+  });
 }
 
 const teamworkData = require("./dataHandler.js");
 
 let data = new teamworkData();
+
 
 
 // tar emot information från vue_script skickar info till vue_script
@@ -132,6 +161,7 @@ io.on('connection', (socket) => {
     var loginArray = data.addUser(userInformation); //skickas till datahandler.js
     email = loginArray[0]; //tilldelas globalt
     password = loginArray[1]; //tilldelas globalt
+    findUser(email, password);
     //console.log("returnd array : " + loginArray); //fungerar
     main(); //laddar om main med nytt email och psw
   });
@@ -141,10 +171,10 @@ io.on('connection', (socket) => {
       access= false;
     }
     socket.emit('sendLogin', {
-     userID:dbID,
+     //userID:dbID,
      userAccess: access
      });
-      console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail + " id: " + dbID ); //fungerar
+      console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
     });
   });
 
@@ -158,6 +188,7 @@ app.use(express.static(path.join(__dirname, 'public/')));
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 
 app.get('/', function (req, res) {
+  main();
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
@@ -169,8 +200,20 @@ app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
+app.get('/contact', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/contact.html'));
+});
+
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
+});
+
+app.get('/settings', (req, res) => {
+  res.sendFile(__dirname + '/public/views/settings.html');
+});
+
+app.get('/myProfile', (req, res) => {
+  res.sendFile(__dirname + '/public/views/myProfile.html');
 });
 
 app.get('/calendar', (req, res) => {
@@ -185,6 +228,7 @@ app.get('/signup', function (req, res) {
 app.get('/signup_success', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup_success.html'))
 });
+
 
 
 
@@ -214,8 +258,9 @@ app.post('/signup', function(req, res){
 
   });
 
-  return res.redirect('/homepage')
+  return res.redirect('/settings')
 });
+
 
 
 
@@ -235,4 +280,5 @@ io.on('connection', (socket) => {
 
 http.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
+
 });

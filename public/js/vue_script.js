@@ -3,6 +3,7 @@ var click =false;
 
 var vm = new Vue({
   el: '#sendbuttons',
+  //el1: '#hamburgerbuttons',
   data: {
     click: false,
     userInformation: [],
@@ -37,9 +38,9 @@ var vm = new Vue({
 //BAJS E DETTASAAA
 socket.on('sendLogin',
 function(d){
-  dbID = d.userID;
+  //dbID = d.userID;
   access = d.userAccess;
-  console.log('testar om det skickas till vue_script. Access: ' + access + "användar id är: "+ dbID);
+  console.log('testar om det skickas till vue_script. Access: ' + access );
 
 
 //  socket.on('sendLogin', function(access){
@@ -48,9 +49,16 @@ function(d){
       window.location = "http://localhost:3000/homepage";
     }
 
-
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
-
+    }
+    else if (window.location == "http://localhost:3000/chat" && access ==false) {
+      window.location = "http://localhost:3000/";
+    }
+    else if (window.location == "http://localhost:3000/myProfile" && access ==false) {
+      window.location = "http://localhost:3000/";
+    }
+    else if (window.location == "http://localhost:3000/settings" && access ==false) {
+      window.location = "http://localhost:3000/";
     }
   });

@@ -1,3 +1,4 @@
+// Att kollegorna syns på homepage
 var allColleagues = () => {
 
 var divColleagues = document.querySelector('.myColleagues');
@@ -5,12 +6,14 @@ var divColleagues = document.querySelector('.myColleagues');
 let myColleagues = '';
 
 for(let colleague = 1; colleague <= 50; colleague++){
-  myColleagues += `<div class = "myColleagues">${'Example colleague: '+ colleague}</div>`;
+  myColleagues += `<div class = "myColleagues">${"Example colleague: "+ colleague}</div>`;
   divColleagues.innerHTML = myColleagues;
+  //console.log(divColleagues);
  };
 }
 allColleagues();
 
+// Dagliga kalendern på homepage
 var daily = new Date();
 
 var renderDaily = () => {
@@ -27,9 +30,9 @@ const weekdays = [
   "Sunday"
 ];
 
-
+//Veckodagen för den dag som syns på dagsvyn
 document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay()-1];
-
+//Dagens datum som visas i headern
 document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
 let hours = '';
@@ -37,6 +40,7 @@ let hours = '';
 for(let hour = 7; hour <= 17; hour++){
   hours += `<div class = "hours">${hour}</div>`;
   timeHours.innerHTML = hours;
+//  console.log(timeHours);
  };
 }
 
@@ -56,7 +60,7 @@ var ham = document.querySelector(".ham")
 var xIcon = document.querySelector(".xIcon")
 var menuIcon = document.querySelector(".menuIcon")
 
-ham.addEventListener("click", toggleMenu)
+// ham.addEventListener("click", toggleMenu)
 
 function toggleMenu() {
   if (menu.classList.contains("showMenu")) {

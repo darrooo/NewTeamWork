@@ -8,9 +8,12 @@
 body{
   font-family: 'Bitter', serif;
 }
+
 .headerimage{
-  margin-top: 9%;
-  margin-left: 17%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
   z-index: -1;
 }
 .loginbox{
@@ -19,14 +22,13 @@ body{
   font-size: 1.5em;
   text-align: center;
   color: #fff;
-  top: 65%;
+  bottom: 10%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   padding: 70px 30px;
   z-index: 1;
-
 }
 .button {
   background-color: white;
@@ -62,20 +64,26 @@ body{
   width: 100%;
   position: absolute;
   z-index: 1;
-
-
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .banner-text ul{
+  width: 200px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
   height: 50px;
-  float: right;
+  padding: 2% 3%;
 }
 .banner-text ul li{
   display: inline-block;
-  padding: 40px 15px;
+  /* padding: 40px 15px; */
   text-transform: uppercase;
   color: #000;
   font-size: 20px;
-
+  margin: 0 5%;
 }
 .banner-text h2{
   text-align: center;
@@ -83,9 +91,7 @@ body{
   font-size: 50px;
   margin-top: 20%;
   float: center;
-
 }
-
 
 /* ANIMERING */
 .animation{
@@ -156,6 +162,193 @@ body{
   width: 110px;
   height: 110px;
   animation-delay: 3.5s;
+}
+
+.bild{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.bildText{
+  margin-top: 2%;
+  padding: 0 10%;
+  line-height: 200%;
+  text-align: center;
+}
+
+.about{
+  margin-top: 15%;
+  padding: 0 10%;
+  text-align: center;
+}
+
+.about h1{
+  line-height: 300%;
+}
+
+@media only screen and (min-width: 768px){
+  .headerimage{
+    width: 60%;
+    margin-top: 12%;
+    margin-left: 20%;
+    z-index: -1;
+  }
+  .loginbox{
+    height: 40%;
+    font-family: 'Bitter', serif;
+    font-size: 1.5em;
+    text-align: center;
+    color: #fff;
+    top: 65%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    z-index: 1;
+
+  }
+  .button {
+    background-color: white;
+    border-color: white;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 0px;
+    margin-left: -3.5%;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  /* Knapparna i hörnet */
+  .invisiblebutton{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: 'Bitter', serif;
+    /*input has OS specific font-family*/
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  /* Texten i header*/
+  .banner-text ul{
+    float: right;
+    margin-top: 1%;
+    margin-right: 5%;
+    padding: 0 0;
+  }
+  .banner-text ul li{
+    margin: 0 0;
+    padding: 40px 15px;
+  }
+  .banner-text h2{
+    text-align: center;
+    color: #000;
+    font-size: 50px;
+    margin-top: 20%;
+    float: center;
+  }
+
+  /* ANIMERING */
+  .animation{
+    background: linear-gradient(#dbe2ff, #9195f4);
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .box-area{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .box-area li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+  }
+  .box-area li:nth-child(1){
+    left: 86%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+  }
+
+  .box-area li:nth-child(2){
+    left: 15%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 1.5s;
+    animation-duration: 10s;
+  }
+
+  .box-area li:nth-child(3){
+    left: 70%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 5.5s;
+  }
+
+  .box-area li:nth-child(4){
+    left: 42%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 15s;
+  }
+
+  .box-area li:nth-child(5){
+    left: 65%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+  }
+
+  .box-area li:nth-child(6){
+    left: 15%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3.5s;
+  }
+
+  .bild{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+  }
+
+  .bildText{
+    margin-top: 2%;
+    line-height: 200%;
+    text-align: center;
+  }
+
+  .about{
+    margin-top: 15%;
+    text-align: center;
+  }
+
+  .about h1{
+    line-height: 300%;
+  }
 }
 
 

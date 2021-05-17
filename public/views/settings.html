@@ -3,27 +3,19 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-
-  <title>TeamWork</title>
-  <!--CSS filer som tillhör homepage-->
+  <!--  <link rel="stylesheet" href="public\views\style.css">-->
   <link rel="stylesheet" type="text/css" href="\css\homepagestyle.css">
-  <link rel="stylesheet" href="/css/calendarstyle.css">
-
-  <!--JS filer som tillhör homepage-->
   <script type="text/javascript" src="js/homepagescript.js"> </script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
-  <script src="/vue/vue.js" defer></script>
-
-  <!-- Fonts som kanske borde ligga i CSSen-->
+  <title>settings</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="/css/calendarstyle.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 
 <body>
@@ -35,7 +27,7 @@
         <div class="profile" id="sendbuttons">
           <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
           <button onclick="location.href='/myProfile';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
-          <button onclick="location.href='/settings';" type="button" name="button" class="invisiblebutton" id="buttonSettings">  Settings </button>
+          <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Home </button>
           <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button>
         </div>
       </div>
@@ -51,42 +43,65 @@
       </div>
     </div>
 
-    <nav class="navRight">
-      <div class="nav_head">
-        <h1>My Profile</h1>
-      </div>
-      <div class="nav_thisisme">
-        <p>Namn
-          <br>
-          Projekt</p>
-        </div>
-        <div class="nav_calendar">
-          <div class="dailyCalendar">
-            <div class="calendarHeader">
-              <i class="fas fa-angle-left prevDay"></i>
-              <div class="thisDay">
-                <h1></h1>
-                <p></p>
-              </div>
-              <i class="fas fa-angle-right nextDay"></i>
-            </div>
+    <nav class="nav">
+      <div class="nav_head" id="navSettings">
+        <h1>Settings</h1>
 
-            <div class="event">
-              <div class="hours"></div>
+        <div class="popup" onclick="myFunction()">
+          Add colleague
+          <span class="popuptext" id="myPopup">
+              <div class="row">
+                <div class="col-md-3">
+
+                </div>
+
+                <div class="col-md-6 main">
+
+                    <form action="/signup" method="post">
+
+                    <h1> Add colleague </h1>
+
+                    <input class="box" type="text" name="username" id="username"
+                    placeholder="Username"  required /><br>
+
+                    <input class="box" type="text" name="name" id="name"
+                    placeholder="Name " required /><br>
+
+                    <input class="box" type="password" name="password"
+                    id="password" placeholder="Password " required/><br>
+                                <br>
+                    <input type="submit" id="submitDetails" onclick="location.href='/settings';"
+                    name="submitDetails" value="Submit" /><br>
+
+
+                    </form>
+
+                </div>
+
+
+                <div class="col-md-3">
+                </div>
+
             </div>
-          </div>
+          </span>
         </div>
+      </div>
       </nav>
 
-      <div class="navLeft">
-        <div class="myColleagues"> </div>
-      </div>
+    <footer> Footer </footer>
 
-      <footer> Footer </footer>
+  </section>
 
-    </section>
-    <script src="js/homepagescript.js"></script>
+  <script>
+  // When the user clicks on div, open the popup
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+  </script>
 
-  </body>
+  <script src="js/homepagescript.js"></script>
 
-  </html>
+</body>
+
+</html>
