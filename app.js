@@ -1,29 +1,30 @@
 'use strict';
 
-const express = require('express');
+var express = require('express');
 const {MongoClient} = require('mongodb');
-const app = express();
+var app = express();
 var http = require('http').Server(app);
 var path = require('path');
-const io = require('socket.io')(http);
+var io = require('socket.io')(http);
 const port = 3000;
 var bodyParser = require("body-parser");
 var email ;
 var password ;
 var dbPassword ;
 var dbEmail ;
+var currentUsers;
 //var dbID;
 var access = false;
 
 ////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
-//const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //
 
 //connects to database
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
 //var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var client = new MongoClient(uri, { useUnifiedTopology: true});
@@ -77,10 +78,7 @@ async function listAllUsers(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
-    //console.log(users)
-    //console.log(users.name)
     data.addUserInData(users);
-    //data.checkIfUserInDB(email, password);
   });
 };
 
@@ -98,56 +96,27 @@ function findUser(email, password) {
   if (valid == 0) {
     console.log("fel lösenord och användarnamn " + valid);
   }
-
-
-
 }
 
 
-//hela denna funktion bör kollas över. variabler, mm.
-//async function findUserByEmail(client, email) {
-  //kör denna funktion för att hitta user med visst username och password
 
-  //const user = await client.db("teamwork").collection("teamworkcollection").findOne({ username: email }); //om vi vill hämta information om en user, använd detta!! För att få tillgång till dens email = får all information. lägga till akelnder till denna.
-  //TO DO: borde byta username till email
-
-  //if (user) {
-  //  console.log(`Found a listing in the collection with the username '${email}':`);
-  //  console.log(user);
-//     dbPassword = user.password;
-//     dbEmail = user.username;
-//
-//   //  dbID = user._id;
-//     if (dbPassword == password && dbEmail == email) {
-//       console.log("DET STÄMMER");
-//
-//       userLogin();
-//       //window.location.assign("localhost:3000/homepage");  //window is not defined
-//     }
-//     else{
-//       console.log("DET STÄMMER INTE PROVA NYTT LÖSENORD")
-//     }
-//   } else {
-//     console.log(`No listings found with the username '${email}'`);
-//     console.log("DET STÄMMER INTE PROVA NYTT INLOGG")
-//   }
-// }
 
 // ska redirectas till /homepage
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
 function userLogin(){
   access = true
   console.log("är i userLogin" + access);
-  var allMyUsers = data.getAllUsers();
+  currentUsers = data.getAllUsers();
   console.log("Följande är alla användare tillgängliga i data => allMyUsers");
-  console.log(allMyUsers);
+  console.log(currentUsers);
   io.emit('sendLogin', {
-    userAccess: access
+    userAccess: access,
+    allCurrentUsers: currentUsers
+
   });
 }
 
 const teamworkData = require("./dataHandler.js");
-
 let data = new teamworkData();
 
 
@@ -200,26 +169,22 @@ app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
 
-app.get('/contact', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/contact.html'));
-});
 
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
-
-app.get('/settings', (req, res) => {
-  res.sendFile(__dirname + '/public/views/settings.html');
+app.get('/contact', (req, res) => {
+  res.sendFile(__dirname + '/public/views/contact.html');
 });
-
 app.get('/myProfile', (req, res) => {
   res.sendFile(__dirname + '/public/views/myProfile.html');
 });
-
+app.get('/settings', (req, res) => {
+  res.sendFile(__dirname + '/public/views/settings.html');
+});
 app.get('/calendar', (req, res) => {
   res.sendFile(__dirname + '/public/views/calendar.html');
 });
-
 app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
@@ -261,6 +226,13 @@ app.post('/signup', function(req, res){
   return res.redirect('/settings')
 });
 
+io.on('connection', (socket) => {
+  socket.on('getAllMyUsers', (getAllTheUsers) => {
+//    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
+    io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
+
+  });
+});
 
 
 

@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body onload="initClock">
   <section id="page">
     <header>
       <div class="headerimage">
@@ -46,9 +46,61 @@
 
     <nav class="nav">
       <div class="nav_head">
-        <h1>Vill vi ha en rubrik?</h1>
+        <h1>Vill vi ha en rubrik?</h1>      <div class="container">
+          <div class="calendar">
+            <div class="month">
+              <i class="fas fa-angle-left prev"></i>
+              <div class="date">
+                <h1></h1>
+                <p></p>
+              </div>
+              <i class="fas fa-angle-right next"></i>
+            </div>
+            <div class="weekdays">
+              <div>Monday</div>
+              <div>Tuesday</div>
+              <div>Wednesday</div>
+              <div>Thursday</div>
+              <div>Friday</div>
+              <div>Saturday</div>
+              <div>Sunday</div>
+            </div>
+            <div class="days"></div>
+          </div>
+        </div>
+
+        <script src="js/calendar.js"></script> <!-- ändra om vi flyttar koden till annat script -->  
+
       </div>
-      </nav>
+    </nav>
+
+    <script type="text/javascript">
+    function updateClock(){
+      var now = new Date();
+      var dname = now.getDay(),
+      mo = now.getMonth(),
+      dnum = now.getDate(),
+      yr = now.getFullYear(),
+      hou = now.getHours(),
+      min = now.getMinutes(),
+      sec = now.getSeconds(),
+      pe = "AM";
+
+      var monts = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var weeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      var ids = ["dayName", "mounthName", "dayNumber", "year", "hour", "minutes", "seconds", "period"];
+      var values = [weeek[dname], monts[mo], dnum, yr, hou, min, sec, pe];
+
+      for(var a = 0; a < ids.length; a++)
+      document.getElementById(ids[a]).firstCild.nodeValue = values[a];
+    }
+
+    function initClock() {
+      updateClock();
+      windw.setInterval("updateClock()", 1);
+    }
+
+    </script>
 
     <footer> Footer </footer>
 

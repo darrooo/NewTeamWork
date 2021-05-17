@@ -1,19 +1,17 @@
 var socket = io();
-var click =false;
 
 var vm = new Vue({
   el: '#sendbuttons',
   //el1: '#hamburgerbuttons',
   data: {
-    click: false,
     userInformation: [],
     dbID: "",
     access: false,
+    allUsers: [],
   },
   //kommer från index.html login
   methods: {
     buttonClicked: function() { //från index send button
-      this.click = true;
       this.userInformation = getUserInfo(); //skickas till script.js
       console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
@@ -30,16 +28,17 @@ var vm = new Vue({
       socket.emit("sendLogout",{
         userInfo: this.userInformation,
       });
-    }
+    },
   }
 });
 
-//Denna ska tillbaka när app.js är ändrad:
-//BAJS E DETTASAAA
+
+
 socket.on('sendLogin',
 function(d){
   //dbID = d.userID;
   access = d.userAccess;
+  allUsers = d.allCurrentUsers;
   console.log('testar om det skickas till vue_script. Access: ' + access );
 
 
@@ -52,13 +51,5 @@ function(d){
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
     }
-    else if (window.location == "http://localhost:3000/chat" && access ==false) {
-      window.location = "http://localhost:3000/";
-    }
-    else if (window.location == "http://localhost:3000/myProfile" && access ==false) {
-      window.location = "http://localhost:3000/";
-    }
-    else if (window.location == "http://localhost:3000/settings" && access ==false) {
-      window.location = "http://localhost:3000/";
-    }
+  
   });

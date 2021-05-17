@@ -15,6 +15,9 @@
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
   <script src="/vue/vue.js" defer></script>
+  <!--<script src="https://cdn.socket.io/socket.io-1.0.0.js"defer></script>-->
+  <!--<script src="./dataHandler.js"defer></script>-->
+
 
   <!-- Fonts som kanske borde ligga i CSSen-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -87,6 +90,116 @@
     </section>
     <script src="js/homepagescript.js"></script>
 
+
   </body>
 
+
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+
+
+  var socket = io();
+  var getAllTheUsers = [];
+  var allTheUsers = [];
+  var currentUser;
+
+  socket.emit('getAllMyUsers', getAllTheUsers);
+
+
+  socket.on('getAllMyUsers', function(d){
+    //console.log("the users" + currentUsers);
+    getAllTheUsers = d.allCurrentUsers;
+    currentUser=d.thisUser;
+    // getAllTheUsers.forEach(users => {
+    //   console.log("the users" + users.name);
+    //   allTheUsers += users.name;
+    //   console.log("får vi upp alla namn här?: " + allTheUsers);
+    //
+    // });
+    var allColleagues = () => {
+    var divColleagues = document.querySelector('.myColleagues');
+    let myColleagues = '';
+      getAllTheUsers.forEach(users => {
+        console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
+        if (currentUser != users.name) {
+          myColleagues += `<div class = "myColleagues"> ${ users.name}</div>`;
+          divColleagues.innerHTML = myColleagues;
+        }
+      });
+    }
+    allColleagues();
+  });
+
+
+  var daily = new Date();
+
+  var renderDaily = () => {
+
+  const timeHours = document.querySelector('.hours');
+
+  const weekdays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ];
+
+  //Veckodagen för den dag som syns på dagsvyn
+  document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay()-1];
+  //Dagens datum som visas i headern
+  document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
+
+  let hours = '';
+
+  for(let hour = 7; hour <= 17; hour++){
+    hours += `<div class = "hours">${hour}</div>`;
+    timeHours.innerHTML = hours;
+  //  console.log(timeHours);
+   };
+  }
+
+  document.querySelector('.prevDay').addEventListener('click', () =>{
+    daily.setDate(daily.getDate()-1)
+    renderDaily();
+  });
+
+  document.querySelector('.nextDay').addEventListener('click', () =>{
+    daily.setDate(daily.getDate()+1)
+    renderDaily();
+  });
+  renderDaily();
+
+  var menu = document.querySelector(".menu")
+  var ham = document.querySelector(".ham")
+  var xIcon = document.querySelector(".xIcon")
+  var menuIcon = document.querySelector(".menuIcon")
+
+  // ham.addEventListener("click", toggleMenu)
+
+  function toggleMenu() {
+    if (menu.classList.contains("showMenu")) {
+      menu.classList.remove("showMenu");
+      xIcon.style.display = "none";
+      menuIcon.style.display = "block";
+    } else {
+      menu.classList.add("showMenu");
+      xIcon.style.display = "block";
+      menuIcon.style.display = "none";
+    }
+  }
+
+  var menuLinks = document.querySelectorAll(".menuLink")
+
+  menuLinks.forEach(
+    function (menuLink) {
+      menuLink.addEventListener("click", toggleMenu)
+    }
+  )
+
+  </script>
   </html>
