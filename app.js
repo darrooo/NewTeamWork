@@ -16,7 +16,7 @@ var dbID;
 var access = false;
 
 ////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
-const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //
 
@@ -181,6 +181,7 @@ app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
 
+//anävnder inte denna i nuläget
 app.get('/signup_success', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup_success.html'))
 });
@@ -206,7 +207,7 @@ app.post('/signup', function(req, res){
     "password": pass,
   }
 
-  client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){ //db is not defined, hämtar inte databasen
+  client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
 
     if(err) throw err;
     console.log("Record inserted Successfully");
