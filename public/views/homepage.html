@@ -57,12 +57,18 @@
     <nav class="navRight">
       <div class="nav_head">
         <h1>My Profile</h1>
+
       </div>
       <div class="nav_thisisme">
-        <p>Namn
-          <br>
-          Projekt</p>
+        <p>Namn: </p>
+          <p>Projekt: </p>
+
         </div>
+        <div class="nav_thisiswork">
+          <div class="thisCurrentUser"></div>
+          <div class="thisProject"></div>
+        </div>
+
         <div class="nav_calendar">
           <div class="dailyCalendar">
             <div class="calendarHeader">
@@ -80,13 +86,18 @@
           </div>
         </div>
       </nav>
-      
 
       <div class="navLeft">
+
         <div class="myColleagues"> </div>
+
       </div>
 
-      <footer> Footer </footer>
+      <footer> Footer
+
+
+
+      </footer>
 
     </section>
     <script src="js/homepagescript.js"></script>
@@ -121,12 +132,24 @@
     // });
     var allColleagues = () => {
     var divColleagues = document.querySelector('.myColleagues');
+    var divUser = document.querySelector('.thisCurrentUser');
+    var divProject = document.querySelector('.thisProject');
     let myColleagues = '';
+    let thisCurrentUser = '';
+    let thisProject = '';
       getAllTheUsers.forEach(users => {
-        console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
-        if (currentUser != users.name) {
-          myColleagues += `<div class = "myColleagues"> ${ users.name}</div>`;
+        if (currentUser != users.username) {
+        //  console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
+          myColleagues += `<div class = "myColleagues"> ${ users.name} ${ users.project}</div>`;
           divColleagues.innerHTML = myColleagues;
+        }
+        if (currentUser == users.username) {
+          console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
+          thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
+          divUser.innerHTML = thisCurrentUser;
+
+          thisProject = `<div class = "thisProject"> ${users.project}</div>`;
+          divProject.innerHTML = thisProject;
         }
       });
     }

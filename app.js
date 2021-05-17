@@ -131,7 +131,7 @@ io.on('connection', (socket) => {
     password = loginArray[1]; //tilldelas globalt
     findUser(email, password);
     //console.log("returnd array : " + loginArray); //fungerar
-    main(); //laddar om main med nytt email och psw
+    //main(); //laddar om main med nytt email och psw
   });
 
   socket.on('sendLogout', function (userInformation){
@@ -160,7 +160,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 app.get('/myProfile', function (req, res) {
-  main();
+  //main();
   res.sendFile(path.join(__dirname, 'public/views/myProfile.html'));
 });
 
@@ -182,11 +182,15 @@ app.get('/chat', (req, res) => {
 app.get('/contact', (req, res) => {
   res.sendFile(__dirname + '/public/views/contact.html');
 });
-
+app.get('/myProfile', (req, res) => {
+  res.sendFile(__dirname + '/public/views/myProfile.html');
+});
+app.get('/settings', (req, res) => {
+  res.sendFile(__dirname + '/public/views/settings.html');
+});
 app.get('/calendar', (req, res) => {
   res.sendFile(__dirname + '/public/views/calendar.html');
 });
-
 app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
@@ -224,7 +228,7 @@ app.post('/signup', function(req, res){
 
   });
 
-  return res.redirect('/')
+  return res.redirect('/settings')
 });
 
 io.on('connection', (socket) => {

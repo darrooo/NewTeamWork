@@ -148,6 +148,8 @@ input[type=submit] {
   margin: 3%;
 }
 
+
+
 .dropdown{
   display: inline-block;
   position: absolute;
@@ -327,13 +329,24 @@ grid-template-rows: 8% 20% 72%;
 
 .nav_thisisme p{
   display: inline-block;
+  font-weight: bold;
   width: auto;
   letter-spacing: 0.1rem;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-left: 120px;
   line-height: 30px;
   font-size: 16px;
 }
+.nav_thisiswork{
+  display: inline-block;
+  width: auto;
+  letter-spacing: 0.1rem;
+  margin-top: 5px;
+  margin-left: 120px;
+  line-height: 30px;
+  font-size: 16px;
+}
+
 
 .nav_calendar{
   display: block;
@@ -691,6 +704,10 @@ font-size: 16px;
 .myColleagues div:hover{
   transform: scale(1.2)translate(0,0);
 }
+
+
+
+
 
 .navRight{
   display: inline-block;
