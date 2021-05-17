@@ -175,11 +175,15 @@ app.get('/chat', (req, res) => {
 app.get('/contact', (req, res) => {
   res.sendFile(__dirname + '/public/views/contact.html');
 });
-
+app.get('/myProfile', (req, res) => {
+  res.sendFile(__dirname + '/public/views/myProfile.html');
+});
+app.get('/settings', (req, res) => {
+  res.sendFile(__dirname + '/public/views/settings.html');
+});
 app.get('/calendar', (req, res) => {
   res.sendFile(__dirname + '/public/views/calendar.html');
 });
-
 app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
@@ -217,7 +221,7 @@ app.post('/signup', function(req, res){
 
   });
 
-  return res.redirect('/')
+  return res.redirect('/settings')
 });
 
 io.on('connection', (socket) => {
