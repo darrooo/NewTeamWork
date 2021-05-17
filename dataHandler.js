@@ -5,6 +5,22 @@ function Data(){
   this.users={};
   this.allUsers=[];
 }
+//var inDatabase = data.checkIfUserInDB(email, password);
+Data.prototype.checkIfUserInDB= function (email, password){
+  var valid = 0;
+  var allUsersArray = this.getAllUsers();
+  allUsersArray.forEach(element => {
+    if (element.username == email) {
+      valid=1;
+
+    }
+    if (element.username == email && element.password ==password) {
+      valid=2;
+    }
+  });
+  return valid;
+}
+
 Data.prototype.addUser= function (user){
     //Store the order in an "associative array" with orderinformation as key
   this.users[user.userInformation] = user; //user.userinformation är en array från script.js
@@ -27,9 +43,13 @@ Data.prototype.addUserInData = function (users) {
   //this.users[user.userInformation] = user;
   var name= users.name;
   var name = { name: users.name, username: users.username, password: users.password};
-  var allUsersArray = [];
-  allUsersArray = this.allUsers;
-  allUsersArray.push(name);
+///  var allUsersArray = [];
+  //allUsersArray = this.allUsers;
+  this.allUsers.push(name);
+//  allUsersArray.forEach(element => {
+  //  console.log("test uname: " + element.username );
+  //  console.log("test psw: " + element.password );
+  //});
   //console.log(this.allUsers);
 //  console.log("array . " + allUsersArray);
 
