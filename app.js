@@ -1,11 +1,11 @@
 'use strict';
 
-const express = require('express');
+var express = require('express');
 const {MongoClient} = require('mongodb');
-const app = express();
+var app = express();
 var http = require('http').Server(app);
 var path = require('path');
-const io = require('socket.io')(http);
+var io = require('socket.io')(http);
 const port = 3000;
 var bodyParser = require("body-parser");
 var email ;
@@ -137,16 +137,17 @@ function findUser(email, password) {
 function userLogin(){
   access = true
   console.log("är i userLogin" + access);
-  var allMyUsers = data.getAllUsers();
+  var currentUsers = data.getAllUsers();
   console.log("Följande är alla användare tillgängliga i data => allMyUsers");
-  console.log(allMyUsers);
+  console.log(currentUsers);
   io.emit('sendLogin', {
-    userAccess: access
+    userAccess: access,
+    allCurrentUsers: currentUsers
+
   });
 }
 
 const teamworkData = require("./dataHandler.js");
-
 let data = new teamworkData();
 
 

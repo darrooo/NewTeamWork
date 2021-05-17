@@ -1,3 +1,16 @@
+
+//Här ska all users hämtas på något sätt från datahandler eller vue_script!!
+//import vm from './dataHandler.js'
+//var USERTSGD = getAllUsers();
+//import allUsers from './dataHandler.js'
+//const teamworkDatasss = require("./dataHandler.js");
+//let data = new teamworkDatasss();
+
+
+//var socket = io();
+//var socket = io.connect('http://localhost');
+
+
 var allColleagues = () => {
 
 var divColleagues = document.querySelector('.myColleagues');
