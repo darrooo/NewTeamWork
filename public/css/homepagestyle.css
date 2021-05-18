@@ -137,15 +137,16 @@ input[type=submit] {
 
 .myColleagues div{
   display: inline-block;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background: #dbe2ff;
   border-radius: 100px;
   border-style: solid;
   border-color: #626567;
   border-width: thin;
   text-align: center;
-  padding-top: 50px;
+  line-height: 120%;
+  padding-top: 60px;
   margin: 3%;
 }
 
@@ -727,15 +728,12 @@ font-size: 16px;
 
 .myColleagues div{
   display: inline-block;
-  height: 50px;
-  width: 50px;
   background: #dbe2ff;
   border-radius: 100px;
   border-style: solid;
   border-color: #626567;
   border-width: thin;
   text-align: center;
-  padding-top: 50px;
   margin: 3%;
 }
 
