@@ -86,6 +86,7 @@ function findUser(email, password) {
   if (valid == 1) {
     console.log("testa ett annat lösenord");
 
+
   }
   if (valid == 2) {
     console.log("login lyckades!");
@@ -108,6 +109,7 @@ function userLogin(){
   currentUsers = data.getAllUsers();
   console.log("Följande är alla användare tillgängliga i data => allMyUsers");
   console.log(currentUsers);
+
   io.emit('sendLogin', {
     userAccess: access,
     allCurrentUsers: currentUsers
@@ -131,7 +133,7 @@ io.on('connection', (socket) => {
     password = loginArray[1]; //tilldelas globalt
     findUser(email, password);
     //console.log("returnd array : " + loginArray); //fungerar
-    main(); //laddar om main med nytt email och psw
+    //main(); //laddar om main med nytt email och psw
   });
 
   socket.on('sendLogout', function (userInformation){
@@ -156,8 +158,12 @@ app.use(express.static(path.join(__dirname, 'public/')));
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 
 app.get('/', function (req, res) {
-  main();
+    main();
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
+
+});
+app.get('/myProfile', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/myProfile.html'));
 });
 
 app.get('/homepage', function (req, res) {
@@ -166,6 +172,9 @@ app.get('/homepage', function (req, res) {
 
 app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
+});
+app.get('/settings', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/views/settings.html'));
 });
 
 

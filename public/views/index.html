@@ -51,11 +51,12 @@
       <input id="txtEmail" type="email" name = "uname" placeholder="Enter Email">
       <br>
       <label for="psw"><b>Password : </b></label>
+
       <input id="txtPassword" type="password" name = "psw" placeholder="Enter Password">
+      <br>
 
-      <button type="button" class="button" id="myButtonID" v-on:click="buttonClicked()"> Login</button>
-
-      <!-- <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="button">Login (homepage)</button> -->
+      <button type="button" class="button" class="button" v-on:click="buttonClicked()"> Login </button>
+      <br>
 
       <button onclick="location.href='/signup';" type="button" name="button" class="button">Sign Up</button>
 
@@ -63,6 +64,19 @@
       <!--<button id="signupButton" class="button">Sign up</button>
       <button id="logoutButton" class="button hide">Log out</button>-->
     </form>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">x</span>
+          <p>Inloggningsuppgifterna stämmer inte.</p>
+          <p>Prova igen</p>
+
+        </div>
+
+      </div>
 
 
 

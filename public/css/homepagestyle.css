@@ -149,6 +149,8 @@ input[type=submit] {
   margin: 3%;
 }
 
+
+
 .dropdown{
   display: inline-block;
   position: absolute;
@@ -322,18 +324,64 @@ grid-template-rows: 8% 20% 72%;
   border-width: thin;
   border-color: #626567;
   color: #626567;
-  display: block;
   text-align: left;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 80px 100px ;
+  grid-template-areas:
+  "name thisName"
+  "project thisProject";
 }
 
 .nav_thisisme p{
-  display: inline-block;
+  display: block;
+  font-weight: bold;
   width: auto;
   letter-spacing: 0.1rem;
-  margin-top: 25px;
-  margin-left: 120px;
+  /* margin-top: 14%; */
   line-height: 30px;
   font-size: 16px;
+}
+
+#pName{grid-area: name}
+
+#pProject{grid-area: project}
+
+.thisCurrentUser div{
+  display: block;
+  color: #626567;
+  letter-spacing: 0.1rem;
+  /* margin-top: 3%; */
+  line-height: 30px;
+  font-size: 16px;
+  grid-area: thisName;
+}
+
+.thisProject div{
+  display: block;
+  color: #626567;
+  letter-spacing: 0.1rem;
+  /* margin-top: 3%; */
+  line-height: 30px;
+  font-size: 16px;
+  grid-area: thisProject;
+}
+
+ .nav_thisiswork{
+  display: block;
+  width: auto;
+  letter-spacing: 0.1rem;
+  margin-top: 22%;
+  margin-left: 110px;
+  line-height: 30px;
+  font-size: 16px;
+  grid-gap: 0em;
+  display: grid;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 80px 100px ;
+  grid-template-areas:
+  "name thisName"
+  "project thisProject";
+
 }
 
 .nav_calendar{
@@ -349,9 +397,11 @@ grid-template-rows: 8% 20% 72%;
 
 .dailyCalendar{
   display: block;
-  height: 95%;
-  margin-top: 120px;
-  padding-bottom: 1%;
+  height: auto;
+  margin-top: 110px;
+  /* margin-bottom: 20px;
+  padding-bottom: -10px; */
+  /* padding-bottom: 1%; */
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -590,7 +640,7 @@ font-size: 16px;
 
 .dailyCalendar{
   margin-top: 120px;
-  height: auto;
+  /* height: auto; */
 }
 
 .hours{
@@ -698,13 +748,13 @@ font-size: 16px;
   float: right;
   height: 700px;
   width: 36%;
-  margin: 2%;;
+  margin: 2%;
 }
 
 .nav_calendar{
   height: auto;
 }
-.dailyCalendar{height: auto;}
+/* .dailyCalendar{height: auto;} */
 
 .nav_head{
   text-align: right;
