@@ -81,7 +81,18 @@
           </div>
 
           <div class="event">
-            <div class="hours"></div>
+            <div class="hours" onclick="myFunctionEvent()"></div>
+            <div class="popupSchema" onclick="myFunctionEvent()">
+              <!-- Pop Schema -->
+              <span class="popuptextSchema" id="myPopupEvent">
+                <p>Lägg till event i ditt schema</p>
+                <div class="buttonCo">
+                  <button type="button" class="buttonAddEvent"> add event </button>
+                  <br>
+                  <button type="button" name="button" class="buttonRemoveEvent"> remove event </button>
+                </div>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -89,7 +100,18 @@
 
     <div class="navLeft">
 
-      <div class="myColleagues"> </div>
+      <div class="myColleagues" onclick="myFunction()"> </div>
+      <div class="popupColleague" onclick="myFunction()">
+        <!-- Pop Colleague -->
+        <span class="popuptextColleague" id="myPopup">
+          <p>Här är din kollega</p>
+          <div class="buttonCo">
+            <button type="button" class="buttonColleagueChat"> start chat </button>
+            <br>
+            <button type="button" name="button" class="buttonColleagueMeet"> propose a meeting </button>
+          </div>
+        </span>
+      </div>
 
     </div>
 
@@ -100,6 +122,19 @@
     </footer>
 
   </section>
+
+  <script>
+  // When the user clicks on div, open the popup
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+
+  function myFunctionEvent() {
+    var popupEvent = document.getElementById("myPopupEvent");
+    popupEvent.classList.toggle("showEvent");
+  }
+  </script>
   <script src="js/homepagescript.js"></script>
 
 
