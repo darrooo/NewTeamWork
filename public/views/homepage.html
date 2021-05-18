@@ -59,107 +59,107 @@
         <h1>My Profile</h1>
 
       </div>
-      <div class="nav_thisisme">
-        <p>Namn: </p>
-          <p>Projekt: </p>
 
-        </div>
+      <div class="nav_thisisme">
         <div class="nav_thisiswork">
+          <p id="pName">Namn: </p>
+          <p id="pProject">Projekt: </p>
           <div class="thisCurrentUser"></div>
           <div class="thisProject"></div>
         </div>
-
-        <div class="nav_calendar">
-          <div class="dailyCalendar">
-            <div class="calendarHeader">
-              <i class="fas fa-angle-left prevDay"></i>
-              <div class="thisDay">
-                <h1></h1>
-                <p></p>
-              </div>
-              <i class="fas fa-angle-right nextDay"></i>
-            </div>
-
-            <div class="event">
-              <div class="hours"></div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div class="navLeft">
-
-        <div class="myColleagues"> </div>
-
       </div>
 
-      <footer> Footer
+      <div class="nav_calendar">
+        <div class="dailyCalendar">
+          <div class="calendarHeader">
+            <i class="fas fa-angle-left prevDay"></i>
+            <div class="thisDay">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right nextDay"></i>
+          </div>
+
+          <div class="event">
+            <div class="hours"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="navLeft">
+
+      <div class="myColleagues"> </div>
+
+    </div>
+
+    <footer> Footer
 
 
 
-      </footer>
+    </footer>
 
-    </section>
-    <script src="js/homepagescript.js"></script>
-
-
-  </body>
+  </section>
+  <script src="js/homepagescript.js"></script>
 
 
-
-  <script src="/socket.io/socket.io.js"></script>
-
-  <script>
+</body>
 
 
-  var socket = io();
-  var getAllTheUsers = [];
-  var allTheUsers = [];
-  var currentUser;
 
-  socket.emit('getAllMyUsers', getAllTheUsers);
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
 
 
-  socket.on('getAllMyUsers', function(d){
-    //console.log("the users" + currentUsers);
-    getAllTheUsers = d.allCurrentUsers;
-    currentUser=d.thisUser;
-    // getAllTheUsers.forEach(users => {
-    //   console.log("the users" + users.name);
-    //   allTheUsers += users.name;
-    //   console.log("får vi upp alla namn här?: " + allTheUsers);
-    //
-    // });
-    var allColleagues = () => {
+var socket = io();
+var getAllTheUsers = [];
+var allTheUsers = [];
+var currentUser;
+
+socket.emit('getAllMyUsers', getAllTheUsers);
+
+
+socket.on('getAllMyUsers', function(d){
+  //console.log("the users" + currentUsers);
+  getAllTheUsers = d.allCurrentUsers;
+  currentUser=d.thisUser;
+  // getAllTheUsers.forEach(users => {
+  //   console.log("the users" + users.name);
+  //   allTheUsers += users.name;
+  //   console.log("får vi upp alla namn här?: " + allTheUsers);
+  //
+  // });
+  var allColleagues = () => {
     var divColleagues = document.querySelector('.myColleagues');
     var divUser = document.querySelector('.thisCurrentUser');
     var divProject = document.querySelector('.thisProject');
     let myColleagues = '';
     let thisCurrentUser = '';
     let thisProject = '';
-      getAllTheUsers.forEach(users => {
-        if (currentUser != users.username) {
+    getAllTheUsers.forEach(users => {
+      if (currentUser != users.username) {
         //  console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
-          myColleagues += `<div class = "myColleagues"> ${ users.name} ${ users.project}</div>`;
-          divColleagues.innerHTML = myColleagues;
-        }
-        if (currentUser == users.username) {
-          console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
-          thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
-          divUser.innerHTML = thisCurrentUser;
+        myColleagues += `<div class = "myColleagues"> ${ users.name} ${ users.project}</div>`;
+        divColleagues.innerHTML = myColleagues;
+      }
+      if (currentUser == users.username) {
+        console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
+        thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
+        divUser.innerHTML = thisCurrentUser;
 
-          thisProject = `<div class = "thisProject"> ${users.project}</div>`;
-          divProject.innerHTML = thisProject;
-        }
-      });
-    }
-    allColleagues();
-  });
+        thisProject = `<div class = "thisProject"> ${users.project}</div>`;
+        divProject.innerHTML = thisProject;
+      }
+    });
+  }
+  allColleagues();
+});
 
 
-  var daily = new Date();
+var daily = new Date();
 
-  var renderDaily = () => {
+var renderDaily = () => {
 
   const timeHours = document.querySelector('.hours');
 
@@ -183,47 +183,47 @@
   for(let hour = 7; hour <= 17; hour++){
     hours += `<div class = "hours">${hour}</div>`;
     timeHours.innerHTML = hours;
-  //  console.log(timeHours);
-   };
-  }
+    //  console.log(timeHours);
+  };
+}
 
-  document.querySelector('.prevDay').addEventListener('click', () =>{
-    daily.setDate(daily.getDate()-1)
-    renderDaily();
-  });
-
-  document.querySelector('.nextDay').addEventListener('click', () =>{
-    daily.setDate(daily.getDate()+1)
-    renderDaily();
-  });
+document.querySelector('.prevDay').addEventListener('click', () =>{
+  daily.setDate(daily.getDate()-1)
   renderDaily();
+});
 
-  var menu = document.querySelector(".menu")
-  var ham = document.querySelector(".ham")
-  var xIcon = document.querySelector(".xIcon")
-  var menuIcon = document.querySelector(".menuIcon")
+document.querySelector('.nextDay').addEventListener('click', () =>{
+  daily.setDate(daily.getDate()+1)
+  renderDaily();
+});
+renderDaily();
 
-  // ham.addEventListener("click", toggleMenu)
+var menu = document.querySelector(".menu")
+var ham = document.querySelector(".ham")
+var xIcon = document.querySelector(".xIcon")
+var menuIcon = document.querySelector(".menuIcon")
 
-  function toggleMenu() {
-    if (menu.classList.contains("showMenu")) {
-      menu.classList.remove("showMenu");
-      xIcon.style.display = "none";
-      menuIcon.style.display = "block";
-    } else {
-      menu.classList.add("showMenu");
-      xIcon.style.display = "block";
-      menuIcon.style.display = "none";
-    }
+// ham.addEventListener("click", toggleMenu)
+
+function toggleMenu() {
+  if (menu.classList.contains("showMenu")) {
+    menu.classList.remove("showMenu");
+    xIcon.style.display = "none";
+    menuIcon.style.display = "block";
+  } else {
+    menu.classList.add("showMenu");
+    xIcon.style.display = "block";
+    menuIcon.style.display = "none";
   }
+}
 
-  var menuLinks = document.querySelectorAll(".menuLink")
+var menuLinks = document.querySelectorAll(".menuLink")
 
-  menuLinks.forEach(
-    function (menuLink) {
-      menuLink.addEventListener("click", toggleMenu)
-    }
-  )
+menuLinks.forEach(
+  function (menuLink) {
+    menuLink.addEventListener("click", toggleMenu)
+  }
+)
 
-  </script>
-  </html>
+</script>
+</html>

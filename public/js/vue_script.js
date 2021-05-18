@@ -14,8 +14,8 @@ var vm = new Vue({
       this.userInformation = getUserInfo(); //skickas till script.js
       console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
-      this.timeOutFunction();
-
+      if(window.location == "http://localhost:3000/"){
+        this.timeOutFunction();}
     },
     //skickar till app.js
     sendInformation: function(event) {
@@ -57,14 +57,13 @@ function(d){
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
     }
-
-    else if(window.location == "http://localhost:3000/chat" && access ==false){
+    else if(window.location == "http://localhost:3000/myProfile" && access ==false){
       window.location = "http://localhost:3000/";
     }
     else if(window.location == "http://localhost:3000/settings" && access ==false){
       window.location = "http://localhost:3000/";
     }
-    else if(window.location == "http://localhost:3000/myProfile" && access ==false){
+    else if(window.location == "http://localhost:3000/chat" && access ==false){
       window.location = "http://localhost:3000/";
     }
 
