@@ -54,6 +54,7 @@ img{
   text-align: left;
   display: flex;
   padding-left: 4%;
+  width: 200px;
 }
 
 .popup:hover{
@@ -136,19 +137,147 @@ input[type=submit] {
 
 .myColleagues div{
   display: inline-block;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   background: #dbe2ff;
   border-radius: 100px;
   border-style: solid;
-  border-color: #333;
+  border-color: #626567;
   border-width: thin;
   text-align: center;
-  padding-top: 50px;
+  line-height: 120%;
+  padding-top: 60px;
   margin: 3%;
 }
 
+/* The actual popup Colleague*/
+/* .popupColleague .popuptextColleague {
+  visibility: hidden;
+  width: 50%;
+  font-size: 16px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  left: 25%;
+  bottom: 50%;
+  box-shadow: 5px 5px 7px 5px #888888;
+} */
 
+/* Popup arrow */
+/* .popupColleague .popuptextColleague::after {
+  content: "";
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+} */
+
+/* Toggle this class - hide and show the popup */
+/* .popupColleague .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  height: 150px;
+} */
+.buttonCo{
+  position: relative;
+  top: -80px;
+  height: 100px;
+}
+
+.buttonColleagueChat{
+  position: relative;
+  top: 20px;
+  right: 20px;
+  display: block;
+  float: right;
+  font-family: 'Bitter', serif;
+  width: 110px;
+  height: 40px;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 2px 20px;
+  margin: 4px 2px;
+  border-radius: 10px;
+}
+
+.buttonColleagueMeet{
+  position: relative;
+  top: 60px;
+  right: -95px;
+  display: block;
+  float: right;
+  font-family: 'Bitter', serif;
+  width: 110px;
+  height: 40px;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 2px 20px;
+  margin: 4px 2px;
+  border-radius: 10px;
+}
+
+/* The actual popup schema*/
+.popupSchema .popuptextSchema {
+  visibility: hidden;
+  width: 50%;
+  font-size: 16px;
+  background-color: #fff;
+  color: #555;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  left: 25%;
+  bottom: 50%;
+  box-shadow: 5px 5px 7px 5px #888888;
+}
+
+/* Popup arrow */
+.popupSchema .popuptextSchema::after {
+  content: "";
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popupSchema .showEvent {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  height: 150px;
+}
+
+.buttonAddEvent{
+  position: absolute;
+  right: 25px;
+  top: 75px;
+  font-family: 'Bitter', serif;
+  width: 110px;
+  height: 40px;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 2px 20px;
+  margin: 4px 2px;
+  border-radius: 10px;
+}
+
+.buttonRemoveEvent{
+  position: absolute;
+  right: 25px;
+  top: 135px;
+  font-family: 'Bitter', serif;
+  width: 110px;
+  height: 40px;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 2px 20px;
+  margin: 4px 2px;
+  border-radius: 10px;
+}
 
 .dropdown{
   display: inline-block;
@@ -307,7 +436,7 @@ grid-template-rows: 8% 20% 72%;
   margin-right: 5%;
   letter-spacing: 0.1rem;
   font-size: 14px;
-  color: #333;
+  color: #626567;
 }
 
 .nav_thisisme{
@@ -321,39 +450,74 @@ grid-template-rows: 8% 20% 72%;
   background: #dbe2ff;
   border-style: solid;
   border-width: thin;
-  border-color: #333;
-  color: #333;
-  display: block;
+  border-color: #626567;
+  color: #626567;
   text-align: left;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 80px 100px ;
+  grid-template-areas:
+  "name thisName"
+  "project thisProject";
 }
 
 .nav_thisisme p{
-  display: inline-block;
+  display: block;
   font-weight: bold;
   width: auto;
   letter-spacing: 0.1rem;
-  margin-top: 5px;
-  margin-left: 120px;
-  line-height: 30px;
-  font-size: 16px;
-}
-.nav_thisiswork{
-  display: inline-block;
-  width: auto;
-  letter-spacing: 0.1rem;
-  margin-top: 5px;
-  margin-left: 120px;
+  /* margin-top: 14%; */
   line-height: 30px;
   font-size: 16px;
 }
 
+#pName{grid-area: name}
+
+#pProject{grid-area: project}
+
+.thisCurrentUser div{
+  display: block;
+  color: #626567;
+  letter-spacing: 0.1rem;
+  /* margin-top: 3%; */
+  line-height: 30px;
+  font-size: 16px;
+  grid-area: thisName;
+}
+
+.thisProject div{
+  display: block;
+  color: #626567;
+  letter-spacing: 0.1rem;
+  /* margin-top: 3%; */
+  line-height: 30px;
+  font-size: 16px;
+  grid-area: thisProject;
+}
+
+ .nav_thisiswork{
+  display: block;
+  width: auto;
+  letter-spacing: 0.1rem;
+  margin-top: 22%;
+  margin-left: 110px;
+  line-height: 30px;
+  font-size: 16px;
+  grid-gap: 0em;
+  display: grid;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 80px 100px ;
+  grid-template-areas:
+  "name thisName"
+  "project thisProject";
+
+}
 
 .nav_calendar{
   display: block;
   margin: 50px 2% 2% 2%;
   /* justify-content: center;
   align-items: center; */
-  color: #333;
+  color: #767474;
   height: 100%;
   width: 96%;
   padding-bottom: 2%;
@@ -361,9 +525,11 @@ grid-template-rows: 8% 20% 72%;
 
 .dailyCalendar{
   display: block;
-  height: 95%;
-  margin-top: 120px;
-  padding-bottom: 1%;
+  height: auto;
+  margin-top: 110px;
+  /* margin-bottom: 20px;
+  padding-bottom: -10px; */
+  /* padding-bottom: 1%; */
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -373,7 +539,7 @@ grid-template-rows: 8% 20% 72%;
 .calendarHeader{
   width: 100%;
   height: 45px;
-  background-color: #333;
+  background-color: #626567;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -402,7 +568,7 @@ grid-template-rows: 8% 20% 72%;
 .hours{
   width: 100%;
   line-height: 350%;
-  color: #333;
+  color: #626567; /*Grey*/
   margin-right: 1%;
   display: inline-block;
 }
@@ -428,7 +594,7 @@ display: inline-block; */
 */
 .hours div:hover{
   background-color: #e5eaff;
-  border: 0.1rem solid #333;
+  border: 0.1rem solid #626567;
   cursor: pointer;
   border-radius: 12px;
 }
@@ -474,7 +640,7 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
   background: #dbe2ff;
   border-radius: 12px;
   border-style: solid;
-  border-color: #333;
+  border-color: #626567;
   border-width: thin;
   text-align: center;
   padding-top: 50px;
@@ -538,7 +704,7 @@ background-color: #e5eaff; /*gridens bakgrundsfärg*/
 }
 
 #form > button{
-  background: #333;
+  background: #626567;
   border: none;
   padding: 0 1rem;
   margin: 0.25rem;
@@ -602,13 +768,13 @@ font-size: 16px;
 
 .dailyCalendar{
   margin-top: 120px;
-  height: auto;
+  /* height: auto; */
 }
 
 .hours{
   width: 100%;
   line-height: 350%;
-  color: #333;
+  color: #626567;
   margin-right: 1%;
   display: inline-block;
   font-size: 16px;
@@ -689,15 +855,12 @@ font-size: 16px;
 
 .myColleagues div{
   display: inline-block;
-  height: 50px;
-  width: 50px;
   background: #dbe2ff;
   border-radius: 100px;
   border-style: solid;
-  border-color: #333;
+  border-color: #626567;
   border-width: thin;
   text-align: center;
-  padding-top: 50px;
   margin: 3%;
 }
 
@@ -705,22 +868,18 @@ font-size: 16px;
   transform: scale(1.2)translate(0,0);
 }
 
-
-
-
-
 .navRight{
   display: inline-block;
   float: right;
   height: 700px;
   width: 36%;
-  margin: 2%;;
+  margin: 2%;
 }
 
 .nav_calendar{
   height: auto;
 }
-.dailyCalendar{height: auto;}
+/* .dailyCalendar{height: auto;} */
 
 .nav_head{
   text-align: right;
@@ -751,7 +910,7 @@ font-size: 16px;
 .hours{
   width: 100%;
   line-height: 350%;
-  color: #333;
+  color: #626567;
   margin-right: 1%;
   display: inline-block;
   font-size: 11px;

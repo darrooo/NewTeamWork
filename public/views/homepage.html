@@ -59,107 +59,201 @@
         <h1>My Profile</h1>
 
       </div>
-      <div class="nav_thisisme">
-        <p>Namn: </p>
-          <p>Projekt: </p>
 
-        </div>
+
+      <div class="nav_thisisme">
         <div class="nav_thisiswork">
+          <p id="pName">Namn: </p>
+          <p id="pProject">Projekt: </p>
           <div class="thisCurrentUser"></div>
           <div class="thisProject"></div>
         </div>
 
-        <div class="nav_calendar">
-          <div class="dailyCalendar">
-            <div class="calendarHeader">
-              <i class="fas fa-angle-left prevDay"></i>
-              <div class="thisDay">
-                <h1></h1>
-                <p></p>
-              </div>
-              <i class="fas fa-angle-right nextDay"></i>
-            </div>
+      </div>
 
-            <div class="event">
-              <div class="hours"></div>
+      <div class="nav_calendar">
+        <div class="dailyCalendar">
+          <div class="calendarHeader">
+            <i class="fas fa-angle-left prevDay"></i>
+            <div class="thisDay">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right nextDay"></i>
+          </div>
+
+          <div class="event">
+            <div class="hours" onclick="myFunctionEvent()"></div>
+            <div class="popupSchema" onclick="myFunctionEvent()">
+              <!-- Pop Schema -->
+              <span class="popuptextSchema" id="myPopupEvent">
+                <p>Lägg till event i ditt schema</p>
+                <div class="buttonCo">
+                  <button type="button" class="buttonAddEvent"> add event </button>
+                  <br>
+                  <button type="button" name="button" class="buttonRemoveEvent"> remove event </button>
+                </div>
+              </span>
             </div>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <div class="navLeft">
+    <div class="navLeft">
 
-        <div class="myColleagues"> </div>
-
+      <!-- <div class="myColleagues" onclick="myFunction()"> </div>
+      <div class="popupColleague" onclick="myFunction()">-->
+        <!-- Pop Colleague -->
+<!--        <span class="popuptextColleague" id="myPopup">
+          <p>Här är din kollega</p>
+          <div class="buttonCo">
+            <button type="button" class="buttonColleagueChat"> start chat </button>
+            <br>
+            <button type="button" name="button" class="buttonColleagueMeet"> propose a meeting </button>
+          </div>
+        </span>
+      </div> -->
+<div class="myColleagues"> </div>
+      <!-- The Modal -->
+      <div id="colleaguesModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="closeColleagues">&times;</span>
+          <p>Här ska vi lägga till kul saker och ändra css</p>
+          <div class="modalName"> </div>
+          <div class="buttonCo">
+            <button type="button" class="buttonColleagueChat"> start chat </button>
+            <br>
+            <button type="button" name="button" class="buttonColleagueMeet"> propose a meeting </button>
+          </div>
+        </div>
       </div>
 
-      <footer> Footer
 
 
 
-      </footer>
-
-    </section>
-    <script src="js/homepagescript.js"></script>
+    </div>
 
 
-  </body>
+    <footer> Footer
 
 
 
-  <script src="/socket.io/socket.io.js"></script>
+    </footer>
+
+  </section>
 
   <script>
+  // When the user clicks on div, open the popup
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+
+  function myFunctionEvent() {
+    var popupEvent = document.getElementById("myPopupEvent");
+    popupEvent.classList.toggle("showEvent");
+  }
+  </script>
+  <script src="js/homepagescript.js"></script>
 
 
-  var socket = io();
-  var getAllTheUsers = [];
-  var allTheUsers = [];
-  var currentUser;
-
-  socket.emit('getAllMyUsers', getAllTheUsers);
+</body>
 
 
-  socket.on('getAllMyUsers', function(d){
-    //console.log("the users" + currentUsers);
-    getAllTheUsers = d.allCurrentUsers;
-    currentUser=d.thisUser;
-    // getAllTheUsers.forEach(users => {
-    //   console.log("the users" + users.name);
-    //   allTheUsers += users.name;
-    //   console.log("får vi upp alla namn här?: " + allTheUsers);
-    //
-    // });
-    var allColleagues = () => {
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+
+var socket = io();
+var getAllTheUsers = [];
+var allTheUsers = [];
+var currentUser;
+
+socket.emit('getAllMyUsers', getAllTheUsers);
+
+
+socket.on('getAllMyUsers', function(d){
+  //console.log("the users" + currentUsers);
+  getAllTheUsers = d.allCurrentUsers;
+  currentUser=d.thisUser;
+  // getAllTheUsers.forEach(users => {
+  //   console.log("the users" + users.name);
+  //   allTheUsers += users.name;
+  //   console.log("får vi upp alla namn här?: " + allTheUsers);
+  //
+  // });
+  var allColleagues = () => {
     var divColleagues = document.querySelector('.myColleagues');
     var divUser = document.querySelector('.thisCurrentUser');
     var divProject = document.querySelector('.thisProject');
     let myColleagues = '';
     let thisCurrentUser = '';
     let thisProject = '';
-      getAllTheUsers.forEach(users => {
-        if (currentUser != users.username) {
-        //  console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
-          myColleagues += `<div class = "myColleagues"> ${ users.name} ${ users.project}</div>`;
-          divColleagues.innerHTML = myColleagues;
-        }
-        if (currentUser == users.username) {
-          console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
-          thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
-          divUser.innerHTML = thisCurrentUser;
+    var classes =[];
+    getAllTheUsers.forEach(users => {
+      if (currentUser != users.username) {
+      var str = `${users.name}`;
+      str = str.replace(/\s+/g, '');
 
-          thisProject = `<div class = "thisProject"> ${users.project}</div>`;
-          divProject.innerHTML = thisProject;
-        }
+      myColleagues += `<div class = "myColleagues ${str} "> ${users.name} ${ users.project}</div>`;
+        divColleagues.innerHTML = myColleagues;
+        var classnames = `${str}`
+        classes.push(classnames);
+      }
+      if (currentUser == users.username) {
+        //console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
+        thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
+        divUser.innerHTML = thisCurrentUser;
+
+        thisProject = `<div class = "thisProject"> ${users.project}</div>`;
+        divProject.innerHTML = thisProject;
+      }
+      });
+      classes.forEach(classInClasses =>{
+        var testclass = "." + classInClasses;
+        document.querySelectorAll(testclass).forEach(item => {
+          item.addEventListener('click', event => {
+            var strTest = testclass;
+            var name = strTest.slice(1, strTest.length);
+            var divModalName = document.querySelector('.modalName');
+            divModalName.innerHTML = name;
+
+            openModal(name);
+          })
+        })
       });
     }
-    allColleagues();
-  });
+    /*modal*/
+    var modal = document.getElementById("colleaguesModal");
+    var span = document.getElementsByClassName("closeColleagues")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    function openModal(name) {
+      console.log("openModal " + name );
+      modal.style.display = "block";
+    }
+    /*modal*/
+
+  allColleagues();
+});
 
 
-  var daily = new Date();
 
-  var renderDaily = () => {
+
+
+var daily = new Date();
+
+var renderDaily = () => {
 
   const timeHours = document.querySelector('.hours');
 
@@ -183,47 +277,94 @@
   for(let hour = 7; hour <= 17; hour++){
     hours += `<div class = "hours">${hour}</div>`;
     timeHours.innerHTML = hours;
-  //  console.log(timeHours);
-   };
-  }
+    //  console.log(timeHours);
+  };
+}
 
-  document.querySelector('.prevDay').addEventListener('click', () =>{
-    daily.setDate(daily.getDate()-1)
-    renderDaily();
-  });
-
-  document.querySelector('.nextDay').addEventListener('click', () =>{
-    daily.setDate(daily.getDate()+1)
-    renderDaily();
-  });
+document.querySelector('.prevDay').addEventListener('click', () =>{
+  daily.setDate(daily.getDate()-1)
   renderDaily();
+});
 
-  var menu = document.querySelector(".menu")
-  var ham = document.querySelector(".ham")
-  var xIcon = document.querySelector(".xIcon")
-  var menuIcon = document.querySelector(".menuIcon")
+document.querySelector('.nextDay').addEventListener('click', () =>{
+  daily.setDate(daily.getDate()+1)
+  renderDaily();
+});
+renderDaily();
 
-  // ham.addEventListener("click", toggleMenu)
+var menu = document.querySelector(".menu")
+var ham = document.querySelector(".ham")
+var xIcon = document.querySelector(".xIcon")
+var menuIcon = document.querySelector(".menuIcon")
 
-  function toggleMenu() {
-    if (menu.classList.contains("showMenu")) {
-      menu.classList.remove("showMenu");
-      xIcon.style.display = "none";
-      menuIcon.style.display = "block";
-    } else {
-      menu.classList.add("showMenu");
-      xIcon.style.display = "block";
-      menuIcon.style.display = "none";
-    }
+// ham.addEventListener("click", toggleMenu)
+
+function toggleMenu() {
+  if (menu.classList.contains("showMenu")) {
+    menu.classList.remove("showMenu");
+    xIcon.style.display = "none";
+    menuIcon.style.display = "block";
+  } else {
+    menu.classList.add("showMenu");
+    xIcon.style.display = "block";
+    menuIcon.style.display = "none";
+  }
+}
+
+var menuLinks = document.querySelectorAll(".menuLink")
+
+menuLinks.forEach(
+  function (menuLink) {
+    menuLink.addEventListener("click", toggleMenu)
+  }
+)
+
+</script>
+<style >
+  /*modal*/
+  .modal {
+    display: none; /* Hidden by default */
+    position: relative;
+    top: -450px;
+    left: 5%;
+    z-index: 1; /* Sit on top */
+    height: 200px;
+    color: black;
+    width: 90%;
   }
 
-  var menuLinks = document.querySelectorAll(".menuLink")
 
-  menuLinks.forEach(
-    function (menuLink) {
-      menuLink.addEventListener("click", toggleMenu)
-    }
-  )
+  /* Modal Content */
+  .modal-content {
+    display: block;
 
-  </script>
-  </html>
+    height: 100%;
+    background-color: #fff;
+    color: #767474;
+    font-size: 16px;
+    border-radius: 12px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    box-shadow: 5px 5px 7px 5px #888888;
+  }
+
+  .modalName{padding: 20px;}
+  .modal-content p{padding: 30px 15px  0 20px;}
+
+  /* The Close Button */
+  .closeColleagues {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .closeColleagues:hover,
+  .closeColleagues:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /*modal*/
+</style>
+</html>
