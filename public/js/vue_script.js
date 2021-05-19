@@ -51,6 +51,7 @@ function(d){
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
     }
+
     else if(window.location == "http://localhost:3000/chat" && access ==false){
       window.location = "http://localhost:3000/";
     }
@@ -60,6 +61,5 @@ function(d){
     else if(window.location == "http://localhost:3000/myProfile" && access ==false){
       window.location = "http://localhost:3000/";
     }
-
 
   });

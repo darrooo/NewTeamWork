@@ -22,7 +22,7 @@ Data.prototype.checkIfUserInDB= function (email, password){
 
 Data.prototype.addUser= function (user){
     //Store the order in an "associative array" with orderinformation as key
-  this.users[user.userInformation] = user; 
+  this.users[user.userInformation] = user;
   var email= Object.values(this.users)[0].userInfo[0];
   var password = Object.values(this.users)[0].userInfo[1];
   var loginArray = [email, password];
@@ -35,10 +35,14 @@ Data.prototype.getAllUsers = function () {
 };
 
 Data.prototype.addUserInData = function (users) {
-  var name= users.name;
-  var name = { name: users.name, username: users.username, password: users.password};
-  this.allUsers.push(name);
+//  if (this.allUsers[0].name != users.name) {
+    console.log( users.name + " är tillagd i databasen" );
+    var name= users.name;
+    var name = { name: users.name, username: users.username, password: users.password, project: users.project, admin: users.admin};
+    this.allUsers.push(name);
+    //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
 
+  //}
 };
 
 module.exports = Data;
