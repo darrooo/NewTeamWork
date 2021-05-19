@@ -60,6 +60,7 @@
 
       </div>
 
+
       <div class="nav_thisisme">
         <div class="nav_thisiswork">
           <p id="pName">Namn: </p>
@@ -67,6 +68,7 @@
           <div class="thisCurrentUser"></div>
           <div class="thisProject"></div>
         </div>
+
       </div>
 
       <div class="nav_calendar">
@@ -89,9 +91,21 @@
 
     <div class="navLeft">
 
+      <!-- The Modal -->
+      <div id="colleaguesModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="closeColleagues">&times;</span>
+          <p>Här ska vi lägga till kul saker och ändra css</p>
+          <div class="modalName"> </div>
+        </div>
+      </div>
       <div class="myColleagues"> </div>
 
+
+
     </div>
+
 
     <footer> Footer
 
@@ -137,24 +151,62 @@ socket.on('getAllMyUsers', function(d){
     let myColleagues = '';
     let thisCurrentUser = '';
     let thisProject = '';
+    var classes =[];
     getAllTheUsers.forEach(users => {
       if (currentUser != users.username) {
-        //  console.log("den här användaren: " + currentUser + " den som jämförs med: " + users.name);
-        myColleagues += `<div class = "myColleagues"> ${ users.name} ${ users.project}</div>`;
+      var str = `${users.name}`;
+      str = str.replace(/\s+/g, '');
+
+      myColleagues += `<div class = "myColleagues ${str} "> ${users.name} ${ users.project}</div>`;
         divColleagues.innerHTML = myColleagues;
+        var classnames = `${str}`
+        classes.push(classnames);
       }
       if (currentUser == users.username) {
-        console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
+        //console.log("är i if " + currentUser + " username: " + users.username + " name: "+ users.name+ " psw: "+ users.password);
         thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`;
         divUser.innerHTML = thisCurrentUser;
 
         thisProject = `<div class = "thisProject"> ${users.project}</div>`;
         divProject.innerHTML = thisProject;
       }
-    });
-  }
+      });
+      classes.forEach(classInClasses =>{
+        var testclass = "." + classInClasses;
+        document.querySelectorAll(testclass).forEach(item => {
+          item.addEventListener('click', event => {
+            var strTest = testclass;
+            var name = strTest.slice(1, strTest.length);
+            var divModalName = document.querySelector('.modalName');
+            divModalName.innerHTML = name;
+
+            openModal(name);
+          })
+        })
+      });
+    }
+    /*modal*/
+    var modal = document.getElementById("colleaguesModal");
+    var span = document.getElementsByClassName("closeColleagues")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    function openModal(name) {
+      console.log("openModal " + name );
+      modal.style.display = "block";
+    }
+    /*modal*/
+
   allColleagues();
 });
+
+
+
 
 
 var daily = new Date();
@@ -226,4 +278,47 @@ menuLinks.forEach(
 )
 
 </script>
+<style >
+  /*modal*/
+  .modal {
+    display: none; /* Hidden by default */
+    position: relative;
+    bottom: 200%;
+    z-index: 1; /* Sit on top */
+    height: 100%; /* Full height */
+    color: black;
+  }
+
+
+  /* Modal Content */
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    box-shadow: 5px 5px 7px 5px #888888;
+  }
+
+  .modal-content p{padding: 30px 15px  0 20px;}
+
+  /* The Close Button */
+  .closeColleagues {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .closeColleagues:hover,
+  .closeColleagues:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /*modal*/
+</style>
 </html>
