@@ -183,6 +183,7 @@ input[type=submit] {
   position: relative;
   top: -80px;
   height: 100px;
+  width: 95%; /*satte till 95% då den täckte close diven och gjorde det svårt att stänga popup*/
 }
 
 .buttonColleagueChat{
