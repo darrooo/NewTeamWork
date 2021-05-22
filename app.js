@@ -212,6 +212,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//The one that uploads the updated information about a new user
 app.post('/signup', function(req, res){
   console.log("signup kommer jag hit?");
   var username = req.body.username;
@@ -219,6 +220,7 @@ app.post('/signup', function(req, res){
   var pass = req.body.password;
   var project = req.body.project;
   var admin = req.body.project;
+  //lägga till role
 
   var data = {
     "username": username,
@@ -226,6 +228,7 @@ app.post('/signup', function(req, res){
     "password": pass,
     "project": project,
     "admin": admin,
+    //lägga till role här också
   }
 
   client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){

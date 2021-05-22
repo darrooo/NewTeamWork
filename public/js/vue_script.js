@@ -36,6 +36,12 @@ var vm = new Vue({
          modal.style.display = "block";
        }, 100);
     },
+    // ----------------------
+    //här vill vi skapa en funktion som lägger till event
+    // addEventButton: function(){
+    //
+    // }
+    // ----------------------
   }
 });
 

@@ -482,6 +482,7 @@ grid-template-rows: 8% 20% 72%;
   line-height: 30px;
   font-size: 16px;
   grid-area: thisName;
+  width: 200px;
 }
 
 .thisProject div{

@@ -12,7 +12,6 @@ Data.prototype.checkIfUserInDB= function (email, password){
   allUsersArray.forEach(element => {
     if (element.username == email) {
       valid=1;
-      
     }
     if (element.username == email && element.password ==password) {
       valid=2;
