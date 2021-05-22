@@ -183,6 +183,7 @@ input[type=submit] {
   position: relative;
   top: -80px;
   height: 100px;
+  width: 95%; /*satte till 95% då den täckte close diven och gjorde det svårt att stänga popup*/
 }
 
 .buttonColleagueChat{
@@ -506,7 +507,7 @@ grid-template-rows: 8% 20% 72%;
   grid-gap: 0em;
   display: grid;
   grid-template-rows: 30px 30px;
-  grid-template-columns: 80px 100px ;
+  grid-template-columns: 80px 170px ;
   grid-template-areas:
   "name thisName"
   "project thisProject";
