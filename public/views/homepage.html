@@ -15,9 +15,6 @@
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
   <script src="/vue/vue.js" defer></script>
-  <!--<script src="https://cdn.socket.io/socket.io-1.0.0.js"defer></script>-->
-  <!--<script src="./dataHandler.js"defer></script>-->
-
 
   <!-- Fonts som kanske borde ligga i CSSen-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -60,7 +57,6 @@
 
       </div>
 
-
       <div class="nav_thisisme">
         <div class="nav_thisiswork">
           <p id="pName">Namn: </p>
@@ -102,19 +98,7 @@
 
     <div class="navLeft">
 
-      <!-- <div class="myColleagues" onclick="myFunction()"> </div>
-      <div class="popupColleague" onclick="myFunction()">-->
-        <!-- Pop Colleague -->
-<!--        <span class="popuptextColleague" id="myPopup">
-          <p>Här är din kollega</p>
-          <div class="buttonCo">
-            <button type="button" class="buttonColleagueChat"> start chat </button>
-            <br>
-            <button type="button" name="button" class="buttonColleagueMeet"> propose a meeting </button>
-          </div>
-        </span>
-      </div> -->
-<div class="myColleagues"> </div>
+      <div class="myColleagues"> </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
         <!-- Modal content -->
@@ -130,17 +114,9 @@
         </div>
       </div>
 
-
-
-
     </div>
 
-
-    <footer> Footer
-
-
-
-    </footer>
+    <footer> Footer</footer>
 
   </section>
 
@@ -158,15 +134,11 @@
   </script>
   <script src="js/homepagescript.js"></script>
 
-
 </body>
-
-
 
 <script src="/socket.io/socket.io.js"></script>
 
 <script>
-
 
 var socket = io();
 var getAllTheUsers = [];
@@ -196,10 +168,10 @@ socket.on('getAllMyUsers', function(d){
     var classes =[];
     getAllTheUsers.forEach(users => {
       if (currentUser != users.username) {
-      var str = `${users.name}`;
-      str = str.replace(/\s+/g, '');
+        var str = `${users.name}`;
+        str = str.replace(/\s+/g, '');
 
-      myColleagues += `<div class = "myColleagues ${str} "> ${users.name} ${ users.project}</div>`;
+        myColleagues += `<div class = "myColleagues ${str} "> ${users.name} ${ users.project}</div>`;
         divColleagues.innerHTML = myColleagues;
         var classnames = `${str}`
         classes.push(classnames);
@@ -212,43 +184,40 @@ socket.on('getAllMyUsers', function(d){
         thisProject = `<div class = "thisProject"> ${users.project}</div>`;
         divProject.innerHTML = thisProject;
       }
-      });
-      classes.forEach(classInClasses =>{
-        var testclass = "." + classInClasses;
-        document.querySelectorAll(testclass).forEach(item => {
-          item.addEventListener('click', event => {
-            var strTest = testclass;
-            var name = strTest.slice(1, strTest.length);
-            var divModalName = document.querySelector('.modalName');
-            divModalName.innerHTML = name;
+    });
+    classes.forEach(classInClasses =>{
+      var testclass = "." + classInClasses;
+      document.querySelectorAll(testclass).forEach(item => {
+        item.addEventListener('click', event => {
+          var strTest = testclass;
+          var name = strTest.slice(1, strTest.length);
+          var divModalName = document.querySelector('.modalName');
+          divModalName.innerHTML = name;
 
-            openModal(name);
-          })
+          openModal(name);
         })
-      });
-    }
-    /*modal*/
-    var modal = document.getElementById("colleaguesModal");
-    var span = document.getElementsByClassName("closeColleagues")[0];
-    span.onclick = function() {
+      })
+    });
+  }
+  /*modal*/
+  var modal = document.getElementById("colleaguesModal");
+  var span = document.getElementsByClassName("closeColleagues")[0];
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
       modal.style.display = "none";
     }
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    function openModal(name) {
-      console.log("openModal " + name );
-      modal.style.display = "block";
-    }
-    /*modal*/
+  }
+  function openModal(name) {
+    console.log("openModal " + name );
+    modal.style.display = "block";
+  }
+  /*modal*/
 
   allColleagues();
 });
-
-
-
 
 
 var daily = new Date();
@@ -321,49 +290,48 @@ menuLinks.forEach(
 
 </script>
 <style >
-  /*modal*/
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 30%;
-    left: 15%;
-    z-index: 1; /* Sit on top */
-    height: 200px;
-    color: black;
-    width: 70%;
-  }
+/*modal*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 30%;
+  left: 15%;
+  z-index: 1; /* Sit on top */
+  height: 200px;
+  color: black;
+  width: 70%;
+}
 
+/* Modal Content */
+.modal-content {
+  display: block;
+  height: 100%;
+  background-color: #fff;
+  color: #767474;
+  font-size: 16px;
+  border-radius: 12px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  box-shadow: 5px 5px 7px 5px #888888;
+}
 
-  /* Modal Content */
-  .modal-content {
-    display: block;
-    height: 100%;
-    background-color: #fff;
-    color: #767474;
-    font-size: 16px;
-    border-radius: 12px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    box-shadow: 5px 5px 7px 5px #888888;
-  }
+.modalName{padding: 20px;}
+.modal-content p{padding: 30px 15px  0 20px;}
 
-  .modalName{padding: 20px;}
-  .modal-content p{padding: 30px 15px  0 20px;}
+/* The Close Button */
+.closeColleagues {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  /* The Close Button */
-  .closeColleagues {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .closeColleagues:hover,
-  .closeColleagues:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  /*modal*/
+.closeColleagues:hover,
+.closeColleagues:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*modal*/
 </style>
 </html>
