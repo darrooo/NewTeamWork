@@ -90,6 +90,14 @@ img{
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
+.closeAddColleagues {
+  z-index: 2;
+  color: #aaaaaa;
+  padding-right: 5%;
+  float: right;
+  font-size: 50px;
+  font-weight: bold;
+}
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
@@ -218,6 +226,22 @@ input[type=submit] {
   padding: 2px 20px;
   margin: 4px 2px;
   border-radius: 10px;
+}
+.buttonAddColleague{
+  position: relative;
+  /*top: 60px;*/
+  /*right: -95px;*/
+  display: block;
+  /*float: right;*/
+  font-family: 'Bitter', serif;
+  background-color: #e5eaff;
+  width: 110px;
+  height: 40px;
+  border: none;
+  color: grey;
+/*  padding: 2px 20px;*/
+/*  margin: 4px 2px;*/
+/*  border-radius: 10px;*/
 }
 
 /* The actual popup schema*/

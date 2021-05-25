@@ -148,7 +148,7 @@
 
   <script>
     // When the user clicks on div, open the popup
-    function myFunction() {
+    function myFunction() { //Den här verkar inte användas /D?
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
     }
@@ -179,7 +179,7 @@
     var divColleagues = document.querySelector('.myColleagues');
     var divUser = document.querySelector('.thisCurrentUser');
     var divProject = document.querySelector('.thisProject');
-    var modal = document.getElementById("colleaguesModal");
+    var idColleaguesModal = document.getElementById("colleaguesModal");
     var span = document.getElementsByClassName("closeColleagues")[0];
     var divModalName = document.querySelector('.modalName');
     let myColleagues = '';
@@ -219,18 +219,18 @@
     /*Colleaguesmodal*/
 
     span.onclick = function() {
-      modal.style.display = "none";
+      idColleaguesModal.style.display = "none";
     }
     window.onclick = function(event) {
       if (event.target == modal) {
-        modal.style.display = "none";
+        idColleaguesModal.style.display = "none";
       }
     }
 
     function openModal(name) {
       var divColleague = document.querySelector("." + name);
       divModalName.innerHTML = divColleague.innerHTML;
-      modal.style.display = "block";
+      idColleaguesModal.style.display = "block";
     }
     /*Colleaguesmodal*/
   });
