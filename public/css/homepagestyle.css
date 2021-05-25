@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Tenor+Sans');
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* over all styling */
 *{
   margin: 0;
   padding: 0;
@@ -14,25 +15,21 @@ html{
   overflow-y: scroll;
 }
 
-header{
-  height: 90px;
-}
+header{height: 90px;}
 
 #page{
   min-width: 450px;
   overflow: visible;
 }
 
-/*liten skärm*/
+/* small screan */
 img{
   z-index: 1;
   position: relative;
-/*  height: 100%;*/
 }
 
 .headerimage{
   position: relative;
-  /*display: block;*/
   overflow-x: hidden;
 }
 
@@ -49,7 +46,7 @@ img{
   border-radius: 12px;
 }
 
-/* Popup container - texten som triggar popupen */
+/* Popup container - the text that triggers the popup */
 .popup{
   text-align: left;
   display: flex;
@@ -77,14 +74,14 @@ img{
   box-shadow: 5px 5px 7px 5px #888888;
 }
 
-/* Popup arrow */
+/* Popup */
 .popup .popuptext::after {
   content: "";
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
 
-/* Toggle this class - hide and show the popup */
+/* Hide and show the popup */
 .popup .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
@@ -99,7 +96,7 @@ img{
   font-weight: bold;
 }
 
-/* Add animation (fade in the popup) */
+/* animation - fade in the popup */
 @-webkit-keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
@@ -110,28 +107,31 @@ img{
   to {opacity:1 ;}
 }
 
+/* text fields to sign up */
 input{
-    font-family: 'Bitter', serif;
-    width: 80%;
-    font-size: 20px;
-    padding: 12px 20px;
-    margin: 8px;
-    border: none;
-    border-bottom: 2px solid #767474;
+  font-family: 'Bitter', serif;
+  width: 80%;
+  font-size: 20px;
+  padding: 12px 20px;
+  margin: 8px;
+  border: none;
+  border-bottom: 2px solid #767474;
 }
+
 input[type=submit] {
-    font-family: 'Bitter', serif;
-    width: 50%;
-    background-color: #767474;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    margin: 4px 2px;
-    border-radius: 10px;
+  font-family: 'Bitter', serif;
+  width: 50%;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  margin: 4px 2px;
+  border-radius: 10px;
 }
 
 .main h1{font-size: 30px; margin-left: 40px; line-height: 200%;}
 
+/* left side of the homepage */
 .navLeft{
   display: flex;
   justify-content: center;
@@ -143,6 +143,7 @@ input[type=submit] {
   border-radius: 12px;
 }
 
+/* the generated divs for the colleagues "blobs", names and role */
 .myColleagues div{
   display: inline-block;
   height: 60px;
@@ -158,41 +159,8 @@ input[type=submit] {
   margin: 3%;
 }
 
-/* The actual popup Colleague*/
-/* .popupColleague .popuptextColleague {
-  visibility: hidden;
-  width: 50%;
-  font-size: 16px;
-  background-color: #555;
-  color: #fff;
-  border-radius: 6px;
-  padding: 8px;
-  position: absolute;
-  left: 25%;
-  bottom: 50%;
-  box-shadow: 5px 5px 7px 5px #888888;
-} */
-
-/* Popup arrow */
-/* .popupColleague .popuptextColleague::after {
-  content: "";
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-} */
-
-/* Toggle this class - hide and show the popup */
-/* .popupColleague .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-  height: 150px;
-} */
-.buttonCo{
-  position: relative;
-  top: -80px;
-  height: 100px;
-  width: 95%; /*satte till 95% då den täckte close diven och gjorde det svårt att stänga popup*/
-}
+/* Fiction buttons on the popup when clicking on a colleague */
+.buttonCo{position: relative; top: -80px; height: 100px;}
 
 .buttonColleagueChat{
   position: relative;
@@ -244,7 +212,7 @@ input[type=submit] {
 /*  border-radius: 10px;*/
 }
 
-/* The actual popup schema*/
+/* popup schema*/
 .popupSchema .popuptextSchema {
   visibility: hidden;
   width: 50%;
@@ -266,7 +234,7 @@ input[type=submit] {
   border-color: #555 transparent transparent transparent;
 }
 
-/* Toggle this class - hide and show the popup */
+/* Hide and show the popup */
 .popupSchema .showEvent {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
@@ -274,6 +242,7 @@ input[type=submit] {
   height: 150px;
 }
 
+/* Fiction buttons on the popup when clicking at the calendar */
 .buttonAddEvent{
   position: absolute;
   right: 25px;
@@ -304,6 +273,7 @@ input[type=submit] {
   border-radius: 10px;
 }
 
+/* the list within the menu-button */
 .dropdown{
   display: inline-block;
   position: absolute;
@@ -311,6 +281,7 @@ input[type=submit] {
   right: 75px;
 }
 
+/* menu-button */
 .dropbtn {
   margin-left: 85%;
   position: relative;
@@ -319,6 +290,7 @@ input[type=submit] {
   z-index: 1;
 }
 
+/* content in the list */
 .dropdown-content {
   border-radius: 12px;
   display: none;
@@ -339,113 +311,17 @@ input[type=submit] {
   z-index: 1;
 }
 
- .dropdown-content a:hover {
-   background-color: #ddd;
-   border-radius: 12px;
- }
+/* hover functionallity in the list */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  border-radius: 12px;
+}
 
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: none;}
 
-/*.ham {
-  position: absolute;
-  z-index: 100;
-  bottom: 2.4rem;
-  right: 4.1rem;
-  width: 4rem;
-  height: 4rem;
-  border: #333 solid 1px;
-  border-radius: 100px;
-  background: white;
-  cursor: pointer;
-  overflow-y: hidden;
-}
-
-.menuIcon{
-  padding: 0.7rem;
-  z-index: 0.8
-}
-
-.wrapperMenu {
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  position: fixed;
-  top: 6rem;
-  right: 7rem;
-  width: 100vw;
-  height: auto;
-  z-index: 1;
-}
-
-.menu {
-  background: #fff;
-  border: solid thin grey;
-  border-radius: 0.3em;
-  margin-left: 75%;
-  padding: 1em;
-}
-
-.xIcon {
-  width: 1.5em;
-  margin: 0%;
-}
-/*.xIcon {
-  display: none;
-}
-
-.menu {
-  display: flex;
-
-position: fixed;
-top: 5rem;
-left: 6rem;
-
-z-index: 1;
-   position: absolute;
-  top: 5rem;
-  right: 6rem;
-  width: 200px;
-  background: white;
-  color: black;
-  transform: translateY(-100%);
-  transition: transform 0.2s;
-  list-style: none;
-  padding-top: 1rem;
-
-}*/
-/*.showMenu {
-  transform: translateY(0);
-}
-
-li {
-  padding: 1rem 2rem;
-}
-
-.menuLink {
-  display: inline;
-  font-size: 2rem;
-  color: black;
-  text-decoration: none;
-}
-
-.menuLink:hover {
-text-decoration: underline;
-}*/
-
-/* #page > nav {
-display: grid;
-grid-area: nav;
-margin: 3rem 3rem 0rem 3rem;
-background-color: #e5eaff; /*gridens bakgrundsfärg*/
-/* border-radius: 12px; */
-/* color: #eee;/*siffrorna och dagarna*/
-/* grid-template-areas:  "nav_head" */
-/*                        "nav_thisisme"
-"nav_calendar";
-grid-template-rows: 8% 20% 72%;
-} */
+/* right side of the homepage */
 .navRight{
   display: block;
   width: 96%;
@@ -455,7 +331,6 @@ grid-template-rows: 8% 20% 72%;
 }
 
 .nav_head{
-  /* grid-area: nav_head; */
   text-align: right;
   line-height: 200%;
   margin-right: 5%;
@@ -464,6 +339,7 @@ grid-template-rows: 8% 20% 72%;
   color: #626567;
 }
 
+/* information about the user that signed in - profilepicture, name, role */
 .nav_thisisme{
   border-radius:100px;
   width: 100px;
@@ -490,7 +366,6 @@ grid-template-rows: 8% 20% 72%;
   font-weight: bold;
   width: auto;
   letter-spacing: 0.1rem;
-  /* margin-top: 14%; */
   line-height: 30px;
   font-size: 16px;
 }
@@ -503,7 +378,6 @@ grid-template-rows: 8% 20% 72%;
   display: block;
   color: #626567;
   letter-spacing: 0.1rem;
-  /* margin-top: 3%; */
   line-height: 30px;
   font-size: 16px;
   grid-area: thisName;
@@ -513,13 +387,12 @@ grid-template-rows: 8% 20% 72%;
   display: block;
   color: #626567;
   letter-spacing: 0.1rem;
-  /* margin-top: 3%; */
   line-height: 30px;
   font-size: 16px;
   grid-area: thisProject;
 }
 
- .nav_thisiswork{
+.nav_thisiswork{
   display: block;
   width: auto;
   letter-spacing: 0.1rem;
@@ -534,14 +407,12 @@ grid-template-rows: 8% 20% 72%;
   grid-template-areas:
   "name thisName"
   "project thisProject";
-
 }
 
+/* daily calendar */
 .nav_calendar{
   display: block;
   margin: 50px 2% 2% 2%;
-  /* justify-content: center;
-  align-items: center; */
   color: #767474;
   height: 100%;
   width: 96%;
@@ -552,9 +423,6 @@ grid-template-rows: 8% 20% 72%;
   display: block;
   height: auto;
   margin-top: 110px;
-  /* margin-bottom: 20px;
-  padding-bottom: -10px; */
-  /* padding-bottom: 1%; */
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -583,6 +451,7 @@ grid-template-rows: 8% 20% 72%;
 .thisDay h1{display: none;}
 .thisDay p{font-size: 18px;}
 
+/* "wrapper" */
 .event{
   margin: 1%;
   height: 89%;
@@ -601,22 +470,10 @@ grid-template-rows: 8% 20% 72%;
 .hours div{
   margin: 0.5%;
   display: inline-block;
-  /* height: calc(87%/11); */
   border-bottom: 1px solid;
   border-color: #BFBFBF;
 }
 
-/* .todayTime{
-display: inline-block;
-width: 70%;
-}
-
-.todayTime div{
-font-size: 1rem;
-height: calc(100%/11);
-display: inline-block; */
-/*}
-*/
 .hours div:hover{
   background-color: #e5eaff;
   border: 0.1rem solid #626567;
@@ -624,320 +481,263 @@ display: inline-block; */
   border-radius: 12px;
 }
 
-/* #page > main { */
-/*myCollegues{
-/* grid-area: main; */
-/*display: inline-block;
-margin: 3rem 3rem 0rem 3rem;
-width: 60%;
-background-color: #e5eaff; /*gridens bakgrundsfärg*/
-/*border-radius: 12px;
-}*/
+#page > footer {}
 
-#page > footer {
-  /* grid-area: foot; */
-  /*background-color: #dbe2ff;*/
-}
+  /* CHAT - different page*/
+  .wrapperChat{
+    margin: 2% 0;
+    padding: 2%;
+    position: relative;
+    height: 80vh;
+  }
 
+  .chats{
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    background: #e5eaff;
+    padding: 1%;
+    border-radius: 12px;
+    overflow-y: scroll;
+  }
 
-/* CHAT */
-.wrapperChat{
-  margin: 2% 0;
-  padding: 2%;
-  position: relative;
-  height: 80vh;
-}
-
-.chats{
-  display: inline-block;
-  width: 20%;
-  height: 100%;
-  background: #e5eaff;
-  padding: 1%;
-  border-radius: 12px;
-  overflow-y: scroll;
-}
-
-.myChats div{
-  display: inline-block;
-  height: 50px;
-  width: 170px;
-  background: #dbe2ff;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #626567;
-  border-width: thin;
-  text-align: center;
-  padding-top: 50px;
-  margin: 3% 4% 8%;
-}
-
-.chatHeader{
-  margin-left: 0 2% 2%;
-  padding-left: 2%;
-  display: block;
-  position: relative;
-  top: 0;
-  right: 0;
-  float: right;
-  width: 75%;
-  height: 50px;
-  background: #e5eaff;
-  border-radius: 12px;
-  line-height: 260%;
-  font-size: 20px;
-
-}
-.chatWindow{
-  display: block;
-  margin-left: 0 2% 2%;
-  padding-left: 2%;
-  position: absolute;
-  right: 2%;
-  top: 15%;
-  width: 72%;
-  height: 79%;
-  background: #e5eaff;
-  border-radius: 12px;
-  /* padding-bottom: 3rem; */
-}
-
-#form{
-  background: rgba(0, 0, 0, 0.15);
-  padding: 0.25rem;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  border-radius: 0 0 12px 12px;
-  display: flex;
-  height: 50px;
-  width: 100%;
-  box-sizing: border-box;
-  /* backdrop-filter: blur(10px); */
-}
-
-#input{
-  border: none;
-  padding: 0 1rem;
-  flex-grow: 1;
-  border-radius: 2rem;
-  margin: 0.25rem;
-}
-
-#input:focus{
-  outline: none;
-}
-
-#form > button{
-  background: #626567;
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  border-radius: 3px;
-  outline: none;
-  color: #fff;
-}
-
-#messages{
-  list-style-type: none;
-  margin: 0;
-  height: 85%;
-  line-height: 130%;
-  font-size: 14px;
-  overflow-y: scroll;
-}
-
-#messages > li{
-  padding: 0.5rem 1rem;
-  margin-right: 60%;
-  border-radius: 12px;
-  width: 40%;
-  word-wrap: break-word;
-}
-
-#messages > li:nth-child(odd){
-  background: #efefef;
-  float: right;
-  margin-left: 60%;
-  margin-right: 0;
-}
-
-
-
-
-@media only screen and (min-width: 768px) {
-
-  .nav_head{
+  /* displayes the example chats */
+  .myChats div{
+    display: inline-block;
+    height: 50px;
+    width: 170px;
+    background: #dbe2ff;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #626567;
+    border-width: thin;
     text-align: center;
-    width: 100%;
-    line-height: 40px;
+    padding-top: 50px;
+    margin: 3% 4% 8%;
+  }
+
+  .chatHeader{
+    margin-left: 0 2% 2%;
+    padding-left: 2%;
+    display: block;
+    position: relative;
+    top: 0;
+    right: 0;
+    float: right;
+    width: 75%;
+    height: 50px;
+    background: #e5eaff;
+    border-radius: 12px;
+    line-height: 260%;
     font-size: 20px;
   }
 
-  /* .nav_thisisme{
-  border-radius:100px;
-  width: 100px;
-  height: 100px;
-  display: block;
-  float: left;
-  margin-left: 2%;
-  margin-bottom: 2%;
-}
-
-.nav_thisisme p{
-margin-top: 25px;
-margin-left: 120px;
-line-height: 30px;
-font-size: 16px;
-} */
-
-.dailyCalendar{
-  margin-top: 120px;
-  /* height: auto; */
-}
-
-.hours{
-  width: 100%;
-  line-height: 350%;
-  color: #626567;
-  margin-right: 1%;
-  display: inline-block;
-  font-size: 16px;
-}
-}
-
-@media only screen and (min-width: 1000px) {
-
-  header{
-    height: 105px;
-  }
-
-  img{
-    height: 105px;
-  }
-
-  .headerimage{
-    position: relative;
-    /*display: block;
-    /* width: 100%; */
-  }
-
-  .profile{
+  /* the actual chat window - where you write and see the messages */
+  .chatWindow{
+    display: block;
+    margin-left: 0 2% 2%;
+    padding-left: 2%;
     position: absolute;
-    bottom:1%;
-    right: 1%;
-    width: 660px;
-    z-index: 1;
+    right: 2%;
+    top: 15%;
+    width: 72%;
+    height: 79%;
+    background: #e5eaff;
+    border-radius: 12px;
   }
 
-  .invisiblebutton{
-    text-align: center;
-    letter-spacing: 0.3rem;
-    font-size: 200%;
-    cursor: pointer;
-    line-height: 300%;
-    text-transform: uppercase;
-    background: none!important;
+  #form{
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.25rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #input{
     border: none;
-    color: #fff;
-    /* display: grid; */
-    grid-template-areas:
-    "invisiblebutton invisiblebutton invisiblebutton invisiblebutton";
-    grid-area: invisiblebutton;
-    padding-left: 8%;
-    display: inline-block;
-    grid-template-columns: repeat(auto-fill, 20%);
+    padding: 0 1rem;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 0.25rem;
   }
 
+  #input:focus{outline: none;}
 
-/* vill egentligen zooma men det ville inte...!!*/
-.invisiblebutton:hover{
-  text-decoration: underline;
-}
+  #form > button{
+    background: #626567;
+    border: none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 3px;
+    outline: none;
+    color: #fff;
+  }
 
-/*.ham{display: none;}
-.menu{display: none;}*/
-.dropbtn {display: none;}
+  #messages{
+    list-style-type: none;
+    margin: 0;
+    height: 85%;
+    line-height: 130%;
+    font-size: 14px;
+    overflow-y: scroll;
+  }
 
-.wrapperChat{margin: 0;}
+  #messages > li{
+    padding: 0.5rem 1rem;
+    margin-right: 60%;
+    border-radius: 12px;
+    width: 40%;
+    word-wrap: break-word;
+  }
 
-.chatWindow{top: 18%;}
+  #messages > li:nth-child(odd){
+    background: #efefef;
+    float: right;
+    margin-left: 60%;
+    margin-right: 0;
+  }
 
-.nav{margin: 2%;}
+  /* new style when the screen is bigger than 768px,
+  suppose to be when one probably goes from a phone to a tablet */
+  @media only screen and (min-width: 768px) {
 
-#navSettings h1{
-  padding-left: 4%;
-  text-align: left;
-}
+    .nav_head{
+      text-align: center;
+      width: 100%;
+      line-height: 40px;
+      font-size: 20px;
+    }
 
-.navLeft{
-  display: inline-block;
-  width: 56%;
-  margin: 2%;
-  height: 700px;
-  overflow-y: scroll;
-}
+    .dailyCalendar{margin-top: 120px;}
 
-.myColleagues div{
-  display: inline-block;
-  background: #dbe2ff;
-  border-radius: 100px;
-  border-style: solid;
-  border-color: #626567;
-  border-width: thin;
-  text-align: center;
-  margin: 3%;
-}
+    .hours{
+      width: 100%;
+      line-height: 350%;
+      color: #626567;
+      margin-right: 1%;
+      display: inline-block;
+      font-size: 16px;
+    }
+  }
 
-.myColleagues div:hover{
-  transform: scale(1.2)translate(0,0);
-}
+  /* new style when the screen is bigger than 1000px,
+  suppose to be when one probably goes from a tablet to a computer */
+  @media only screen and (min-width: 1000px) {
 
-.navRight{
-  display: inline-block;
-  float: right;
-  height: 700px;
-  width: 36%;
-  margin: 2%;
-}
+    header{height: 105px;}
 
-.nav_calendar{
-  height: auto;
-}
-/* .dailyCalendar{height: auto;} */
+    img{height: 105px;}
 
-.nav_head{
-  text-align: right;
-  line-height: 300%;
-  padding-right: 5%;
-  font-size: 14px;
-}
+    .headerimage{position: relative;}
 
-.nav_thisisme{
-  margin-left: 5%;
-}
+    .profile{
+      position: absolute;
+      bottom:1%;
+      right: 1%;
+      width: 660px;
+      z-index: 1;
+    }
 
-.nav_thisisme p{
-  text-align: left;
-}
+    /* seperate the menu-button to a row of buttons */
+    .invisiblebutton{
+      text-align: center;
+      letter-spacing: 0.3rem;
+      font-size: 200%;
+      cursor: pointer;
+      line-height: 300%;
+      text-transform: uppercase;
+      background: none!important;
+      border: none;
+      color: #fff;
+      grid-template-areas:
+      "invisiblebutton invisiblebutton invisiblebutton invisiblebutton";
+      grid-area: invisiblebutton;
+      padding-left: 8%;
+      display: inline-block;
+      grid-template-columns: repeat(auto-fill, 20%);
+    }
 
-.thisDay h1{
-  display: contents;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  margin: 0.2rem;
-  font-size: 16px;
-}
+    .invisiblebutton:hover{text-decoration: underline;}
 
-.thisDay p{font-size: 14px;}
+    .dropbtn {display: none;}
 
-.hours{
-  width: 100%;
-  line-height: 350%;
-  color: #626567;
-  margin-right: 1%;
-  display: inline-block;
-  font-size: 11px;
-}
-}
+    .wrapperChat{margin: 0;}
+
+    .chatWindow{top: 18%;}
+
+    .nav{margin: 2%;}
+
+    #navSettings h1{
+      padding-left: 4%;
+      text-align: left;
+    }
+
+    .navLeft{
+      display: inline-block;
+      width: 56%;
+      margin: 2%;
+      height: 700px;
+      overflow-y: scroll;
+    }
+
+    .myColleagues div{
+      display: inline-block;
+      background: #dbe2ff;
+      border-radius: 100px;
+      border-style: solid;
+      border-color: #626567;
+      border-width: thin;
+      text-align: center;
+      margin: 3%;
+    }
+
+    /* zoomes in the colleague the one hover over */
+    .myColleagues div:hover{transform: scale(1.2)translate(0,0);}
+
+    .navRight{
+      display: inline-block;
+      float: right;
+      height: 700px;
+      width: 36%;
+      margin: 2%;
+    }
+
+    .nav_calendar{height: auto;}
+
+    .nav_head{
+      text-align: right;
+      line-height: 300%;
+      padding-right: 5%;
+      font-size: 14px;
+    }
+
+    .nav_thisisme{margin-left: 5%;}
+
+    .nav_thisisme p{text-align: left;}
+
+    .thisDay h1{
+      display: contents;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      margin: 0.2rem;
+      font-size: 16px;
+    }
+
+    .thisDay p{font-size: 14px;}
+
+    .hours{
+      width: 100%;
+      line-height: 350%;
+      color: #626567;
+      margin-right: 1%;
+      display: inline-block;
+      font-size: 11px;
+    }
+  }

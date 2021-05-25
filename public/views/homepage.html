@@ -16,9 +16,6 @@
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
   <script src="/vue/vue.js" defer></script>
-  <!--<script src="https://cdn.socket.io/socket.io-1.0.0.js"defer></script>-->
-  <!--<script src="./dataHandler.js"defer></script>-->
-
 
   <!-- Fonts som kanske borde ligga i CSSen-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -58,9 +55,7 @@
     <nav class="navRight">
       <div class="nav_head">
         <h1>My Profile</h1>
-
       </div>
-
 
       <div class="nav_thisisme">
         <div class="nav_thisiswork">
@@ -104,18 +99,6 @@
 
     <div class="navLeft">
 
-      <!-- <div class="myColleagues" onclick="myFunction()"> </div>
-      <div class="popupColleague" onclick="myFunction()">-->
-      <!-- Pop Colleague -->
-      <!--        <span class="popuptextColleague" id="myPopup">
-          <p>Här är din kollega</p>
-          <div class="buttonCo">
-            <button type="button" class="buttonColleagueChat"> start chat </button>
-            <br>
-            <button type="button" name="button" class="buttonColleagueMeet"> propose a meeting </button>
-          </div>
-        </span>
-      </div> -->
       <div class="myColleagues"> </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
@@ -132,17 +115,9 @@
         </div>
       </div>
 
-
-
-
     </div>
 
-
-    <footer> Footer
-
-
-
-    </footer>
+    <footer> Footer</footer>
 
   </section>
 
@@ -160,10 +135,7 @@
   </script>
   <script src="js/homepagescript.js"></script>
 
-
 </body>
-
-
 
 <script src="/socket.io/socket.io.js"></script>
 
@@ -234,10 +206,6 @@
     }
     /*Colleaguesmodal*/
   });
-
-
-
-
 
   var daily = new Date();
 
@@ -322,27 +290,22 @@
     width: 70%;
   }
 
+/* Modal Content */
+.modal-content {
+  display: block;
+  height: 100%;
+  background-color: #fff;
+  color: #767474;
+  font-size: 16px;
+  border-radius: 12px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  box-shadow: 5px 5px 7px 5px #888888;
+}
 
-  /* Modal Content */
-  .modal-content {
-    display: block;
-    height: 100%;
-    background-color: #fff;
-    color: #767474;
-    font-size: 16px;
-    border-radius: 12px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    box-shadow: 5px 5px 7px 5px #888888;
-  }
+  .modalName {padding: 20px;}
 
-  .modalName {
-    padding: 20px;
-  }
-
-  .modal-content p {
-    padding: 30px 15px 0 20px;
-  }
+  .modal-content p {padding: 30px 15px 0 20px;}
 
   /* The Close Button */
   .closeColleagues {
@@ -359,7 +322,6 @@
     text-decoration: none;
     cursor: pointer;
   }
-
   /*modal*/
 </style>
 
