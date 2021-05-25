@@ -379,7 +379,7 @@ input[type=submit] {
   grid-gap: 0em;
   display: grid;
   grid-template-rows: 30px 30px;
-  grid-template-columns: 80px 100px ;
+  grid-template-columns: 80px 170px ;
   grid-template-areas:
   "name thisName"
   "project thisProject";
