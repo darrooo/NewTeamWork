@@ -281,7 +281,11 @@
           thisUserHour.forEach(colorEvent => {
             console.log("classes" + colorEvent);
             var divTEST = document.querySelector("." + colorEvent);
-            divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
+          //  console.log("divTEST innan: " + divTEST.innerHTML);
+            if (divTEST.innerHTML == events.starttime+":00") {
+              divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
+            }
+          //  console.log("divTEST efter: " + divTEST.innerHTML);
             var divMeeting = document.getElementsByClassName(colorEvent);
             for(var i = 0; i < divMeeting.length; i++){
           		divMeeting[i].style.backgroundColor = "red";
