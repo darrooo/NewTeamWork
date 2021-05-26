@@ -59,7 +59,6 @@ async function main() {
       console.log("first run runs");
       await listAllUsers(client); //listar Användare
       firstrun= false;
-
     }
 
     await listAllEvents(client); //listar Användare
