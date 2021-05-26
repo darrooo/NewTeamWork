@@ -277,12 +277,14 @@
           var userHourStart = events.starttime - 7;
           var userHourEnd = events.endtime - 7;
           console.log("position: " + userHourStart + userHourEnd);
-          var thisUserHourTest = classHours.slice(userHourStart,userHourEnd);
-          var thisUserHour = classHours[userHourStart]
-          console.log("classname: " + thisUserHour + "arrayen: " + thisUserHourTest);
-          thisUserHourTest.forEach(eventColor => {
-            console.log("classes" + eventColor);
-            var divMeeting = document.getElementsByClassName(eventColor);
+          var thisUserHour = classHours.slice(userHourStart,userHourEnd);
+        //  var thisUserHour = classHours[userHourStart]
+          console.log( "arrayen: " + thisUserHour);
+          thisUserHour.forEach(colorEvent => {
+            console.log("classes" + colorEvent);
+            var divTEST = document.querySelector("." + colorEvent);
+            divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
+            var divMeeting = document.getElementsByClassName(colorEvent);
             for(var i = 0; i < divMeeting.length; i++){
           		divMeeting[i].style.backgroundColor = "#dbe2ff";
           		divMeeting[i].style.borderRadius = "12px";
