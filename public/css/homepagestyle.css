@@ -223,24 +223,24 @@ input[type=submit] {
 /* popup schema*/
 .popupSchema .popuptextSchema {
   visibility: hidden;
-  width: 50%;
-  font-size: 16px;
+  width: 40%;
+  font-size: 20px;
   background-color: #fff;
   color: #555;
-  border-radius: 6px;
-  padding: 8px;
+  border-radius: 12px;
+  padding: 15px;
   position: absolute;
-  left: 25%;
-  bottom: 30%;
+  left: 30%;
+  bottom: 20%;
   box-shadow: 5px 5px 7px 5px #888888;
 }
 
 /* Popup arrow */
-.popupSchema .popuptextSchema::after {
+/* .popupSchema .popuptextSchema::after {
   content: "";
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-}
+} */
 
 /* Hide and show the popup */
 .popupSchema .showEvent {
@@ -252,9 +252,10 @@ input[type=submit] {
 
 /* Fiction buttons on the popup when clicking at the calendar */
 .buttonAddEvent{
-  position: absolute;
+  /* position: absolute;
   right: 25px;
-  top: 75px;
+  top: 75px; */
+  display: block;
   font-family: 'Bitter', serif;
   width: 110px;
   height: 40px;
@@ -262,11 +263,15 @@ input[type=submit] {
   border: none;
   color: white;
   padding: 2px 20px;
-  margin: 4px 2px;
+  margin: 25px 2px;
   border-radius: 10px;
 }
 
-.buttonRemoveEvent{
+#eventname{width: 80%;}
+#endtime{width: 100px;}
+#starttime{width: 100px;}
+
+/* .buttonRemoveEvent{
   position: absolute;
   right: 25px;
   top: 135px;
@@ -279,7 +284,7 @@ input[type=submit] {
   padding: 2px 20px;
   margin: 4px 2px;
   border-radius: 10px;
-}
+} */
 
 /* the list within the menu-button */
 .dropdown{
