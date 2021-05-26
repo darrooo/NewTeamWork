@@ -223,23 +223,22 @@
 
 
   var daily = new Date();
-
   var renderDaily = () => {
 
     const timeHours = document.querySelector('.hours');
 
     const weekdays = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
-      "Sunday"
     ];
 
     //Veckodagen för den dag som syns på dagsvyn
-    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() - 1];
+    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() ];
     //Dagens datum som visas i headern
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
@@ -247,39 +246,27 @@
 
 
     for (let hour = 7; hour <= 17; hour++) {
-      console.log(classHours[hour - 7] + hour)
+      //console.log(classHours[hour - 7] + hour)
       hours += `<div class = "hours ${classHours[hour-7]}">${hour}:00</div>`;
       timeHours.innerHTML = hours;
     };
   }
-
-  document.querySelector('.prevDay').addEventListener('click', () => {
-    daily.setDate(daily.getDate() - 1)
-    renderDaily();
-  });
-
-  document.querySelector('.nextDay').addEventListener('click', () => {
-    daily.setDate(daily.getDate() + 1)
-    renderDaily();
-  });
-  renderDaily();
-
   socket.emit('getAllMyEvents', getAllTheEvents);
   socket.on('getAllMyEvents', function(d) {
     getAllTheEvents = d.allCurrentEvents;
     var allEvents = () =>{
       getAllTheEvents.forEach(events =>{
-        console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+    //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
         if (events.username == currentUser) { //HÄÄÄÄR
-          console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+      //    console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
           var userHourStart = events.starttime - 7;
           var userHourEnd = events.endtime - 7;
-          console.log("position: " + userHourStart + userHourEnd);
+        //  console.log("position: " + userHourStart + userHourEnd);
           var thisUserHour = classHours.slice(userHourStart,userHourEnd);
         //  var thisUserHour = classHours[userHourStart]
-          console.log( "arrayen: " + thisUserHour);
+        //  console.log( "arrayen: " + thisUserHour);
           thisUserHour.forEach(colorEvent => {
-            console.log("classes" + colorEvent);
+          //  console.log("classes" + colorEvent);
             var divTEST = document.querySelector("." + colorEvent);
           //  console.log("divTEST innan: " + divTEST.innerHTML);
             if (divTEST.innerHTML == events.starttime+":00") {
@@ -296,6 +283,19 @@
     }
     allEvents();
   });
+
+  document.querySelector('.prevDay').addEventListener('click', () => {
+    daily.setDate(daily.getDate() - 1)
+    renderDaily();
+  });
+
+  document.querySelector('.nextDay').addEventListener('click', () => {
+    daily.setDate(daily.getDate() + 1)
+    renderDaily();
+  });
+  renderDaily();
+
+
 
   var menu = document.querySelector(".menu")
   var ham = document.querySelector(".ham")
