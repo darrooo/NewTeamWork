@@ -268,6 +268,7 @@ app.post('/homepage', function(req, res){
   client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
     if(err) throw err;
     console.log("event record inserted Successfully");
+    main();
   });
   return res.redirect('/homepage')
 });
