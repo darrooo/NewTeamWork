@@ -234,11 +234,12 @@
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
+    let classHours = ['seven','eight', 'nine','ten','eleven','twelve','thirteen','fouteen','fifteen','sixteen','seventeen']
 
     for (let hour = 7; hour <= 17; hour++) {
-      hours += `<div class = "hours">${hour}</div>`;
-      timeHours.innerHTML = hours;
-      //  console.log(timeHours);
+        console.log(classHours[hour-7] + hour)
+        hours += `<div class = "hours ${classHours[hour-7]}">${hour}:00</div>`;
+        timeHours.innerHTML = hours;
     };
   }
 

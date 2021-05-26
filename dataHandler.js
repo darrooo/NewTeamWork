@@ -4,6 +4,7 @@
 function Data(){
   this.users={};
   this.allUsers=[];
+  this.allEvents=[];
 }
 //var inDatabase = data.checkIfUserInDB(email, password);
 Data.prototype.checkIfUserInDB= function (email, password){
@@ -36,10 +37,20 @@ Data.prototype.getAllUsers = function () {
 
 Data.prototype.addUserInData = function (users) {
 //  if (this.allUsers[0].name != users.name) {
-    console.log( users.name + " är tillagd i databasen" );
+    //console.log( users.name + " är tillagd i databasen" );
     var name= users.name;
     var name = { name: users.name, username: users.username, password: users.password, project: users.project, admin: users.admin};
     this.allUsers.push(name);
+    //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
+
+  //}
+};
+Data.prototype.addEventInData = function (events) {
+//  if (this.allUsers[0].name != users.name) {
+    console.log( events.username +" "+ events.eventname +" "+ events.starttime +" "+ events.endtime +" är hämtad från databasen" );
+    var userEvent = events.username;
+    var userEvent = {username: events.username, eventname: events.eventname, starttime: events.starttime, endtime: events.endtime};
+    this.allEvents.push(userEvent);
     //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
 
   //}

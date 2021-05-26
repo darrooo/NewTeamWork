@@ -54,6 +54,7 @@ async function main() {
     //----------------
     //** SKA BÖRJA TESTA NUU
     await listAllUsers(client); //listar Användare
+    await listAllEvents(client); //listar Användare
   //   findUser(email, password);
 
     //await findUserByEmail(client, email); //kollar om email finns i DB
@@ -68,17 +69,19 @@ async function main() {
 }
 
 
-//async function listDatabases(client){ //listar Databaser
-  //Kör denna funktion för att visa databasen
-//  const databasesList = await client.db().admin().listDatabases();
-//  console.log("Databases:");
-//  databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-//};
+
 async function listAllUsers(client){ //listar Databaser
   //Kör denna funktion för att visa databasen
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
     data.addUserInData(users);
+  });
+};
+async function listAllEvents(client){ //listar Databaser
+  //Kör denna funktion för att visa databasen
+  var allEvents = await client.db("teamwork").collection("eventcollection").find();
+  allEvents.forEach(events => {
+    data.addEventInData(events);
   });
 };
 
@@ -106,10 +109,10 @@ function findUser(email, password) {
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
 function userLogin(){
   access = true
-  console.log("är i userLogin" + access);
+  //console.log("är i userLogin" + access);
   currentUsers = data.getAllUsers();
-  console.log("Följande är alla användare tillgängliga i data => allMyUsers");
-  console.log(currentUsers);
+  //console.log("Följande är alla användare tillgängliga i data => allMyUsers");
+  //console.log(currentUsers);
 
   io.emit('sendLogin', {
     userAccess: access,
@@ -127,7 +130,7 @@ let data = new teamworkData();
 io.on('connection', (socket) => {
   // When a connected client emits an "addOrder" message
   socket.on('sendInformation', function (userInformation) {
-    console.log(" user input information uname psw:  " + Object.values(userInformation)); // email , password
+    //console.log(" user input information uname psw:  " + Object.values(userInformation)); // email , password
     //data.addUser(userInformation); //skickas till datahandler.js
     var loginArray = data.addUser(userInformation); //skickas till datahandler.js
     email = loginArray[0]; //tilldelas globalt
@@ -145,7 +148,7 @@ io.on('connection', (socket) => {
      //userID:dbID,
      userAccess: access
      });
-      console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
+      //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
     });
   });
 
