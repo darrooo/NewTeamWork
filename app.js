@@ -13,6 +13,7 @@ var password ;
 var dbPassword ;
 var dbEmail ;
 var currentUsers;
+var currentEvents;
 //var dbID;
 var access = false;
 
@@ -111,6 +112,7 @@ function userLogin(){
   access = true
   //console.log("är i userLogin" + access);
   currentUsers = data.getAllUsers();
+  currentEvents= data.getAllEvents();
   //console.log("Följande är alla användare tillgängliga i data => allMyUsers");
   //console.log(currentUsers);
 
@@ -268,6 +270,12 @@ io.on('connection', (socket) => {
   socket.on('getAllMyUsers', (getAllTheUsers) => {
 //    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
     io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
+
+  });
+});
+io.on('connection', (socket) => {
+  socket.on('getAllMyEvents', (getAllTheEvents) => {
+    io.emit('getAllMyEvents', { allCurrentEvents: currentEvents});
 
   });
 });

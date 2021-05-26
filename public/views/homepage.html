@@ -157,7 +157,20 @@
 <script>
   var socket = io();
   var getAllTheUsers = [];
+  var getAllTheEvents = [];
   var currentUser;
+  let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
+  socket.emit('getAllMyEvents', getAllTheEvents);
+  socket.on('getAllMyEvents', function(d) {
+    getAllTheEvents = d.allCurrentEvents;
+    var allEvents = () =>{
+      getAllTheEvents.forEach(events =>{
+        console.log("eventname: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+
+      });
+    }
+    allEvents();
+  });
 
   socket.emit('getAllMyUsers', getAllTheUsers);
   socket.on('getAllMyUsers', function(d) {
@@ -220,7 +233,7 @@
       idColleaguesModal.style.display = "block";
     }
     /*Colleaguesmodal*/
-  });
+  }); /*end of socket*/
 
   var daily = new Date();
 
@@ -244,7 +257,7 @@
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
-    let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
+
 
     for (let hour = 7; hour <= 17; hour++) {
       console.log(classHours[hour - 7] + hour)
