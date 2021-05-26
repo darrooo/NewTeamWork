@@ -274,9 +274,9 @@
           var userHourStart = events.starttime - 7;
           var userHourEnd = events.endtime - 7;
           console.log("position: " + userHourStart + userHourEnd);
-          //var thisUserHourTest = classHours[userHourStart:userHourEnd];
+          var thisUserHourTest = classHours.slice(userHourStart,userHourEnd);
           var thisUserHour = classHours[userHourStart]
-        //  console.log("classname: " + thisUserHour + "arrayen: " + thisUserHourTest);
+          console.log("classname: " + thisUserHour + "arrayen: " + thisUserHourTest);
           var divMeeting = document.getElementsByClassName(thisUserHour);
           for(var i = 0; i < divMeeting.length; i++){
         		divMeeting[i].style.backgroundColor = "red";

@@ -16,6 +16,7 @@ var currentUsers;
 var currentEvents;
 //var dbID;
 var access = false;
+var firstrun = true;
 
 ////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
 //const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -54,7 +55,13 @@ async function main() {
     // eller det andra.
     //----------------
     //** SKA BÖRJA TESTA NUU
-    await listAllUsers(client); //listar Användare
+    if (firstrun) {
+      console.log("first run runs");
+      await listAllUsers(client); //listar Användare
+      firstrun= false;
+
+    }
+
     await listAllEvents(client); //listar Användare
   //   findUser(email, password);
 
