@@ -16,8 +16,8 @@ var currentUsers;
 var access = false;
 
 ////HÄR SKA CONST URI LIGGA!
-//const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
@@ -33,12 +33,9 @@ client.connect();
 // main behövs egentligen inte, går att skriva om.
 async function main() {
 
-  //Körs först av allt
+  //When running localhost (node app), the code starts from here
   try {
     console.log("när körs jag?");
-    //  await client.connect();
-    //  await listDatabases(client); //listar Databaser
-
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
     //klickar på knappen, och inte på on page load som den gör nu.
@@ -48,8 +45,14 @@ async function main() {
     // eller det andra.
     //----------------
     //** SKA BÖRJA TESTA NUU
-    await listAllUsers(client); //listar Användare
-    await listAllEvents(client); //listar Användare
+    //Lists all users
+    await listAllUsers(client);
+    //Lists all events
+    await listAllEvents(client);
+
+//HÄR ÄR JAG
+
+
     //   findUser(email, password);
 
     //await findUserByEmail(client, email); //kollar om email finns i DB

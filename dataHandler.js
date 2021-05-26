@@ -35,6 +35,10 @@ Data.prototype.getAllUsers = function () {
   return this.allUsers;
 };
 
+Data.prototype.getAllEvents = function () {
+  return this.allEvents;
+};
+
 Data.prototype.addUserInData = function (users) {
 //  if (this.allUsers[0].name != users.name) {
     //console.log( users.name + " är tillagd i databasen" );
