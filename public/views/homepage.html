@@ -86,10 +86,22 @@
                 <span class="closeMeeting"> &times; </span>
               <!--  <span class="closeCalendar"> &times; </span>-->
                 <p>Add an event to schedule</p>
+                <form action="/homepage" method="post">
+                <input class="box" type="text" name="eventname" id="eventname"
+                placeholder="Title"  required /><br>
+                <input class="box" type="number" name="starttime" id="starttime"
+                placeholder="Start " required /><br>
+                <input class="box" type="number" name="endtime" id="endtime"
+                placeholder="End " required /><br>
+                  <button type="submit" onclick="myFunctionEvent()" class="buttonAddEvent" value="Submit"> Add event </button>
+              </form>
+
+
+
                 <div class="buttonCo">
-                  <button type="button" class="buttonAddEvent"> add event </button>
+
                   <br>
-                  <button type="button" name="button" class="buttonRemoveEvent"> remove event </button>
+                  <!--<button type="button" name="button" class="buttonRemoveEvent"> remove event </button>-->
                 </div>
               </span>
             </div>
@@ -234,11 +246,12 @@
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
+    let classHours = ['seven','eight', 'nine','ten','eleven','twelve','thirteen','fouteen','fifteen','sixteen','seventeen']
 
     for (let hour = 7; hour <= 17; hour++) {
-      hours += `<div class = "hours">${hour}</div>`;
-      timeHours.innerHTML = hours;
-      //  console.log(timeHours);
+        console.log(classHours[hour-7] + hour)
+        hours += `<div class = "hours ${classHours[hour-7]}">${hour}:00</div>`;
+        timeHours.innerHTML = hours;
     };
   }
 
