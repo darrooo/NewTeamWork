@@ -277,12 +277,13 @@
           var thisUserHourTest = classHours.slice(userHourStart,userHourEnd);
           var thisUserHour = classHours[userHourStart]
           console.log("classname: " + thisUserHour + "arrayen: " + thisUserHourTest);
-          var divMeeting = document.getElementsByClassName(thisUserHour);
-          for(var i = 0; i < divMeeting.length; i++){
-        		divMeeting[i].style.backgroundColor = "red";
-        	}
-        //  document.getElementsByClassName('hours').style.backgroundColor = "red";
-
+          thisUserHourTest.forEach(eventColor => {
+            console.log("classes" + eventColor);
+            var divMeeting = document.getElementsByClassName(eventColor);
+            for(var i = 0; i < divMeeting.length; i++){
+          		divMeeting[i].style.backgroundColor = "red";
+          	}
+          });
         }
       });
     }
