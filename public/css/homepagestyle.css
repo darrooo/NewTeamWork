@@ -129,6 +129,14 @@ input[type=submit] {
   border-radius: 10px;
 }
 
+#admin {
+  text-align: left;
+}
+
+.checkbox {
+  width: 20px;
+}
+
 .main h1{font-size: 30px; margin-left: 40px; line-height: 200%;}
 
 /* left side of the homepage */
@@ -391,6 +399,7 @@ input[type=submit] {
   line-height: 30px;
   font-size: 16px;
   grid-area: thisProject;
+  padding-left: 45px;
 }
 
 .nav_thisiswork{
@@ -404,7 +413,7 @@ input[type=submit] {
   grid-gap: 0em;
   display: grid;
   grid-template-rows: 30px 30px;
-  grid-template-columns: 80px 170px ;
+  grid-template-columns: 65px 170px ;
   grid-template-areas:
   "name thisName"
   "project thisProject";
@@ -641,7 +650,7 @@ input[type=submit] {
       position: absolute;
       bottom:1%;
       right: 1%;
-      width: 660px;
+      width: 675px;
       z-index: 1;
     }
 
@@ -659,7 +668,7 @@ input[type=submit] {
       grid-template-areas:
       "invisiblebutton invisiblebutton invisiblebutton invisiblebutton";
       grid-area: invisiblebutton;
-      padding-left: 8%;
+      padding-left: 7%;
       display: inline-block;
       grid-template-columns: repeat(auto-fill, 20%);
     }
