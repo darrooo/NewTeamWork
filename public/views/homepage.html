@@ -155,17 +155,7 @@
   var getAllTheEvents = [];
   var currentUser;
   let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
-  socket.emit('getAllMyEvents', getAllTheEvents);
-  socket.on('getAllMyEvents', function(d) {
-    getAllTheEvents = d.allCurrentEvents;
-    var allEvents = () =>{
-      getAllTheEvents.forEach(events =>{
-        console.log("eventname: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
 
-      });
-    }
-    allEvents();
-  });
 
   socket.emit('getAllMyUsers', getAllTheUsers);
   socket.on('getAllMyUsers', function(d) {
@@ -230,6 +220,7 @@
     /*Colleaguesmodal*/
   }); /*end of socket*/
 
+
   var daily = new Date();
 
   var renderDaily = () => {
@@ -272,6 +263,32 @@
   });
   renderDaily();
 
+  socket.emit('getAllMyEvents', getAllTheEvents);
+  socket.on('getAllMyEvents', function(d) {
+    getAllTheEvents = d.allCurrentEvents;
+    var allEvents = () =>{
+      getAllTheEvents.forEach(events =>{
+        console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+        if (events.username == currentUser) { //HÄÄÄÄR
+          console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+          var userHourStart = events.starttime - 7;
+          var userHourEnd = events.endtime - 7;
+          console.log("position: " + userHourStart + userHourEnd);
+          //var thisUserHourTest = classHours[userHourStart:userHourEnd];
+          var thisUserHour = classHours[userHourStart]
+        //  console.log("classname: " + thisUserHour + "arrayen: " + thisUserHourTest);
+          var divMeeting = document.getElementsByClassName(thisUserHour);
+          for(var i = 0; i < divMeeting.length; i++){
+        		divMeeting[i].style.backgroundColor = "red";
+        	}
+        //  document.getElementsByClassName('hours').style.backgroundColor = "red";
+
+        }
+      });
+    }
+    allEvents();
+  });
+
   var menu = document.querySelector(".menu")
   var ham = document.querySelector(".ham")
   var xIcon = document.querySelector(".xIcon")
@@ -300,6 +317,7 @@
   )
 </script>
 <style>
+
   /*modal*/
   .modal {
     display: none;
