@@ -239,7 +239,7 @@ app.post('/signup', function(req, res){
 
   });
 
-  //return res.redirect('/settings')
+  return res.redirect('/settings')
 });
 
 //To create an event and upload to mongodb
@@ -261,7 +261,7 @@ app.post('/homepage', function(req, res){
     if(err) throw err;
     console.log("event record inserted Successfully");
   });
-
+  return res.redirect('/homepage')
 });
 
 io.on('connection', (socket) => {
