@@ -80,9 +80,11 @@
 
           <div class="event">
             <div class="hours" onclick="myFunctionEvent()"></div>
-            <div class="popupSchema" onclick="myFunctionEvent()">
+            <div class="popupSchema" >
+
               <!-- Pop Schema -->
               <span class="popuptextSchema" id="myPopupEvent">
+                <span class="closeMeeting"> &times; </span>
               <!--  <span class="closeCalendar"> &times; </span>-->
                 <p>Lägg till event i ditt schema</p>
                 <div class="buttonCo">
@@ -123,13 +125,17 @@
 
   <script>
     // When the user clicks on div, open the popup
-    function myFunction() { //Den här verkar inte användas /D?
-      var popup = document.getElementById("myPopup");
-      popup.classList.toggle("show");
-    }
-
+  //  function myFunction() { //Den här verkar inte användas /D?
+    //  var popup = document.getElementById("myPopup");
+    //  popup.classList.toggle("show");
+  //  }
+    var spanMeet = document.getElementsByClassName("closeMeeting")[0];
+    var popupEvent = document.getElementById("myPopupEvent");
     function myFunctionEvent() {
-      var popupEvent = document.getElementById("myPopupEvent");
+
+      popupEvent.classList.toggle("showEvent");
+    }
+    spanMeet.onclick = function() {
       popupEvent.classList.toggle("showEvent");
     }
   </script>
@@ -318,6 +324,20 @@
 
   .closeColleagues:hover,
   .closeColleagues:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .closeMeeting {
+    z-index: 2;
+    color: #aaaaaa;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .closeMeeting:hover,
+  .closeMeeting:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
