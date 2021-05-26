@@ -14,6 +14,7 @@ var dbPassword;
 var dbEmail;
 var currentUsers;
 var access = false;
+var firstrun = true;
 
 ////HÄR SKA CONST URI LIGGA!
 //var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -45,15 +46,15 @@ async function main() {
     // eller det andra.
     //----------------
     //** SKA BÖRJA TESTA NUU
-    //Lists all users
-    await listAllUsers(client);
-    //Lists all events
-    await listAllEvents(client);
+    if (firstrun) {
+      console.log("first run runs");
+      await listAllUsers(client); //listar Användare
+      firstrun= false;
 
-//HÄR ÄR JAG
+    }
 
-
-    //   findUser(email, password);
+    await listAllEvents(client); //listar Användare
+  //   findUser(email, password);
 
     //await findUserByEmail(client, email); //kollar om email finns i DB
 
