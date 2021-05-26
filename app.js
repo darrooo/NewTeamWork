@@ -245,11 +245,13 @@ app.post('/signup', function(req, res){
 //To create an event and upload to mongodb
 app.post('/homepage', function(req, res){
   console.log("adding event test");
+  var currentEmail = email;
   var eventname = req.body.eventname;
   var starttime = req.body.starttime;
   var endtime = req.body.endtime;
 
   var data = {
+    "username": currentEmail,
     "eventname": eventname,
     "starttime": starttime,
     "endtime": endtime,

@@ -80,21 +80,18 @@
 
           <div class="event">
             <div class="hours" onclick="myFunctionEvent()"></div>
-            <div class="popupSchema" >
+            <div class="popupSchema">
               <!-- Pop Schema -->
               <span class="popuptextSchema" id="myPopupEvent">
                 <span class="closeMeeting"> &times; </span>
-              <!--  <span class="closeCalendar"> &times; </span>-->
+                <!--  <span class="closeCalendar"> &times; </span>-->
                 <p>Add an event to schedule</p>
                 <form action="/homepage" method="post">
-                <input class="box" type="text" name="eventname" id="eventname"
-                placeholder="Title"  required /><br>
-                <input class="box" type="number" name="starttime" id="starttime"
-                placeholder="Start " required /><br>
-                <input class="box" type="number" name="endtime" id="endtime"
-                placeholder="End " required /><br>
+                  <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required /><br>
+                  <input class="box" type="number" name="starttime" id="starttime" placeholder="Start " required /><br>
+                  <input class="box" type="number" name="endtime" id="endtime" placeholder="End " required /><br>
                   <button type="submit" onclick="myFunctionEvent()" class="buttonAddEvent" value="Submit"> Add event </button>
-              </form>
+                </form>
 
 
 
@@ -136,12 +133,13 @@
 
   <script>
     // When the user clicks on div, open the popup
-  //  function myFunction() { //Den här verkar inte användas /D?
+    //  function myFunction() { //Den här verkar inte användas /D?
     //  var popup = document.getElementById("myPopup");
     //  popup.classList.toggle("show");
-  //  }
+    //  }
     var spanMeet = document.getElementsByClassName("closeMeeting")[0];
     var popupEvent = document.getElementById("myPopupEvent");
+
     function myFunctionEvent() {
 
       popupEvent.classList.toggle("showEvent");
@@ -246,12 +244,12 @@
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
-    let classHours = ['seven','eight', 'nine','ten','eleven','twelve','thirteen','fouteen','fifteen','sixteen','seventeen']
+    let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
 
     for (let hour = 7; hour <= 17; hour++) {
-        console.log(classHours[hour-7] + hour)
-        hours += `<div class = "hours ${classHours[hour-7]}">${hour}:00</div>`;
-        timeHours.innerHTML = hours;
+      console.log(classHours[hour - 7] + hour)
+      hours += `<div class = "hours ${classHours[hour-7]}">${hour}:00</div>`;
+      timeHours.innerHTML = hours;
     };
   }
 
@@ -308,22 +306,26 @@
     width: 70%;
   }
 
-/* Modal Content */
-.modal-content {
-  display: block;
-  height: 100%;
-  background-color: #fff;
-  color: #767474;
-  font-size: 16px;
-  border-radius: 12px;
-  padding-right: 10px;
-  padding-bottom: 20px;
-  box-shadow: 5px 5px 7px 5px #888888;
-}
+  /* Modal Content */
+  .modal-content {
+    display: block;
+    height: 100%;
+    background-color: #fff;
+    color: #767474;
+    font-size: 16px;
+    border-radius: 12px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    box-shadow: 5px 5px 7px 5px #888888;
+  }
 
-  .modalName {padding: 20px;}
+  .modalName {
+    padding: 20px;
+  }
 
-  .modal-content p {padding: 30px 15px 0 20px;}
+  .modal-content p {
+    padding: 30px 15px 0 20px;
+  }
 
   /* The Close Button */
   .closeColleagues {
@@ -340,6 +342,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   .closeMeeting {
     z-index: 2;
     color: #aaaaaa;
@@ -354,6 +357,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   /*modal*/
 </style>
 
