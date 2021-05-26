@@ -70,15 +70,14 @@
 
                     <input class="box" type="password" name="password"
                     id="password" placeholder="Password " required/><br>
-<!--lägga till project och admin här-->
 
                     <input class="box" type="text" name="project"
                     id="project" placeholder="Project " required/><br>
 
+                    <!--vi vill göra en boolean av denna, att den kan skicka/hämta om det är true eller false i db också-->
                     <label for="project">Admin access</label>
                     <input class="checkbox" type="checkbox" name="admin"
                     id="admin" checked />
-
 
                                 <br>
                     <input type="submit" id="submitDetails" onclick="location.href='/settings';"

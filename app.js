@@ -223,7 +223,6 @@ app.post('/signup', function(req, res){
   var pass = req.body.password;
   var project = req.body.project;
   var admin = req.body.project;
-  //lägga till role
 
   var data = {
     "username": username,
@@ -231,7 +230,6 @@ app.post('/signup', function(req, res){
     "password": pass,
     "project": project,
     "admin": admin,
-    //lägga till role här också
   }
 
   client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
@@ -241,7 +239,27 @@ app.post('/signup', function(req, res){
 
   });
 
-  return res.redirect('/settings')
+  //return res.redirect('/settings')
+});
+
+//To create an event and upload to mongodb
+app.post('/homepage', function(req, res){
+  console.log("adding event test");
+  var eventname = req.body.eventname;
+  var starttime = req.body.starttime;
+  var endtime = req.body.endtime;
+
+  var data = {
+    "eventname": eventname,
+    "starttime": starttime,
+    "endtime": endtime,
+  }
+
+  client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
+    if(err) throw err;
+    console.log("event record inserted Successfully");
+  });
+
 });
 
 io.on('connection', (socket) => {
