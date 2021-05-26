@@ -37,7 +37,7 @@
           <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
           <button onclick="location.href='/myProfile';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
           <button onclick="location.href='/settings';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Settings </button>
-          <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout"> Logout </button>
+          <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout"> Sign out </button>
         </div>
       </div>
     </header>
@@ -59,8 +59,8 @@
 
       <div class="nav_thisisme">
         <div class="nav_thisiswork">
-          <p id="pName">Namn: </p>
-          <p id="pProject">Projekt: </p>
+          <p id="pName">Name: </p>
+          <p id="pProject">Department: </p>
           <div class="thisCurrentUser"></div>
           <div class="thisProject"></div>
         </div>

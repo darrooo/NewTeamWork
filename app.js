@@ -24,8 +24,9 @@ var access = false;
 //connects to database
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
 //var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
+var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
 
@@ -177,7 +178,6 @@ app.get('/settings', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/settings.html'));
 });
 
-
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
 });
@@ -197,6 +197,7 @@ app.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup.html'))
 });
 
+//anävnder inte denna i nuläget
 app.get('/signup_success', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/signup_success.html'))
 });
@@ -211,19 +212,26 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//The one that uploads the updated information about a new user
 app.post('/signup', function(req, res){
   console.log("signup kommer jag hit?");
   var username = req.body.username;
   var name = req.body.name;
   var pass = req.body.password;
+  var project = req.body.project;
+  var admin = req.body.project;
+  //lägga till role
 
   var data = {
     "username": username,
     "name": name,
     "password": pass,
+    "project": project,
+    "admin": admin,
+    //lägga till role här också
   }
 
-  client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){ //db is not defined, hämtar inte databasen
+  client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
 
     if(err) throw err;
     console.log("Record inserted Successfully");

@@ -1,4 +1,6 @@
 Hej hej här lägger vi in instrukioner och FYIs //Dani
+Hejhej, vi ska också lägga in en beskrivning av projektet här så att de som går in på Github och kollar
+ser vad vi har gjort och varför typ. Så en beskrivning av vad det är och hur det funkar helt enkelt //Hanne
 
 I app.js skapas två sidor länkade till localhost.
 startar man bara localhost 3000 kommer man till

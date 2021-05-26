@@ -28,7 +28,7 @@
           <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
           <button onclick="location.href='/myProfile';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
           <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Home </button>
-          <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout">  Logout </button>
+          <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout"> Sign out </button>
         </div>
       </div>
     </header>
@@ -70,6 +70,16 @@
 
                     <input class="box" type="password" name="password"
                     id="password" placeholder="Password " required/><br>
+<!--lägga till project och admin här-->
+
+                    <input class="box" type="text" name="project"
+                    id="project" placeholder="Project " required/><br>
+
+                    <label for="project">Admin access</label>
+                    <input class="checkbox" type="checkbox" name="admin"
+                    id="admin" checked />
+
+
                                 <br>
                     <input type="submit" id="submitDetails" onclick="location.href='/settings';"
                     name="submitDetails" value="Submit" /><br>
