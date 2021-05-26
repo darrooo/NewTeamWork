@@ -8,25 +8,20 @@ var path = require('path');
 var io = require('socket.io')(http);
 const port = 3000;
 var bodyParser = require("body-parser");
-var email ;
-var password ;
-var dbPassword ;
-var dbEmail ;
+var email;
+var password;
+var dbPassword;
+var dbEmail;
 var currentUsers;
-//var dbID;
 var access = false;
 
-////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
+////HÄR SKA CONST URI LIGGA!
 //const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-//
-
-//connects to database
-//Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
-//var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
-var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
+//connects to database
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
 
@@ -41,8 +36,8 @@ async function main() {
   //Körs först av allt
   try {
     console.log("när körs jag?");
-  //  await client.connect();
-  //  await listDatabases(client); //listar Databaser
+    //  await client.connect();
+    //  await listDatabases(client); //listar Databaser
 
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
@@ -55,7 +50,7 @@ async function main() {
     //** SKA BÖRJA TESTA NUU
     await listAllUsers(client); //listar Användare
     await listAllEvents(client); //listar Användare
-  //   findUser(email, password);
+    //   findUser(email, password);
 
     //await findUserByEmail(client, email); //kollar om email finns i DB
 
@@ -145,12 +140,12 @@ io.on('connection', (socket) => {
       access= false;
     }
     socket.emit('sendLogin', {
-     //userID:dbID,
-     userAccess: access
-     });
-      //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
+      //userID:dbID,
+      userAccess: access
     });
+    //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
   });
+});
 
 
 
@@ -162,7 +157,7 @@ app.use(express.static(path.join(__dirname, 'public/')));
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 
 app.get('/', function (req, res) {
-    main();
+  main();
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 
 });
@@ -231,7 +226,7 @@ app.post('/signup', function(req, res){
     "project": project,
     "admin": admin,
   }
-
+  //adding a colleague in the collection "teamworkcollection" on mongodb
   client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
 
     if(err) throw err;
@@ -245,18 +240,19 @@ app.post('/signup', function(req, res){
 //To create an event and upload to mongodb
 app.post('/homepage', function(req, res){
   console.log("adding event test");
+  //creates each variable and returns an object
   var currentEmail = email;
   var eventname = req.body.eventname;
   var starttime = req.body.starttime;
   var endtime = req.body.endtime;
-
+  //
   var data = {
     "username": currentEmail,
     "eventname": eventname,
     "starttime": starttime,
     "endtime": endtime,
   }
-
+  //Adding an event to the collection "eventcollection" on mongodb
   client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
     if(err) throw err;
     console.log("event record inserted Successfully");
@@ -266,14 +262,11 @@ app.post('/homepage', function(req, res){
 
 io.on('connection', (socket) => {
   socket.on('getAllMyUsers', (getAllTheUsers) => {
-//    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
+    //    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
     io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
 
   });
 });
-
-
-
 
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
@@ -290,5 +283,4 @@ io.on('connection', (socket) => {
 
 http.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
-
 });
