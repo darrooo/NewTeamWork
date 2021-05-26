@@ -104,7 +104,10 @@
 
     <div class="navLeft">
 
-      <div class="myColleagues"> </div>
+      <div class="myColleagues">
+        <img src="img_avatar.png" alt="Avatar" class="avatar">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
         <!-- Modal content -->
@@ -281,7 +284,8 @@
             console.log("classes" + eventColor);
             var divMeeting = document.getElementsByClassName(eventColor);
             for(var i = 0; i < divMeeting.length; i++){
-          		divMeeting[i].style.backgroundColor = "red";
+          		divMeeting[i].style.backgroundColor = "#dbe2ff";
+          		divMeeting[i].style.borderRadius = "12px";
           	}
           });
         }
@@ -318,6 +322,14 @@
   )
 </script>
 <style>
+
+/* profile picture */
+.avatar {
+vertical-align: middle;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+}
 
   /*modal*/
   .modal {
