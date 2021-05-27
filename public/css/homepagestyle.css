@@ -247,7 +247,7 @@ input[type=submit] {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
-  height: 350px;
+  height: 300px;
 }
 
 /* Fiction buttons on the popup when clicking at the calendar */
@@ -271,9 +271,22 @@ input[type=submit] {
   cursor: pointer;
 }
 
-#eventname{width: 80%;}
-#endtime{width: 100px;}
-#starttime{width: 100px;}
+.box{
+  display: inline-block;
+  margin-left: 10px;
+  color: #767474;
+}
+
+#eventname{width: 80%;
+  margin-bottom: 20px;
+}
+/* #endtime option:hover{background-color: #dbe2ff} */
+#endtime{
+  margin-bottom: 25px;
+}
+#starttime{
+  margin-bottom: 25px;
+}
 
 /* .buttonRemoveEvent{
   position: absolute;

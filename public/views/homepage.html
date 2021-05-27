@@ -87,12 +87,97 @@
                 <!--  <span class="closeCalendar"> &times; </span>-->
                 <p>Add an event to schedule</p>
                 <form action="/homepage" method="post">
-                  <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required /><br>
-                  <input class="box" type="number" name="starttime" id="starttime" placeholder="Start " required /><br>
-                  <input class="box" type="number" name="endtime" id="endtime" placeholder="End " required /><br>
-                  <input class="box" type="number" name="date" id="date" placeholder="Day " required /><br>
+                  <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required />
+                  <!-- <input class="box" type="number" name="starttime" id="starttime" placeholder="Start " required /><br> -->
+                  <!-- <input class="box" type="number" name="endtime" id="endtime" placeholder="End " required /><br> -->
+                  <br> <label class="box" for="setTime"> <b>Start time</b> </label>
+                    <select id="starttime" name="starttime" required="Obligatorisk">
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                      <option>13</option>
+                      <option>14</option>
+                      <option>15</option>
+                      <option>16</option>
+                    </select>
+                  <label class="box" for="setTime"> <b>End time</b> </label>
+                    <select id="endtime" name="endtime" required="Obligatorisk">
+                      <option class="option">8</option>
+                      <option class="option">9</option>
+                      <option class="option">10</option>
+                      <option>11</option>
+                      <option>12</option>
+                      <option>13</option>
+                      <option>14</option>
+                      <option>15</option>
+                      <option>16</option>
+                      <option>17</option>
+                    </select> <br>
+
+                    <label class="box" for="date"> <b>Day</b> </label>
+                      <select id="date" name="date" required="Obligatorisk">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                      </select>
+
+                    <label class="box" for="setMonth"> <b>Month</b> </label>
+                      <select id="month" name="month" required="Obligatorisk">
+                        <option>Januari</option>
+                        <option>Feruari</option>
+                        <option>Mars</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                      </select>
+
+                    <label class="box" for="setYear"> <b>Year</b> </label>
+                      <select id="year" name="year" required="Obligatorisk">
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                      </select>
+                  <!-- <input class="box" type="number" name="date" id="date" placeholder="Day " required /><br>
                   <input class="box" type="number" name="month" id="month" placeholder="Month " required />
-                  <input class="box" type="number" name="year" id="year" placeholder="Year " required /><br>
+                  <input class="box" type="number" name="year" id="year" placeholder="Year " required /><br> -->
 
                   <!-- <div class="buttonCo"> -->
                   <!--<button type="button" name="button" class="buttonRemoveEvent"> remove event </button>-->
@@ -178,6 +263,11 @@
   var thisDate = new Date().getDate();
   var thisMonth = new Date().getMonth();
   var thisYear = new Date().getFullYear();
+
+  function hourList(){
+      var select = document.getElementById('list');
+      select.options[select.options.length] = new Option('7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17');
+  }
 
 
   socket.emit('getAllMyUsers', getAllTheUsers);
