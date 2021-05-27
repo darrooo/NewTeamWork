@@ -163,6 +163,15 @@ input[type=submit] {
   font-size: 14px;
 
 }
+#avatar1{
+  width: 30px;
+}
+#avatar2{
+  width: 30px;
+}
+#avatar3{
+  width: 30px;
+}
 
 #colleaguesprofilepictureID img{
   border-radius: 50%;
