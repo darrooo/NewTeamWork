@@ -43,7 +43,7 @@ Data.prototype.addUserInData = function (users) {
 //  if (this.allUsers[0].name != users.name) {
     //console.log( users.name + " är tillagd i databasen" );
     var name= users.name;
-    var name = { name: users.name, username: users.username, password: users.password, project: users.project, admin: users.admin};
+    var name = { name: users.name, username: users.username, password: users.password, project: users.project, admin: users.admin, image:users.image};
     this.allUsers.push(name);
     //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
 
