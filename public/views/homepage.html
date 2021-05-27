@@ -89,7 +89,7 @@
                 <span class="closeMeeting"> &times; </span>
                 <!--  <span class="closeCalendar"> &times; </span>-->
                 <p>Add an event to schedule</p>
-                <form action="/homepage" method="post">
+                <form action="/homepage-add" method="post">
                   <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required />
                   <!-- <input class="box" type="number" name="starttime" id="starttime" placeholder="Start " required /><br> -->
                   <!-- <input class="box" type="number" name="endtime" id="endtime" placeholder="End " required /><br> -->
@@ -286,6 +286,7 @@
   socket.on('getAllMyUsers', function(d) {
     getAllTheUsers = d.allCurrentUsers;
     currentUser = d.thisUser;
+
     allColleagues();
   }); /*end of socket*/
 
@@ -380,6 +381,7 @@
   socket.emit('getAllMyEvents', getAllTheEvents);
   socket.on('getAllMyEvents', function(d) {
     getAllTheEvents = d.allCurrentEvents;
+    console.log("NU LADDAR JAG OM ALL EVENTS");
     allEvents();
   });
   var allEvents = () =>{
@@ -389,7 +391,7 @@
       if (events.username == currentUser) { //HÄÄÄÄR
         if (events.month == thisMonth) {
         if (events.date == thisDate) {
-          console.log("HÄÄÄÄÄÄÄR " + events.month +" event månad " + thisMonth + " kalendermånad");
+      //    console.log("HÄÄÄÄÄÄÄR " + events.month +" event månad " + thisMonth + " kalendermånad");
        //console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
         var userHourStart = events.starttime - 7;
         var userHourEnd = events.endtime - 7;
@@ -407,6 +409,7 @@
         //  console.log("divTEST efter: " + divTEST.innerHTML);
           var divMeeting = document.getElementsByClassName(colorEvent);
           for(var i = 0; i < divMeeting.length; i++){
+
             divMeeting[i].style.backgroundColor = "#dbe2ff";
             divMeeting[i].style.borderRadius = "12px";
           }

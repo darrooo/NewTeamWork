@@ -44,6 +44,8 @@ async function main() {
     // eller det andra.
     //----------------
     //** SKA BÖRJA TESTA NUU
+    data.clearAllEvents();
+
     if (firstrun) {
       console.log("first run runs");
       //lists all users
@@ -68,6 +70,7 @@ async function listAllUsers(client){
 //Function for all events in database
 async function listAllEvents(client){
   //Fetch from mongodb
+  //
   var allEvents = await client.db("teamwork").collection("eventcollection").find();
   allEvents.forEach(events => {
     data.addEventInData(events);
@@ -247,6 +250,7 @@ app.post('/homepage-add', function(req, res){
   var month = req.body.month;
   var year = req.body.year;
 
+console.log("post ADD EVENT " + currentEmail + " " + eventname + " " + starttime + " " + endtime + " " +  date +" " + month +" "  + year);
   var data = {
     "username": currentEmail,
     "eventname": eventname,
@@ -276,7 +280,9 @@ app.post('/homepage-delete', function(req, res){
   client.db('teamwork').collection('eventcollection').deleteOne(query, function(err, collection){
     if(err) throw err;
     console.log("event record inserted Successfully");
+
     main();
+    
   });
   return res.redirect('/homepage')
 });
