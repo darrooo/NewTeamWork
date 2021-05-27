@@ -57,8 +57,10 @@
         <h1>My Profile</h1>
       </div>
 
-      <div class="nav_thisisme">
+      <div class="nav_thisisme" id="profilepictureID">
+
         <div class="nav_thisiswork">
+
           <p id="pName">Name: </p>
           <p id="pProject">Department: </p>
           <div class="thisCurrentUser"></div>
@@ -197,12 +199,20 @@
         divColleagues.innerHTML = myColleagues;
         classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
         classes.push(classnames);
+
       }
       if (currentUser == users.username) { //skapar alla MyProfile
+        var img = document.createElement("img");
+        avatarImage = "avatar1.png";
+        img.src = "/images/" + avatarImage;
+
+        var src = document.getElementById("profilepictureID");
+        src.appendChild(img);
         thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`; //namnet på nuvarande användaren
         divUser.innerHTML = thisCurrentUser;
         thisProject = `<div class = "thisProject"> ${users.project}</div>`; //projektet på nuvarande användaren
         divProject.innerHTML = thisProject;
+
       }
     });
     classes.forEach(classInClasses => { //går genom varje klass i listan av klasser

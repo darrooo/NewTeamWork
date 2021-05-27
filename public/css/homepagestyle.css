@@ -357,18 +357,24 @@ input[type=submit] {
 }
 
 /* information about the user that signed in - profilepicture, name, role */
+#profilepictureID{
+  position: relative;
+  left:0;
+
+}
 .nav_thisisme{
-  border-radius:100px;
+  /*border-radius:100px;*/
+
   width: 100px;
   height: 100px;
-  display: block;
+  display: flex;
   float: left;
   margin-left: 2%;
   margin-bottom: 2%;
-  background: #dbe2ff;
+  /*background: #dbe2ff;
   border-style: solid;
   border-width: thin;
-  border-color: #626567;
+  border-color: #626567;*/
   color: #626567;
   text-align: left;
   grid-template-rows: 30px 30px;
