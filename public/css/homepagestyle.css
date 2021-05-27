@@ -156,10 +156,10 @@ input[type=submit] {
   display: inline-block;
   height: 60px;
   width: 60px;
-  background: #dbe2ff;
+    /*background: #dbe2ff;*/
   border-radius: 100px;
-  border-style: solid;
-  border-color: #626567;
+  /*  border-style: solid;*/
+  /*border-color: #626567;*/
   border-width: thin;
   text-align: center;
   line-height: 120%;
@@ -713,10 +713,10 @@ input[type=submit] {
 
     .myColleagues div{
       display: inline-block;
-      background: #dbe2ff;
+      /*background: #dbe2ff;*/
       border-radius: 100px;
-      border-style: solid;
-      border-color: #626567;
+    /*  border-style: solid;*/
+      /*border-color: #626567;*/
       border-width: thin;
       text-align: center;
       margin: 3%;

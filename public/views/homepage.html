@@ -110,7 +110,10 @@
 
     <div class="navLeft">
 
-      <div class="myColleagues">
+      <div class="myColleagues" >
+        <div id="colleaguesprofilepictureID">
+
+        </div>
     <!--    <img src="img_avatar.png" alt="Avatar" class="avatar">
         <img src="img_avatar2.png" alt="Avatar" class="avatar">-->
       </div>
@@ -200,14 +203,17 @@
         classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
         classes.push(classnames);
 
+
+
+
       }
       if (currentUser == users.username) { //skapar alla MyProfile
         var img = document.createElement("img");
         avatarImage = "avatar1.png";
         img.src = "/images/" + avatarImage;
-
         var src = document.getElementById("profilepictureID");
         src.appendChild(img);
+
         thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`; //namnet på nuvarande användaren
         divUser.innerHTML = thisCurrentUser;
         thisProject = `<div class = "thisProject"> ${users.project}</div>`; //projektet på nuvarande användaren
@@ -217,6 +223,14 @@
     });
     classes.forEach(classInClasses => { //går genom varje klass i listan av klasser
       document.querySelectorAll("." + classInClasses).forEach(item => {
+
+        var img = document.createElement("img");
+        avatarColleagueImage = "avatar2.png";
+        img.src = "/images/" + avatarColleagueImage;
+        var src = document.getElementById("colleaguesprofilepictureID");
+        item.appendChild(img);
+
+
         item.addEventListener('click', event => { //lägger till individuell eventlistener till alla kollegor
           openModal(classInClasses);
         })
@@ -375,7 +389,11 @@
   )
 </script>
 <style>
+#colleaguesprofilepictureID{
 
+  position: relative;
+  z-index: 3;
+}
 /* profile picture */
 .avatar {
 vertical-align: middle;
