@@ -70,8 +70,9 @@ img{
   padding: 8px 0;
   position: absolute;
   left: 25%;
-  bottom: 10%;
+  top: 170px;
   box-shadow: 5px 5px 7px 5px #888888;
+  height: 620px;
 }
 
 /* Popup */
@@ -81,6 +82,8 @@ img{
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
+
+.box img {border-radius: 50%;}
 
 /* Hide and show the popup */
 .popup .show {
@@ -125,7 +128,7 @@ input[type=submit] {
   background-color: #767474;
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 12px 28px;
   margin: 4px 2px;
   border-radius: 10px;
 }
@@ -163,7 +166,7 @@ input[type=submit] {
   font-size: 14px;
 
 }
-#avatar1{
+/* #avatar1{
   width: 30px;
 }
 #avatar2{
@@ -171,7 +174,7 @@ input[type=submit] {
 }
 #avatar3{
   width: 30px;
-}
+} */
 
 #colleaguesprofilepictureID img{
   border-radius: 50%;
@@ -576,10 +579,18 @@ border-radius: 10px;
     padding: 0 1rem;
     flex-grow: 1;
     border-radius: 2rem;
-    margin: 0.25rem;
+    margin: 2%;
   }
 
   #input:focus{outline: none;}
+
+.avatarer{border-radius: 50%; margin: 5px;}
+
+#avatar1{margin: 0!important; width: auto;}
+#avatar2{margin: 0; margin-left: 20px; width: auto;}
+#avatar3{margin: 0; margin-left: 25px; width: auto;}
+
+.label{margin-right: 20px;}
 
   #form > button{
     background: #626567;
