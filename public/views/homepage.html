@@ -105,8 +105,9 @@
     <div class="navLeft">
 
       <div class="myColleagues">
-        <img src="img_avatar.png" alt="Avatar" class="avatar">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        <span id="avatar">&nbsp;</span>
+        <!-- <img src="img_avatar.png" alt="Avatar" class="avatar">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
       </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
@@ -231,17 +232,17 @@
     const timeHours = document.querySelector('.hours');
 
     const weekdays = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday",
-      "Sunday"
+      "Saturday"
     ];
 
     //Veckodagen för den dag som syns på dagsvyn
-    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() - 1];
+    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay()];
     //Dagens datum som visas i headern
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
