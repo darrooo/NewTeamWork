@@ -8,44 +8,33 @@ var path = require('path');
 var io = require('socket.io')(http);
 const port = 3000;
 var bodyParser = require("body-parser");
-var email ;
-var password ;
-var dbPassword ;
-var dbEmail ;
+var email;
+var password;
+var dbPassword;
+var dbEmail;
 var currentUsers;
 var currentEvents;
-//var dbID;
 var access = false;
 var firstrun = true;
 
-////HÄR SKA CONST URI LIGGA! SKICKAR INTE MED DEN NU PGA SEKRETESS PÅ GITHUB
-//const uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//const uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-//
+////HÄR SKA CONST URI LIGGA!
+//var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
-//connects to database
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
-//var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
-//var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//connects to database
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
-
-
-
 //------------------------------------------------
 
-//allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
+// allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
 // main behövs egentligen inte, går att skriva om.
 async function main() {
 
-  //Körs först av allt
+  //When running localhost (node app), the code starts from here
   try {
     console.log("när körs jag?");
-  //  await client.connect();
-  //  await listDatabases(client); //listar Databaser
-
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
     //klickar på knappen, och inte på on page load som den gör nu.
@@ -57,35 +46,28 @@ async function main() {
     //** SKA BÖRJA TESTA NUU
     if (firstrun) {
       console.log("first run runs");
-      await listAllUsers(client); //listar Användare
+      //lists all users
+      await listAllUsers(client);
       firstrun= false;
     }
-
-    await listAllEvents(client); //listar Användare
-  //   findUser(email, password);
-
-    //await findUserByEmail(client, email); //kollar om email finns i DB
-
-
+    //lists all events
+    await listAllEvents(client);
   } catch (e) {
     console.error(e);
   }
-  // finally {
-  //   await client.close();
-  // } //removed - not needed
 }
 
-
-
-async function listAllUsers(client){ //listar Databaser
-  //Kör denna funktion för att visa databasen
+//Function for all users in the database
+async function listAllUsers(client){
+  //This fetch information from mongodb
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
     data.addUserInData(users);
   });
 };
-async function listAllEvents(client){ //listar Databaser
-  //Kör denna funktion för att visa databasen
+//Function for all events in database
+async function listAllEvents(client){
+  //Fetch from mongodb
   var allEvents = await client.db("teamwork").collection("eventcollection").find();
   allEvents.forEach(events => {
     data.addEventInData(events);
@@ -96,21 +78,15 @@ function findUser(email, password) {
   var valid =  data.checkIfUserInDB(email, password);
   if (valid == 1) {
     console.log("testa ett annat lösenord");
-
-
   }
   if (valid == 2) {
     console.log("login lyckades!");
     userLogin();
-
   }
   if (valid == 0) {
     console.log("fel lösenord och användarnamn " + valid);
   }
 }
-
-
-
 
 // ska redirectas till /homepage
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
@@ -118,7 +94,7 @@ function userLogin(){
   access = true
   //console.log("är i userLogin" + access);
   currentUsers = data.getAllUsers();
-  currentEvents= data.getAllEvents();
+  currentEvents = data.getAllEvents();
   //console.log("Följande är alla användare tillgängliga i data => allMyUsers");
   //console.log(currentUsers);
 
@@ -153,12 +129,12 @@ io.on('connection', (socket) => {
       access= false;
     }
     socket.emit('sendLogin', {
-     //userID:dbID,
-     userAccess: access
-     });
-      //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
+      //userID:dbID,
+      userAccess: access
     });
+    //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
   });
+});
 
 
 
@@ -170,7 +146,7 @@ app.use(express.static(path.join(__dirname, 'public/')));
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 
 app.get('/', function (req, res) {
-    main();
+  main();
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 
 });
@@ -239,7 +215,7 @@ app.post('/signup', function(req, res){
     "project": project,
     "admin": admin,
   }
-
+  //adding a colleague in the collection "teamworkcollection" on mongodb
   client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
 
     if(err) throw err;
@@ -253,18 +229,25 @@ app.post('/signup', function(req, res){
 //To create an event and upload to mongodb
 app.post('/homepage', function(req, res){
   console.log("adding event test");
+  //creates each variable and returns an object
   var currentEmail = email;
   var eventname = req.body.eventname;
   var starttime = req.body.starttime;
   var endtime = req.body.endtime;
+  var date = req.body.date;
+  var month = req.body.month;
+  var year = req.body.year;
 
   var data = {
     "username": currentEmail,
     "eventname": eventname,
     "starttime": starttime,
     "endtime": endtime,
+    "date": date,
+    "month": month,
+    "year": year,
   }
-
+  //Adding an event to the collection "eventcollection" on mongodb
   client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
     if(err) throw err;
     console.log("event record inserted Successfully");
@@ -275,20 +258,17 @@ app.post('/homepage', function(req, res){
 
 io.on('connection', (socket) => {
   socket.on('getAllMyUsers', (getAllTheUsers) => {
-//    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
+    //    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
     io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
 
   });
 });
+
 io.on('connection', (socket) => {
   socket.on('getAllMyEvents', (getAllTheEvents) => {
     io.emit('getAllMyEvents', { allCurrentEvents: currentEvents});
-
   });
 });
-
-
-
 
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
@@ -305,5 +285,4 @@ io.on('connection', (socket) => {
 
 http.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
-
 });

@@ -1,4 +1,4 @@
-//Kalender - Agnes
+//Calendar
 const date = new Date();
 
 const renderCalendar = () => {
@@ -8,7 +8,7 @@ const renderCalendar = () => {
 
   const monthDays = document.querySelector('.days');
 
-  //test så man hamnar på rätt dag
+  //Test så man hamnar på rätt dag
   const lastDay = new Date(date.getFullYear(), date.getMonth() +1, 0).getDate();
   //console.log(lastDay);
 
