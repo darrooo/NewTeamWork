@@ -77,6 +77,7 @@ img{
 /* Popup */
 .popup .popuptext::after {
   content: "";
+  z-index: 5;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
@@ -154,18 +155,27 @@ input[type=submit] {
 /* the generated divs for the colleagues "blobs", names and role */
 .myColleagues div{
   display: inline-block;
+  grid-area: str;
   height: 60px;
   width: 60px;
-  background: #dbe2ff;
-  border-radius: 100px;
-  border-style: solid;
-  border-color: #626567;
-  border-width: thin;
+    /*background: #dbe2ff;*/
+  /*border-radius: 100px;
+    border-style: solid;*/
+  /*border-color: #626567;
+  border-width: thin;*/
   text-align: center;
   line-height: 120%;
-  padding-top: 60px;
+  /* padding-top: 60px; */
   margin: 3%;
+  grid-template-rows: 70px 30px;
+  grid-template-areas:
+  "img"
+  "str";
 }
+
+/* #colleaguesprofilepictureID{
+  grid-area: img;
+} */
 
 /* Fiction buttons on the popup when clicking on a colleague */
 .buttonCo{position: relative; top: -40px; height: 100px; width: 95%;}
@@ -248,6 +258,7 @@ input[type=submit] {
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
   height: 300px;
+  z-index: 5;
 }
 
 /* Fiction buttons on the popup when clicking at the calendar */
@@ -369,27 +380,70 @@ input[type=submit] {
   color: #626567;
 }
 
-/* information about the user that signed in - profilepicture, name, role */
 .nav_thisisme{
-  border-radius:100px;
-  width: 100px;
+  margin-left: 6%;
+  display: inline-block;
+
+  /* display: grid;
+  grid-template-columns: 110px 65px auto;
+  grid-template-rows: 55px 55px;
+  grid-template-areas:
+  'img name thisName'
+  'img project thisProject'; */
+}
+
+.nav_thisiswork{display: inline-block;
+float: right;
+margin-left: 20px;
+font-size: 17px;
+color: #626567;
+letter-spacing: 0.1rem;
+margin-top: 32px;
+}
+
+#profilepictureID{
+  grid-area: img;
+  /* display: inline-block; */
+}
+#pName{
+  grid-area: name;
+  display: inline-block;
+}
+#pProject{
+  grid-area: project;
+  display: inline-block;
+}
+.thisCurrentUser{
+  grid-area: thisName;
+  display: inline-block;
+  margin-bottom: 7px;
+}
+.thisProject{
+  grid-area: thisProject;
+  display: inline-block;
+}
+/*img
+.nav_thisisme{
+  /*border-radius:100px;*/
+/*  display: block;
+  /*width: 100px;
   height: 100px;
-  display: block;
-  float: left;
+   display: flex; */
+/*  float: left;
   margin-left: 2%;
   margin-bottom: 2%;
-  background: #dbe2ff;
+  /*background: #dbe2ff;
   border-style: solid;
   border-width: thin;
-  border-color: #626567;
-  color: #626567;
+  border-color: #626567;*/
+  /* color: #626567;
   text-align: left;
   grid-template-rows: 30px 30px;
-  grid-template-columns: 80px 100px ;
+  grid-template-columns: 120px 80px 100px ;
   grid-template-areas:
-  "name thisName"
-  "project thisProject";
-}
+  "imgMe name thisName"
+  "imgMe project thisProject"; */
+/*}
 
 .nav_thisisme p{
   display: block;
@@ -398,64 +452,79 @@ input[type=submit] {
   letter-spacing: 0.1rem;
   line-height: 30px;
   font-size: 16px;
+}*/
+
+/* .nav_thisiswork{
+  display: grid;
+  /* width: auto; */
+  /*letter-spacing: 0.1rem;
+  /* margin-top: 22%; */
+  /*margin-left: 110px; */
+  /*line-height: 30px;
+  font-size: 16px;
+  grid-gap: 0;
+  /* display: grid; */
+  /*grid-template-rows: 20px 30px 30px 20px;
+  grid-template-columns: 110px 65px 150px ;
+  grid-template-areas:
+  "imgMe empty empty"
+  "imgMe name thisName"
+  "imgMe project thisProject"
+  "imgMe empty empty";
 }
 
-#pName{grid-area: name}
+/* information about the user that signed in - profilepicture, name, role */
+/*#profilepictureID{
+  display: block;
+  grid-area: imgMe;
+  /* position: relative;
+  left:0; */
+/* } */
 
-#pProject{grid-area: project}
+/*#pName{
+  display: grid;
+  grid-area: name;
+}
+
+#pProject{
+  display: grid;
+  grid-area: project;
+}
 
 .thisCurrentUser div{
-  display: block;
+  display: grid;
   color: #626567;
   letter-spacing: 0.1rem;
   line-height: 30px;
   font-size: 16px;
   grid-area: thisName;
-  width: 200px;
-}
+  /* width: 200px; */
+/*}
 
 .thisProject div{
-  display: block;
+  display: grid;
   color: #626567;
   letter-spacing: 0.1rem;
   line-height: 30px;
   font-size: 16px;
   grid-area: thisProject;
-  padding-left: 45px;
-}
-
-.nav_thisiswork{
-  display: block;
-  width: auto;
-  letter-spacing: 0.1rem;
-  margin-top: 22%;
-  margin-left: 110px;
-  line-height: 30px;
-  font-size: 16px;
-  grid-gap: 0em;
-  display: grid;
-  grid-template-rows: 30px 30px;
-  grid-template-columns: 65px 170px ;
-  grid-template-areas:
-  "name thisName"
-  "project thisProject";
-}
+  /* padding-left: 45px; */
+/*} */
 
 /* daily calendar */
 .nav_calendar{
   display: block;
   margin: 50px 2% 2% 2%;
   color: #767474;
-  height: 100%;
+  height: auto;
   width: 96%;
-  padding-bottom: 2%;
+  margin: 2%;
 }
 
 .dailyCalendar{
   display: block;
-  height: auto;
-  margin-top: 110px;
-  width: 100%;
+  margin: 10px 5%;
+  width: 90%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0.5rem 3rem #rgba(0, 0, 0, 0.4);
@@ -646,7 +715,7 @@ input[type=submit] {
       font-size: 20px;
     }
 
-    .dailyCalendar{margin-top: 120px;}
+    .dailyCalendar{margin-top: 10px;}
 
     .hours{
       width: 100%;
@@ -720,10 +789,10 @@ input[type=submit] {
 
     .myColleagues div{
       display: inline-block;
-      background: #dbe2ff;
+      /*background: #dbe2ff;*/
       border-radius: 100px;
-      border-style: solid;
-      border-color: #626567;
+    /*  border-style: solid;*/
+      /*border-color: #626567;*/
       border-width: thin;
       text-align: center;
       margin: 3%;
@@ -740,7 +809,9 @@ input[type=submit] {
       margin: 2%;
     }
 
-    .nav_calendar{height: auto;}
+    /* .nav_calendar{
+      margin-top: 5px;
+      height: auto;} */
 
     .nav_head{
       text-align: right;
@@ -749,9 +820,10 @@ input[type=submit] {
       font-size: 14px;
     }
 
+/* img
     .nav_thisisme{margin-left: 5%;}
 
-    .nav_thisisme p{text-align: left;}
+    .nav_thisisme p{text-align: left;} */
 
     .thisDay h1{
       display: contents;

@@ -57,11 +57,14 @@
         <h1>My Profile</h1>
       </div>
 
-      <div class="nav_thisisme">
+      <div class="nav_thisisme" id="profilepictureID">
+
         <div class="nav_thisiswork">
+
           <p id="pName">Name: </p>
+          <div class="thisCurrentUser"></div> <br>
           <p id="pProject">Department: </p>
-          <div class="thisCurrentUser"></div>
+
           <div class="thisProject"></div>
         </div>
 
@@ -73,7 +76,7 @@
             <i class="fas fa-angle-left prevDay"></i>
             <div class="thisDay">
               <h1></h1>
-              <p></p>
+
             </div>
             <i class="fas fa-angle-right nextDay"></i>
           </div>
@@ -193,10 +196,12 @@
 
     <div class="navLeft">
 
-      <div class="myColleagues" id="x">
-        <!-- <span id="avatar">&nbsp;</span> -->
-        <!-- <img src="img_avatar.png" alt="Avatar" class="avatar">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
+      <div class="myColleagues" >
+        <div id="colleaguesprofilepictureID">
+
+        </div>
+    <!--    <img src="img_avatar.png" alt="Avatar" class="avatar">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">-->
       </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
@@ -261,7 +266,7 @@
   var divModalName = document.querySelector('.modalName');
   let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
   var thisDate = new Date().getDate();
-  var thisMonth = new Date().getMonth();
+  var thisMonth = new Date().getMonth() + 1;
   var thisYear = new Date().getFullYear();
 
   function hourList(){
@@ -286,16 +291,35 @@
         divColleagues.innerHTML = myColleagues;
         classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
         classes.push(classnames);
+
+
+
+
       }
       if (currentUser == users.username) { //skapar alla MyProfile
+        var img = document.createElement("img");
+        avatarImage = "avatar1.png";
+        img.src = "/images/" + avatarImage;
+        var src = document.getElementById("profilepictureID");
+        src.appendChild(img);
+
         thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`; //namnet på nuvarande användaren
         divUser.innerHTML = thisCurrentUser;
         thisProject = `<div class = "thisProject"> ${users.project}</div>`; //projektet på nuvarande användaren
         divProject.innerHTML = thisProject;
+
       }
     });
     classes.forEach(classInClasses => { //går genom varje klass i listan av klasser
       document.querySelectorAll("." + classInClasses).forEach(item => {
+
+        var img = document.createElement("img");
+        avatarColleagueImage = "avatar2.png";
+        img.src = "/images/" + avatarColleagueImage;
+        var src = document.getElementById("colleaguesprofilepictureID");
+        item.appendChild(img);
+
+
         item.addEventListener('click', event => { //lägger till individuell eventlistener till alla kollegor
           openModal(classInClasses);
         })
@@ -336,7 +360,7 @@
     //Veckodagen för den dag som syns på dagsvyn
     document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() ]+" "+ thisDate +"/"+ thisMonth+"-"+ thisYear;
     //Dagens datum som visas i headern
-    document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
+  //  document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
 
@@ -356,10 +380,12 @@
   var allEvents = () =>{
     getAllTheEvents.forEach(events =>{
   //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
-      console.log(thisDate+ "i allevents");
+    //  console.log(thisDate+ "i allevents");
       if (events.username == currentUser) { //HÄÄÄÄR
+        if (events.month == thisMonth) {
         if (events.date == thisDate) {
-       console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
+          console.log("HÄÄÄÄÄÄÄR " + events.month +" event månad " + thisMonth + " kalendermånad");
+       //console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
         var userHourStart = events.starttime - 7;
         var userHourEnd = events.endtime - 7;
       //  console.log("position: " + userHourStart + userHourEnd);
@@ -382,6 +408,7 @@
         });
         }
       }
+      }
 
     });
   }
@@ -389,6 +416,16 @@
   document.querySelector('.prevDay').addEventListener('click', () => {
     daily.setDate(daily.getDate() - 1)
     thisDate -= 1;
+    var d = new Date(thisYear, thisMonth + 1, 0).getDate();
+  //  console.log( d.toString() + "är last date of montn " + thisMonth + " datumet är: "+ thisDate);
+    if (thisDate < 1) {
+      thisMonth -=1;
+
+      thisDate =d;
+    //  console.log("månad "+ thisMonth + "dag " + thisDate);
+    }
+
+   // console.log( d.toString() + "last date of montn" );
     renderDaily();
     allEvents();
   });
@@ -399,7 +436,13 @@
   document.querySelector('.nextDay').addEventListener('click', () => {
    daily.setDate(daily.getDate() + 1)
    thisDate += 1;
-
+   var d = new Date(thisYear, thisMonth , 0).getDate();
+//   console.log( d.toString() + "är last date of montn " + thisMonth + " datumet är: "+ thisDate);
+   if (thisDate > d) {
+     thisMonth +=1;
+     thisDate =1;
+  //   console.log("månad "+ thisMonth + "dag " + thisDate);
+   }
     renderDaily();
     allEvents();
   });
@@ -435,7 +478,11 @@
   )
 </script>
 <style>
+/* #colleaguesprofilepictureID{
 
+  position: relative;
+  z-index: 3;
+} */
 /* profile picture */
 .avatar {
 vertical-align: middle;
