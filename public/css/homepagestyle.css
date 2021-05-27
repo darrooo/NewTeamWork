@@ -170,12 +170,17 @@ input[type=submit] {
 }
 
 /* Fiction buttons on the popup when clicking on a colleague */
-.buttonCo{position: relative; top: -40px; height: 100px; width: 95%;}
+.buttonCo{position: relative;
+  top: 0px;
+  height: 100px;
+  width: 95%;
+  padding-left: 70%;
+}
 
 .buttonColleagueChat{
   position: relative;
-  top: 20px;
-  right: 20px;
+  top: 5px;
+  right: 0;
   display: block;
   float: right;
   font-family: 'Bitter', serif;
@@ -191,8 +196,8 @@ input[type=submit] {
 
 .buttonColleagueMeet{
   position: relative;
-  top: 60px;
-  right: -95px;
+  top: 10px;
+  right: 0;
   display: block;
   float: right;
   font-family: 'Bitter', serif;
@@ -207,33 +212,31 @@ input[type=submit] {
 }
 .buttonAddColleague{
   position: relative;
-  /*top: 60px;*/
-  /*right: -95px;*/
   display: block;
-  /*float: right;*/
   font-family: 'Bitter', serif;
   background-color: #e5eaff;
   width: 110px;
   height: 40px;
   border: none;
   color: grey;
-  /*  padding: 2px 20px;*/
-  /*  margin: 4px 2px;*/
-  /*  border-radius: 10px;*/
 }
 
 /* popup schema*/
 .popupSchema .popuptextSchema {
   visibility: hidden;
-  width: 40%;
+  width: 350px;
+  height: 470px;
   font-size: 20px;
+  font-weight: bold;
   background-color: #fff;
-  color: #555;
+  color: #767474;
   border-radius: 12px;
   padding: 15px;
   position: absolute;
-  left: 30%;
-  bottom: 20%;
+  left: 50%;
+  top: 50%;
+  margin-top: -235  px;
+  margin-left: -175px;
   box-shadow: 5px 5px 7px 5px #888888;
   z-index: 2;
 }
@@ -243,15 +246,11 @@ input[type=submit] {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
-  height: 300px;
   z-index: 5;
 }
 
 /* Fiction buttons on the popup when clicking at the calendar */
 .buttonAddEvent{
-  /* position: absolute;
-  right: 25px;
-  top: 75px; */
   display: block;
   font-family: 'Bitter', serif;
   width: 110px;
@@ -260,8 +259,12 @@ input[type=submit] {
   border: none;
   color: white;
   padding: 2px 20px;
-  margin: 25px 2px;
+  margin: 15px 0px;
   border-radius: 10px;
+}
+
+.removeEvent{
+  margin: 0!important;
 }
 
 .buttonAddEvent:hover{
@@ -271,6 +274,7 @@ input[type=submit] {
 .box{
   display: inline-block;
   margin-left: 10px;
+  margin-bottom: 10px;
   color: #767474;
 }
 
@@ -278,13 +282,9 @@ input[type=submit] {
   margin-bottom: 20px;
 }
 /* #endtime option:hover{background-color: #dbe2ff} */
-#endtime{
-  margin-bottom: 25px;
-}
-#starttime{
-  margin-bottom: 25px;
-}
 
+#date{margin-right: 200px;}
+#month{margin-right: 150px;}
 /* .buttonRemoveEvent{
 position: absolute;
 right: 25px;
@@ -367,7 +367,7 @@ border-radius: 10px;
 }
 
 .nav_thisisme{
-  margin-left: 7%;
+  margin-left: 5%;
   display: inline-block;
 }
 
@@ -444,8 +444,15 @@ border-radius: 10px;
   padding: 1%;
 }
 
-.thisDay h1{display: none;}
-.thisDay p{font-size: 18px;}
+.thisDay h1{
+      display: contents;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      margin: 0.2rem;
+      font-size: 16px;
+    }
+/* .thisDay p{font-size: 18px;} */
 
 /* "wrapper" */
 .event{
@@ -620,6 +627,22 @@ border-radius: 10px;
       font-size: 20px;
     }
 
+    .popupSchema .popuptextSchema {
+      width: 500px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      margin-top: -200px;
+      margin-left: -250px;
+    }
+
+    .box{
+      display: inline-block;
+    }
+
+    #date{margin-right: 0;}
+    #month{margin-right: 0;}
+
     .dailyCalendar{margin-top: 10px;}
 
     .hours{
@@ -729,7 +752,7 @@ border-radius: 10px;
       font-size: 16px;
     }
 
-    .thisDay p{font-size: 14px;}
+    /* .thisDay p{font-size: 14px;} */
 
     .hours{
       width: 100%;
