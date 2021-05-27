@@ -245,13 +245,6 @@ input[type=submit] {
   box-shadow: 5px 5px 7px 5px #888888;
 }
 
-/* Popup arrow */
-/* .popupSchema .popuptextSchema::after {
-  content: "";
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-} */
-
 /* Hide and show the popup */
 .popupSchema .showEvent {
   visibility: visible;
@@ -383,13 +376,6 @@ input[type=submit] {
 .nav_thisisme{
   margin-left: 7%;
   display: inline-block;
-
-  /* display: grid;
-  grid-template-columns: 110px 65px auto;
-  grid-template-rows: 55px 55px;
-  grid-template-areas:
-  'img name thisName'
-  'img project thisProject'; */
 }
 
 .nav_thisiswork{
@@ -431,94 +417,6 @@ margin-top: 7%;
   grid-area: thisProject;
   display: inline-block;
 }
-/*img
-.nav_thisisme{
-  /*border-radius:100px;*/
-/*  display: block;
-  /*width: 100px;
-  height: 100px;
-   display: flex; */
-/*  float: left;
-  margin-left: 2%;
-  margin-bottom: 2%;
-  /*background: #dbe2ff;
-  border-style: solid;
-  border-width: thin;
-  border-color: #626567;*/
-  /* color: #626567;
-  text-align: left;
-  grid-template-rows: 30px 30px;
-  grid-template-columns: 120px 80px 100px ;
-  grid-template-areas:
-  "imgMe name thisName"
-  "imgMe project thisProject"; */
-/*}
-
-.nav_thisisme p{
-  display: block;
-  font-weight: bold;
-  width: auto;
-  letter-spacing: 0.1rem;
-  line-height: 30px;
-  font-size: 16px;
-}*/
-
-/* .nav_thisiswork{
-  display: grid;
-  /* width: auto; */
-  /*letter-spacing: 0.1rem;
-  /* margin-top: 22%; */
-  /*margin-left: 110px; */
-  /*line-height: 30px;
-  font-size: 16px;
-  grid-gap: 0;
-  /* display: grid; */
-  /*grid-template-rows: 20px 30px 30px 20px;
-  grid-template-columns: 110px 65px 150px ;
-  grid-template-areas:
-  "imgMe empty empty"
-  "imgMe name thisName"
-  "imgMe project thisProject"
-  "imgMe empty empty";
-}
-
-/* information about the user that signed in - profilepicture, name, role */
-/*#profilepictureID{
-  display: block;
-  grid-area: imgMe;
-  /* position: relative;
-  left:0; */
-/* } */
-
-/*#pName{
-  display: grid;
-  grid-area: name;
-}
-
-#pProject{
-  display: grid;
-  grid-area: project;
-}
-
-.thisCurrentUser div{
-  display: grid;
-  color: #626567;
-  letter-spacing: 0.1rem;
-  line-height: 30px;
-  font-size: 16px;
-  grid-area: thisName;
-  /* width: 200px; */
-/*}
-
-.thisProject div{
-  display: grid;
-  color: #626567;
-  letter-spacing: 0.1rem;
-  line-height: 30px;
-  font-size: 16px;
-  grid-area: thisProject;
-  /* padding-left: 45px; */
-/*} */
 
 /* daily calendar */
 .nav_calendar{
@@ -834,21 +732,12 @@ margin-top: 7%;
 
     #profilepictureID img{height: 100px;}
 
-    /* .nav_calendar{
-      margin-top: 5px;
-      height: auto;} */
-
     .nav_head{
       text-align: right;
       line-height: 300%;
       padding-right: 5%;
       font-size: 14px;
     }
-
-/* img
-    .nav_thisisme{margin-left: 5%;}
-
-    .nav_thisisme p{text-align: left;} */
 
     .thisDay h1{
       display: contents;
