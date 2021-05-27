@@ -60,7 +60,6 @@ function(d){
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
     }
-
     if(window.location == "http://localhost:3000/homepage" && access ==false){
       window.location = "http://localhost:3000/";
     }

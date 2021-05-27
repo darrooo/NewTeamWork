@@ -25,12 +25,9 @@ var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirs
 //connects to database
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
-
-
-
 //------------------------------------------------
 
-//allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
+// allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
 // main behövs egentligen inte, går att skriva om.
 async function main() {
 
@@ -48,36 +45,28 @@ async function main() {
     //** SKA BÖRJA TESTA NUU
     if (firstrun) {
       console.log("first run runs");
-      await listAllUsers(client); //listar Användare
+      //lists all users
+      await listAllUsers(client);
       firstrun= false;
-
     }
-
-    await listAllEvents(client); //listar Användare
-  //   findUser(email, password);
-
-    //await findUserByEmail(client, email); //kollar om email finns i DB
-
-
+    //lists all events
+    await listAllEvents(client);
   } catch (e) {
     console.error(e);
   }
-  // finally {
-  //   await client.close();
-  // } //removed - not needed
 }
 
-
-
-async function listAllUsers(client){ //listar Databaser
-  //Kör denna funktion för att visa databasen
+//Function for all users in the database
+async function listAllUsers(client){
+  //This fetch information from mongodb
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
     data.addUserInData(users);
   });
 };
-async function listAllEvents(client){ //listar Databaser
-  //Kör denna funktion för att visa databasen
+//Function for all events in database
+async function listAllEvents(client){
+  //Fetch from mongodb
   var allEvents = await client.db("teamwork").collection("eventcollection").find();
   allEvents.forEach(events => {
     data.addEventInData(events);
@@ -88,21 +77,15 @@ function findUser(email, password) {
   var valid =  data.checkIfUserInDB(email, password);
   if (valid == 1) {
     console.log("testa ett annat lösenord");
-
-
   }
   if (valid == 2) {
     console.log("login lyckades!");
     userLogin();
-
   }
   if (valid == 0) {
     console.log("fel lösenord och användarnamn " + valid);
   }
 }
-
-
-
 
 // ska redirectas till /homepage
 //detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
