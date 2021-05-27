@@ -44,7 +44,7 @@ async function main() {
     // eller det andra.
     //----------------
     //** SKA BÖRJA TESTA NUU
-    data.clearAllEvents();
+    //data.clearAllEvents();
 
     if (firstrun) {
       console.log("first run runs");
@@ -72,6 +72,8 @@ async function listAllEvents(client){
   //Fetch from mongodb
   //
   var allEvents = await client.db("teamwork").collection("eventcollection").find();
+  //data.clearAllEvents();
+//  console.log(allEvents + "all events i app.js");
   allEvents.forEach(events => {
     data.addEventInData(events);
   });
@@ -282,7 +284,7 @@ app.post('/homepage-delete', function(req, res){
     console.log("event record inserted Successfully");
 
     main();
-    
+
   });
   return res.redirect('/homepage')
 });

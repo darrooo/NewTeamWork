@@ -40,7 +40,7 @@ Data.prototype.getAllEvents = function () {
 };
 Data.prototype.clearAllEvents = function () {
   this.allEvents=[];
-  return this.allEvents;
+  //return this.allEvents;
 };
 
 
@@ -60,7 +60,7 @@ Data.prototype.addEventInData = function (events) {
     var userEvent = events.username;
     var userEvent = {username: events.username, eventname: events.eventname, starttime: events.starttime, endtime: events.endtime, date:events.date, month:events.month, year:events.year};
     this.allEvents.push(userEvent);
-    console.log("HUR LÅNG ÄR ALL EVENTS???" + this.allEvents);
+  //  console.log("HUR LÅNG ÄR ALL EVENTS???" + this.allEvents);
     //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
 
   //}
