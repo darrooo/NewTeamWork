@@ -206,7 +206,15 @@ app.post('/signup', function(req, res){
   var name = req.body.name;
   var pass = req.body.password;
   var project = req.body.project;
-  var admin = req.body.project;
+  var admin = req.body.admin;
+  var avatar =req.body.avatars;
+  if (admin == "on") {
+    admin = true;
+  }
+  else {
+    admin = false;
+  }
+  console.log("admin som genereras är FÖLJANDe "+ admin);
 
   var data = {
     "username": username,
@@ -214,6 +222,7 @@ app.post('/signup', function(req, res){
     "password": pass,
     "project": project,
     "admin": admin,
+    "image": avatar,
   }
   //adding a colleague in the collection "teamworkcollection" on mongodb
   client.db('teamwork').collection('teamworkcollection').insertOne(data, function(err, collection){
