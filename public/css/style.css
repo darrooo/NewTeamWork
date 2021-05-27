@@ -21,8 +21,9 @@ body{font-family: 'Bitter', serif;}
 .loginbox{
   height: 40%;
   font-family: 'Bitter', serif;
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
+  line-height: 2.5rem;
   color: #fff;
   bottom: 10%;
   left: 50%;
@@ -32,6 +33,8 @@ body{font-family: 'Bitter', serif;}
   padding: 70px 30px;
   z-index: 1;
 }
+
+.loginbox input{margin-bottom:  10px; line-height: 1.4rem; font-size: 1.1rem;}
 
 .button {
   font-family: 'Bitter', serif;
