@@ -286,7 +286,6 @@
   socket.on('getAllMyUsers', function(d) {
     getAllTheUsers = d.allCurrentUsers;
     currentUser = d.thisUser;
-
     allColleagues();
   }); /*end of socket*/
 
@@ -381,7 +380,6 @@
   socket.emit('getAllMyEvents', getAllTheEvents);
   socket.on('getAllMyEvents', function(d) {
     getAllTheEvents = d.allCurrentEvents;
-    console.log("NU LADDAR JAG OM ALL EVENTS");
     allEvents();
   });
   var allEvents = () =>{
