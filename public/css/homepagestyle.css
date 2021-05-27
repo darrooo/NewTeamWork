@@ -381,7 +381,7 @@ input[type=submit] {
 }
 
 .nav_thisisme{
-  margin-left: 6%;
+  margin-left: 7%;
   display: inline-block;
 
   /* display: grid;
@@ -392,26 +392,35 @@ input[type=submit] {
   'img project thisProject'; */
 }
 
-.nav_thisiswork{display: inline-block;
+.nav_thisiswork{
+display: inline-block;
 float: right;
 margin-left: 20px;
 font-size: 17px;
 color: #626567;
 letter-spacing: 0.1rem;
-margin-top: 32px;
+margin-top: 7%;
 }
 
 #profilepictureID{
+  height: 50%;
   grid-area: img;
   /* display: inline-block; */
 }
+
+#profilepictureID img{
+  height: 100px;
+}
+
 #pName{
   grid-area: name;
   display: inline-block;
+  font-weight: bold;
 }
 #pProject{
   grid-area: project;
   display: inline-block;
+  font-weight: bold;
 }
 .thisCurrentUser{
   grid-area: thisName;
@@ -708,6 +717,16 @@ margin-top: 32px;
   suppose to be when one probably goes from a phone to a tablet */
   @media only screen and (min-width: 768px) {
 
+    #profilepictureID img{
+      height: 150px;
+    }
+
+    .nav_thisiswork{font-size: 24px;}
+
+    .nav_thisiswork{
+    margin-top: 50px;
+    }
+
     .nav_head{
       text-align: center;
       width: 100%;
@@ -808,6 +827,12 @@ margin-top: 32px;
       width: 36%;
       margin: 2%;
     }
+
+    .nav_thisiswork{margin-top: 7%; font-size: 16px;}
+
+    #profilepictureID{height: auto;}
+
+    #profilepictureID img{height: 100px;}
 
     /* .nav_calendar{
       margin-top: 5px;
