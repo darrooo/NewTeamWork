@@ -227,7 +227,7 @@ app.post('/signup', function(req, res){
 });
 
 //To create an event and upload to mongodb
-app.post('/homepage', function(req, res){
+app.post('/homepage-add', function(req, res){
   console.log("adding event test");
   //creates each variable and returns an object
   var currentEmail = email;
@@ -249,6 +249,22 @@ app.post('/homepage', function(req, res){
   }
   //Adding an event to the collection "eventcollection" on mongodb
   client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
+    if(err) throw err;
+    console.log("event record inserted Successfully");
+    main();
+  });
+  return res.redirect('/homepage')
+});
+//To create an event and upload to mongodb
+app.post('/homepage-delete', function(req, res){
+  var currentEmail = email;
+  var eventname = req.body.eventname;
+
+  var query = {
+    "eventname": eventname
+  }
+  //deleting an event to the collection "eventcollection" on mongodb
+  client.db('teamwork').collection('eventcollection').deleteOne(query, function(err, collection){
     if(err) throw err;
     console.log("event record inserted Successfully");
     main();
