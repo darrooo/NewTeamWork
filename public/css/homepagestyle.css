@@ -142,7 +142,7 @@ input[type=submit] {
 
 /* left side of the homepage */
 .navLeft{
-  display: flex;
+  display: block;
   justify-content: center;
   width: 96%;
   margin: 2%;
@@ -155,27 +155,19 @@ input[type=submit] {
 /* the generated divs for the colleagues "blobs", names and role */
 .myColleagues div{
   display: inline-block;
-  grid-area: str;
-  height: 60px;
-  width: 60px;
-    /*background: #dbe2ff;*/
-  /*border-radius: 100px;
-    border-style: solid;*/
-  /*border-color: #626567;
-  border-width: thin;*/
+  height: 150px;
+  width: 140px;
   text-align: center;
   line-height: 120%;
-  /* padding-top: 60px; */
-  margin: 3%;
-  grid-template-rows: 70px 30px;
-  grid-template-areas:
-  "img"
-  "str";
+  margin: 1% 2%;
+  font-size: 14px;
+  justify-content: center;
 }
 
-/* #colleaguesprofilepictureID{
-  grid-area: img;
-} */
+#colleaguesprofilepictureID img{
+  border-radius: 50%;
+  height: 90px;
+}
 
 /* Fiction buttons on the popup when clicking on a colleague */
 .buttonCo{position: relative; top: -40px; height: 100px; width: 95%;}
@@ -225,9 +217,9 @@ input[type=submit] {
   height: 40px;
   border: none;
   color: grey;
-/*  padding: 2px 20px;*/
-/*  margin: 4px 2px;*/
-/*  border-radius: 10px;*/
+  /*  padding: 2px 20px;*/
+  /*  margin: 4px 2px;*/
+  /*  border-radius: 10px;*/
 }
 
 /* popup schema*/
@@ -293,18 +285,18 @@ input[type=submit] {
 }
 
 /* .buttonRemoveEvent{
-  position: absolute;
-  right: 25px;
-  top: 135px;
-  font-family: 'Bitter', serif;
-  width: 110px;
-  height: 40px;
-  background-color: #767474;
-  border: none;
-  color: white;
-  padding: 2px 20px;
-  margin: 4px 2px;
-  border-radius: 10px;
+position: absolute;
+right: 25px;
+top: 135px;
+font-family: 'Bitter', serif;
+width: 110px;
+height: 40px;
+background-color: #767474;
+border: none;
+color: white;
+padding: 2px 20px;
+margin: 4px 2px;
+border-radius: 10px;
 } */
 
 /* the list within the menu-button */
@@ -379,22 +371,17 @@ input[type=submit] {
 }
 
 .nav_thisiswork{
-display: inline-block;
-float: right;
-margin-left: 20px;
-font-size: 17px;
-color: #626567;
-letter-spacing: 0.1rem;
-margin-top: 7%;
-}
-
-#profilepictureID{
-  height: 50%;
-  grid-area: img;
-  /* display: inline-block; */
+  display: inline-block;
+  float: right;
+  margin-left: 20px;
+  font-size: 17px;
+  color: #626567;
+  letter-spacing: 0.1rem;
+  margin-top: 7%;
 }
 
 #profilepictureID img{
+  border-radius: 50%;
   height: 100px;
 }
 
@@ -622,7 +609,7 @@ margin-top: 7%;
     .nav_thisiswork{font-size: 24px;}
 
     .nav_thisiswork{
-    margin-top: 50px;
+      margin-top: 50px;
     }
 
     .nav_head{
@@ -705,14 +692,7 @@ margin-top: 7%;
     }
 
     .myColleagues div{
-      display: inline-block;
-      /*background: #dbe2ff;*/
-      border-radius: 100px;
-    /*  border-style: solid;*/
-      /*border-color: #626567;*/
-      border-width: thin;
-      text-align: center;
-      margin: 3%;
+      margin: 1%;
     }
 
     /* zoomes in the colleague the one hover over */
