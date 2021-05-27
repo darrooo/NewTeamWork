@@ -13,6 +13,7 @@ var password;
 var dbPassword;
 var dbEmail;
 var currentUsers;
+var currentEvents;
 var access = false;
 var firstrun = true;
 
@@ -93,6 +94,7 @@ function userLogin(){
   access = true
   //console.log("är i userLogin" + access);
   currentUsers = data.getAllUsers();
+  currentEvents = data.getAllEvents();
   //console.log("Följande är alla användare tillgängliga i data => allMyUsers");
   //console.log(currentUsers);
 
@@ -232,12 +234,18 @@ app.post('/homepage', function(req, res){
   var eventname = req.body.eventname;
   var starttime = req.body.starttime;
   var endtime = req.body.endtime;
+  var day = req.body.day;
+  var month = req.body.month;
+  var year = req.body.year;
   //
   var data = {
     "username": currentEmail,
     "eventname": eventname,
     "starttime": starttime,
     "endtime": endtime,
+    "day": day,
+    "month": month,
+    "year": year,
   }
   //Adding an event to the collection "eventcollection" on mongodb
   client.db('teamwork').collection('eventcollection').insertOne(data, function(err, collection){
@@ -253,6 +261,12 @@ io.on('connection', (socket) => {
     //    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
     io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
 
+  });
+});
+
+io.on('connection', (socket) => {
+  socket.on('getAllMyEvents', (getAllTheEvents) => {
+    io.emit('getAllMyEvents', { allCurrentEvents: currentEvents});
   });
 });
 
