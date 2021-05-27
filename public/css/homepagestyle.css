@@ -233,6 +233,7 @@ input[type=submit] {
   left: 30%;
   bottom: 20%;
   box-shadow: 5px 5px 7px 5px #888888;
+  z-index: 2;
 }
 
 /* Popup arrow */

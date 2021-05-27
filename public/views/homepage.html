@@ -172,6 +172,7 @@
   var classes = [];
   var usernameString;
   var classnames;
+  var usersImages = [];
   var divColleagues = document.querySelector('.myColleagues');
   var divUser = document.querySelector('.thisCurrentUser');
   var divProject = document.querySelector('.thisProject');
@@ -202,14 +203,13 @@
         divColleagues.innerHTML = myColleagues;
         classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
         classes.push(classnames);
-
-
-
+        usersImages.push(users.image);
+        console.log(usersImages);
 
       }
       if (currentUser == users.username) { //skapar alla MyProfile
         var img = document.createElement("img");
-        avatarImage = "avatar1.png";
+        avatarImage = users.image + ".png";
         img.src = "/images/" + avatarImage;
         var src = document.getElementById("profilepictureID");
         src.appendChild(img);
@@ -221,16 +221,15 @@
 
       }
     });
+    var i = 0;
     classes.forEach(classInClasses => { //går genom varje klass i listan av klasser
       document.querySelectorAll("." + classInClasses).forEach(item => {
-
         var img = document.createElement("img");
-        avatarColleagueImage = "avatar2.png";
+        avatarColleagueImage = usersImages[i] + ".png";
         img.src = "/images/" + avatarColleagueImage;
-        var src = document.getElementById("colleaguesprofilepictureID");
+        //var src = document.getElementById("colleaguesprofilepictureID");
         item.appendChild(img);
-
-
+        i ++;
         item.addEventListener('click', event => { //lägger till individuell eventlistener till alla kollegor
           openModal(classInClasses);
         })
@@ -392,7 +391,7 @@
 #colleaguesprofilepictureID{
 
   position: relative;
-  z-index: 3;
+
 }
 /* profile picture */
 .avatar {
