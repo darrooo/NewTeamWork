@@ -234,16 +234,16 @@ app.post('/homepage', function(req, res){
   var eventname = req.body.eventname;
   var starttime = req.body.starttime;
   var endtime = req.body.endtime;
-  var day = req.body.day;
+  var date = req.body.date;
   var month = req.body.month;
   var year = req.body.year;
-  //
+
   var data = {
     "username": currentEmail,
     "eventname": eventname,
     "starttime": starttime,
     "endtime": endtime,
-    "day": day,
+    "date": date,
     "month": month,
     "year": year,
   }

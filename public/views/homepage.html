@@ -15,7 +15,7 @@
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js"></script>
   <script src="js/vue_script.js" defer></script>
-  <script src="/vue/vue.js" defer></script>
+  <!--<script src="/vue/vue.js" defer></script>-->
 
   <!-- Fonts som kanske borde ligga i CSSen-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -90,13 +90,14 @@
                   <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required /><br>
                   <input class="box" type="number" name="starttime" id="starttime" placeholder="Start " required /><br>
                   <input class="box" type="number" name="endtime" id="endtime" placeholder="End " required /><br>
-                  <input class="box" type="number" name="day" id="day" placeholder="Day " required />
+                  <input class="box" type="number" name="date" id="date" placeholder="Day " required /><br>
                   <input class="box" type="number" name="month" id="month" placeholder="Month " required />
                   <input class="box" type="number" name="year" id="year" placeholder="Year " required /><br>
+
                   <!-- <div class="buttonCo"> -->
                   <!--<button type="button" name="button" class="buttonRemoveEvent"> remove event </button>-->
                   <button type="submit" onclick="myFunctionEvent()" class="buttonAddEvent" value="Submit"> Add event </button>
-                <!-- </div>                   -->
+                <!-- </div>  -->
               </form>
               </span>
             </div>
@@ -108,8 +109,8 @@
     <div class="navLeft">
 
       <div class="myColleagues">
-        <img src="img_avatar.png" alt="Avatar" class="avatar">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <!--    <img src="img_avatar.png" alt="Avatar" class="avatar">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">-->
       </div>
       <!-- The Modal -->
       <div id="colleaguesModal" class="modal">
@@ -160,71 +161,72 @@
   var getAllTheUsers = [];
   var getAllTheEvents = [];
   var currentUser;
+  let myColleagues = '';
+  let thisCurrentUser = '';
+  let thisProject = '';
+  var classes = [];
+  var usernameString;
+  var classnames;
+  var divColleagues = document.querySelector('.myColleagues');
+  var divUser = document.querySelector('.thisCurrentUser');
+  var divProject = document.querySelector('.thisProject');
+  var idColleaguesModal = document.getElementById("colleaguesModal");
+  var span = document.getElementsByClassName("closeColleagues")[0];
+  var divModalName = document.querySelector('.modalName');
   let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
+  var thisDate = new Date().getDate();
+  var thisMonth = new Date().getMonth();
+  var thisYear = new Date().getFullYear();
 
 
   socket.emit('getAllMyUsers', getAllTheUsers);
   socket.on('getAllMyUsers', function(d) {
     getAllTheUsers = d.allCurrentUsers;
     currentUser = d.thisUser;
-    var divColleagues = document.querySelector('.myColleagues');
-    var divUser = document.querySelector('.thisCurrentUser');
-    var divProject = document.querySelector('.thisProject');
-    var idColleaguesModal = document.getElementById("colleaguesModal");
-    var span = document.getElementsByClassName("closeColleagues")[0];
-    var divModalName = document.querySelector('.modalName');
-    let myColleagues = '';
-    let thisCurrentUser = '';
-    let thisProject = '';
-    var classes = [];
-    var usernameString;
-    var classnames;
-
-    var allColleagues = () => {
-      getAllTheUsers.forEach(users => {
-        if (currentUser != users.username) { //skapar alla kollegor
-          usernameString = `${users.name}`; //hämtar namn på användare
-          usernameString = usernameString.replace(/\s+/g, ''); //tar bort mellanrummet mellan för och efternamn för att använda som klassnamn
-
-          myColleagues += `<div class = "myColleagues ${usernameString} "> ${users.name} ${ users.project}</div>`; //placerar varje kollega i individuell div (mycolleagues FörnamnEfternamn) för att kunna isolera varje kollegas div
-          divColleagues.innerHTML = myColleagues;
-          classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
-          classes.push(classnames);
-        }
-        if (currentUser == users.username) { //skapar alla MyProfile
-          thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`; //namnet på nuvarande användaren
-          divUser.innerHTML = thisCurrentUser;
-          thisProject = `<div class = "thisProject"> ${users.project}</div>`; //projektet på nuvarande användaren
-          divProject.innerHTML = thisProject;
-        }
-      });
-      classes.forEach(classInClasses => { //går genom varje klass i listan av klasser
-        document.querySelectorAll("." + classInClasses).forEach(item => {
-          item.addEventListener('click', event => { //lägger till individuell eventlistener till alla kollegor
-            openModal(classInClasses);
-          })
-        })
-      });
-    }
     allColleagues();
-    /*Colleaguesmodal*/
+  }); /*end of socket*/
 
-    span.onclick = function() {
+
+  var allColleagues = () => {
+    getAllTheUsers.forEach(users => {
+      if (currentUser != users.username) { //skapar alla kollegor
+        usernameString = `${users.name}`; //hämtar namn på användare
+        usernameString = usernameString.replace(/\s+/g, ''); //tar bort mellanrummet mellan för och efternamn för att använda som klassnamn
+
+        myColleagues += `<div class = "myColleagues ${usernameString} "> ${users.name} ${ users.project}</div>`; //placerar varje kollega i individuell div (mycolleagues FörnamnEfternamn) för att kunna isolera varje kollegas div
+        divColleagues.innerHTML = myColleagues;
+        classnames = `${usernameString}`; // lägger till alla förnamnefternamn i en lista
+        classes.push(classnames);
+      }
+      if (currentUser == users.username) { //skapar alla MyProfile
+        thisCurrentUser = `<div class = "thisCurrentUser"> ${users.name}</div>`; //namnet på nuvarande användaren
+        divUser.innerHTML = thisCurrentUser;
+        thisProject = `<div class = "thisProject"> ${users.project}</div>`; //projektet på nuvarande användaren
+        divProject.innerHTML = thisProject;
+      }
+    });
+    classes.forEach(classInClasses => { //går genom varje klass i listan av klasser
+      document.querySelectorAll("." + classInClasses).forEach(item => {
+        item.addEventListener('click', event => { //lägger till individuell eventlistener till alla kollegor
+          openModal(classInClasses);
+        })
+      })
+    });
+  }
+  span.onclick = function() {
+    idColleaguesModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
       idColleaguesModal.style.display = "none";
     }
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        idColleaguesModal.style.display = "none";
-      }
-    }
+  }
 
-    function openModal(name) {
-      var divColleague = document.querySelector("." + name);
-      divModalName.innerHTML = divColleague.innerHTML;
-      idColleaguesModal.style.display = "block";
-    }
-    /*Colleaguesmodal*/
-  }); /*end of socket*/
+  function openModal(name) {
+    var divColleague = document.querySelector("." + name);
+    divModalName.innerHTML = divColleague.innerHTML;
+    idColleaguesModal.style.display = "block";
+  }
 
 
   var daily = new Date();
@@ -243,7 +245,7 @@
     ];
 
     //Veckodagen för den dag som syns på dagsvyn
-    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() ];
+    document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() ]+" "+ thisDate +"/"+ thisMonth+"-"+ thisYear;
     //Dagens datum som visas i headern
     document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
@@ -256,48 +258,61 @@
       timeHours.innerHTML = hours;
     };
   }
+
   socket.emit('getAllMyEvents', getAllTheEvents);
   socket.on('getAllMyEvents', function(d) {
     getAllTheEvents = d.allCurrentEvents;
-    var allEvents = () =>{
-      getAllTheEvents.forEach(events =>{
-    //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
-        if (events.username == currentUser) { //HÄÄÄÄR
-      //    console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
-          var userHourStart = events.starttime - 7;
-          var userHourEnd = events.endtime - 7;
-        //  console.log("position: " + userHourStart + userHourEnd);
-          var thisUserHour = classHours.slice(userHourStart,userHourEnd);
-        //  var thisUserHour = classHours[userHourStart]
-        //  console.log( "arrayen: " + thisUserHour);
-          thisUserHour.forEach(colorEvent => {
-          //  console.log("classes" + colorEvent);
-            var divTEST = document.querySelector("." + colorEvent);
-          //  console.log("divTEST innan: " + divTEST.innerHTML);
-            if (divTEST.innerHTML == events.starttime+":00") {
-              divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
-            }
-          //  console.log("divTEST efter: " + divTEST.innerHTML);
-            var divMeeting = document.getElementsByClassName(colorEvent);
-            for(var i = 0; i < divMeeting.length; i++){
-          		divMeeting[i].style.backgroundColor = "#dbe2ff";
-          		divMeeting[i].style.borderRadius = "12px";
-          	}
-          });
-        }
-      });
-    }
     allEvents();
   });
+  var allEvents = () =>{
+    getAllTheEvents.forEach(events =>{
+  //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
+      console.log(thisDate+ "i allevents");
+      if (events.username == currentUser) { //HÄÄÄÄR
+        if (events.date == thisDate) {
+       console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
+        var userHourStart = events.starttime - 7;
+        var userHourEnd = events.endtime - 7;
+      //  console.log("position: " + userHourStart + userHourEnd);
+        var thisUserHour = classHours.slice(userHourStart,userHourEnd);
+      //  var thisUserHour = classHours[userHourStart]
+      //  console.log( "arrayen: " + thisUserHour);
+        thisUserHour.forEach(colorEvent => {
+        //  console.log("classes" + colorEvent);
+          var divTEST = document.querySelector("." + colorEvent);
+        //  console.log("divTEST innan: " + divTEST.innerHTML);
+          if (divTEST.innerHTML == events.starttime+":00") {
+            divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
+          }
+        //  console.log("divTEST efter: " + divTEST.innerHTML);
+          var divMeeting = document.getElementsByClassName(colorEvent);
+          for(var i = 0; i < divMeeting.length; i++){
+            divMeeting[i].style.backgroundColor = "#dbe2ff";
+            divMeeting[i].style.borderRadius = "12px";
+          }
+        });
+        }
+      }
+
+    });
+  }
 
   document.querySelector('.prevDay').addEventListener('click', () => {
     daily.setDate(daily.getDate() - 1)
+    thisDate -= 1;
     renderDaily();
+    allEvents();
   });
+//  var month = 0; // January
+//  var d = new Date(2008, month + 1, 0);
+//  console.log(d.toString()); // last day in January
 
   document.querySelector('.nextDay').addEventListener('click', () => {
-    daily.setDate(daily.getDate() + 1)
+   daily.setDate(daily.getDate() + 1)
+   thisDate += 1;
+
     renderDaily();
+    allEvents();
   });
   renderDaily();
 
