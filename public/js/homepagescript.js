@@ -1,4 +1,11 @@
 
+
+//***********************
+//KAN TAS BORT VÄL?
+//***********************
+
+
+
 //Här ska all users hämtas på något sätt från datahandler eller vue_script!!
 //import vm from './dataHandler.js'
 //var USERTSGD = getAllUsers();
@@ -60,7 +67,7 @@
 // var ham = document.querySelector(".ham")
 // var xIcon = document.querySelector(".xIcon")
 // var menuIcon = document.querySelector(".menuIcon")
-// 
+//
 // // ham.addEventListener("click", toggleMenu)
 //
 // function toggleMenu() {
