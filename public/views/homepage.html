@@ -73,7 +73,7 @@
             <i class="fas fa-angle-left prevDay"></i>
             <div class="thisDay">
               <h1></h1>
-              <p></p>
+
             </div>
             <i class="fas fa-angle-right nextDay"></i>
           </div>
@@ -171,7 +171,7 @@
   var divModalName = document.querySelector('.modalName');
   let classHours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fouteen', 'fifteen', 'sixteen', 'seventeen']
   var thisDate = new Date().getDate();
-  var thisMonth = new Date().getMonth();
+  var thisMonth = new Date().getMonth() + 1;
   var thisYear = new Date().getFullYear();
 
 
@@ -243,7 +243,7 @@
     //Veckodagen för den dag som syns på dagsvyn
     document.querySelector(".thisDay h1").innerHTML = weekdays[daily.getDay() ]+" "+ thisDate +"/"+ thisMonth+"-"+ thisYear;
     //Dagens datum som visas i headern
-    document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
+  //  document.querySelector(".thisDay p").innerHTML = new Date().toDateString();
 
     let hours = '';
 
@@ -263,10 +263,12 @@
   var allEvents = () =>{
     getAllTheEvents.forEach(events =>{
   //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
-      console.log(thisDate+ "i allevents");
+    //  console.log(thisDate+ "i allevents");
       if (events.username == currentUser) { //HÄÄÄÄR
+        if (events.month == thisMonth) {
         if (events.date == thisDate) {
-       console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
+          console.log("HÄÄÄÄÄÄÄR " + events.month +" event månad " + thisMonth + " kalendermånad");
+       //console.log("eventname this user: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime+ " " + events.date);
         var userHourStart = events.starttime - 7;
         var userHourEnd = events.endtime - 7;
       //  console.log("position: " + userHourStart + userHourEnd);
@@ -289,6 +291,7 @@
         });
         }
       }
+      }
 
     });
   }
@@ -296,6 +299,16 @@
   document.querySelector('.prevDay').addEventListener('click', () => {
     daily.setDate(daily.getDate() - 1)
     thisDate -= 1;
+    var d = new Date(thisYear, thisMonth + 1, 0).getDate();
+  //  console.log( d.toString() + "är last date of montn " + thisMonth + " datumet är: "+ thisDate);
+    if (thisDate < 1) {
+      thisMonth -=1;
+
+      thisDate =d;
+    //  console.log("månad "+ thisMonth + "dag " + thisDate);
+    }
+
+   // console.log( d.toString() + "last date of montn" );
     renderDaily();
     allEvents();
   });
@@ -306,7 +319,13 @@
   document.querySelector('.nextDay').addEventListener('click', () => {
    daily.setDate(daily.getDate() + 1)
    thisDate += 1;
-
+   var d = new Date(thisYear, thisMonth , 0).getDate();
+//   console.log( d.toString() + "är last date of montn " + thisMonth + " datumet är: "+ thisDate);
+   if (thisDate > d) {
+     thisMonth +=1;
+     thisDate =1;
+  //   console.log("månad "+ thisMonth + "dag " + thisDate);
+   }
     renderDaily();
     allEvents();
   });

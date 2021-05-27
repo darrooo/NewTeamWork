@@ -53,7 +53,7 @@ Data.prototype.addEventInData = function (events) {
 //  if (this.allUsers[0].name != users.name) {
     console.log( events.username +" "+ events.eventname +" "+ events.starttime +" "+ events.endtime + events.date+" är hämtad från databasen" );
     var userEvent = events.username;
-    var userEvent = {username: events.username, eventname: events.eventname, starttime: events.starttime, endtime: events.endtime, date:events.date};
+    var userEvent = {username: events.username, eventname: events.eventname, starttime: events.starttime, endtime: events.endtime, date:events.date, month:events.month, year:events.year};
     this.allEvents.push(userEvent);
     //console.log("this.allUsers[0].name: "+  Object.values(this.allUsers)[0].name + " users.name: "+ users.name);
 
