@@ -45,59 +45,62 @@
     </div>
 
 
-    <nav class="nav">
+    <nav class="nav navProfile">
       <div class="nav_head">
         <h1>My Profile</h1>
         <form action="/change-avatar" method="post">
-        <h1> Change your avatar </h1>
-        <br>
-        <img class="avatarer" src="images/avatar1.png" alt="logga" height="105px">
-        <img class="avatarer" src="images/avatar2.png" alt="logga" height="105px">
-        <img class="avatarer" src="images/avatar3.png" alt="logga" height="105px">
-        <br>
-        <input type="radio" id="avatar1" name="avatars" value="avatar1"/>
-        <label class="label" for="avatar1">avatar1</label>
-        <input type="radio" id="avatar2" name="avatars" value="avatar2"/>
-        <label class="label" for="avatar2">avatar2</label>
-        <input type="radio" id="avatar3" name="avatars" value="avatar3"/>
-        <label class="label" for="avatar3">avatar3</label>
-        <br>
-        <input type="submit" id="submitChangesAvatar" onclick="displayAvatarChange()"
-        name="submitDetails" value="Change avatar" /><br>
-        </form>
-        <div class="changesMadeAvatar"></div>
-        <br>
+          <div class="changeProfileForm">
+            <h1> Change your avatar </h1>
+            <br>
+            <img class="avatarer" src="images/avatar1.png" alt="logga" height="105px">
+            <img class="avatarer" src="images/avatar2.png" alt="logga" height="105px">
+            <img class="avatarer" src="images/avatar3.png" alt="logga" height="105px">
+            <br>
+            <input type="radio" id="avatar1" name="avatars" value="avatar1"/>
+            <label class="label" for="avatar1">avatar1</label>
+            <input type="radio" id="avatar2" name="avatars" value="avatar2"/>
+            <label class="label" for="avatar2">avatar2</label>
+            <input type="radio" id="avatar3" name="avatars" value="avatar3"/>
+            <label class="label" for="avatar3">avatar3</label>
+            <br>
+            <input type="submit" id="submitChangesAvatar" onclick="displayAvatarChange()"
+            name="submitDetails" value="Change avatar" /><br>
+            </form>
+            <div class="changesMadeAvatar"></div>
+            <br>
 
-        <form action="/change-name" method="post">
-        <h1> Change your name </h1>
+            <form action="/change-name" method="post">
+            <h1> Change your name </h1>
 
-        <input class="namebox" type="text" name="name" id="name"
-        placeholder="Name " required /><br>
+            <input class="namebox" type="text" name="name" id="name"
+            placeholder="Name " required /><br>
 
-        <input type="submit" id="submitChangesName" onclick="displayNameChange()"
-        name="submitDetails" value="Change name" /><br>
-        </form>
-        <div class="changesMadeName"></div>
-        <form action="/change-password" method="post">
-        <h1> Change your password </h1>
+            <input type="submit" id="submitChangesName" onclick="displayNameChange()"
+            name="submitDetails" value="Change name" /><br>
+            </form>
+            <div class="changesMadeName"></div>
+            <form action="/change-password" method="post">
+            <h1> Change your password </h1>
 
-        Enter your old password:
-        <br>
-        <input class="namebox" type="oldpassword" name="oldpassword" id="oldpassword"
-        placeholder="Enter your old password: " required /><br>
+            Enter your old password:
+            <br>
+            <input class="namebox" type="oldpassword" name="oldpassword" id="oldpassword"
+            placeholder="Enter your old password: " required /><br>
 
-        Enter your new password:
-        <br>
-        <input class="namebox" type="password" name="password"
-        id="password" placeholder="Enter your new password: " required/><br>
+            Enter your new password:
+            <br>
+            <input class="namebox" type="password" name="password"
+            id="password" placeholder="Enter your new password: " required/><br>
 
-        <input type="submit" id="submitChangesPassword" onclick="displayPasswordChange()"
-        name="submitDetails" value="Change password" /><br>
-        </form>
-        <div class="changesMadePassword"></div>
+            <input type="submit" id="submitChangesPassword" onclick="displayPasswordChange()"
+            name="submitDetails" value="Change password" /><br>
+            </form>
+            <div class="changesMadePassword"></div>
+          </div>
 
 
-        <div class="container">
+
+        <!-- <div class="container">
           <div class="calendar">
             <div class="month">
               <i class="fas fa-angle-left prev"></i>
@@ -120,7 +123,7 @@
           </div>
         </div>
 
-        <script src="js/calendar.js"></script> <!-- ändra om vi flyttar koden till annat script -->
+        <script src="js/calendar.js"></script> --><!-- ändra om vi flyttar koden till annat script -->
 
       </div>
     </nav>

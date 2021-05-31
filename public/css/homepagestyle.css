@@ -542,6 +542,15 @@ border-radius: 10px;
 
 #page > footer {}
 
+/* MY PROFILE */
+.changeProfileForm{
+  justify-content: left;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.navProfile{height: 900px;}
+
   /* CHAT - different page*/
   .wrapperChat{
     margin: 2% 0;
@@ -625,6 +634,8 @@ border-radius: 10px;
     border-radius: 2rem;
     margin: 2%;
   }
+
+  .chatInput{padding: 0!important; padding-left: 20px!important; margin: 0.2%!important;}
 
   #input:focus{outline: none;}
 
