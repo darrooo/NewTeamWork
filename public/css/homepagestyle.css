@@ -100,6 +100,14 @@ img{
   font-size: 50px;
   font-weight: bold;
 }
+.closeAccess {
+  z-index: 2;
+  color: #aaaaaa;
+  padding-right: 5%;
+  float: right;
+  font-size: 50px;
+  font-weight: bold;
+}
 
 /* animation - fade in the popup */
 @-webkit-keyframes fadeIn {

@@ -27,7 +27,7 @@
         <div class="profile" id="sendbuttons">
           <button onclick="location.href='/chat';" type="button" name="button" class="invisiblebutton" id="buttonChat"> Chat </button>
           <button onclick="location.href='/myProfile';" type="button" name="button" class="invisiblebutton" id="buttonProfile"> My profile </button>
-          <button onclick="location.href='http://localhost:3000/homepage';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Home </button>
+          <button onclick="location.href='/homepage';" type="button" name="button" class="invisiblebutton" id="buttonSettings"> Home </button>
           <button v-on:click="logoutButtonClicked()" type="button" name="button" class="invisiblebutton" id="buttonLogout"> Sign out </button>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="dropdown-content">
         <a class="menuLink" onclick="location.href='/myProfile';">My profile</a>
         <a class="menuLink" onclick="location.href='/chat';">Chat</a>
-        <a class="menuLink" onclick="location.href='/settings';">Settings</a>
+        <a class="menuLink" onclick="location.href='/homepage';">Home</a>
         <a class="menuLink" v-on:click="logoutButtonClicked()">Sign out</a>
       </div>
     </div>
@@ -49,7 +49,6 @@
 
         <div class="popup" >
           <button onclick="myFunction()" type="button" name="button" class="buttonAddColleague" > Add colleague </button>
-
         <!--  Add colleague-->
           <span class="popuptext" id="addColleagueModal">
               <div class="row">
@@ -94,7 +93,7 @@
                     <input class="checkbox" type="checkbox" name="admin"
                     id="admin" checked />
                     <br>
-                    <input type="submit" id="submitDetails" onclick="location.href='/settings';"
+                    <input type="submit" id="submitDetails"
                     name="submitDetails" value="Submit" /><br>
 
 
@@ -108,66 +107,109 @@
 
             </div>
           </span>
-
         </div>
-        <!-- <div class="popupAccess" >
+          <div class="popup" >
         <button onclick="changeAccess()" type="button" name="button" class="buttonAddColleague" > Change access </button>
 
         <span class="popuptext" id="changeAccessModal">
             <div class="row">
-              <div class="col-md-3"> </div>
+              <div class="col-md-3">
+
+              </div>
 
               <div class="col-md-6 main">
-                <span class="closeAddColleagues"> &times; </span>
-                  <form action="/change-access" method="post">
+                <span class="closeAccess"> &times; </span>
+                <form action="/change-access" method="post">
 
-                  <h1> Change Access </h1>
+                <h1> Change admin access </h1>
+                Enter the email address of the colleague you want to change access on:
+                <input class="box" type="text" name="username" id="changeusername"
+                placeholder="Username"  required /><br>
 
-                  <input class="box" type="text" name="username" id="username"
-                  placeholder="Username"  required /><br>
 
-                  <label for="project">Admin access</label>
-                  <input class="checkbox" type="checkbox" name="admin"
-                  id="admin" checked />
-                  <br>
-                  <input type="submit" id="submitDetails" onclick="location.href='/settings';"
-                  name="submitDetails" value="Submit" /><br>
+                Change the access of the colleague: <br>
+                <label for="project">Admin access</label>
+                <input class="checkbox" type="checkbox" name="admin"
+                id="changeadmin" checked />
+                <br>
+                <input type="submit" id="changeSubmitDetails"
+                name="submitDetails" value="Submit" /><br>
+                </form>
+                <div class="changesAccess"></div>
 
-                  </form>
+
               </div>
               <div class="col-md-3">
               </div>
 
           </div>
         </span>
-        </div> -->
+
+        </div>
+
+
       </div>
       </nav>
 
     <footer> Footer </footer>
 
   </section>
-
+  <script src="/socket.io/socket.io.js"></script>
   <script>
+  var socket = io();
   var spans = document.getElementsByClassName("closeAddColleagues")[0];
+  var spansAccess = document.getElementsByClassName("closeAccess")[0];
   var popup = document.getElementById("addColleagueModal");
-  // var popupAccess = document.getElementById("changeAccessModal");
+  var popupAccess = document.getElementById("changeAccessModal");
+  var divChangesAccess = document.querySelector('.changesAccess');
+  var userInDB;
   // When the user clicks on div, open the popup
   function myFunction() {
-//    console.log("jag kör");
+    console.log("jag kör");
     popup.classList.toggle("show");
 
   }
-  // function changeAccess() {
-  //   //console.log("jag kör");
-  //   popupAccess.classList.toggle("show");
-  //
-  // }
   spans.onclick = function() {
-    console.log("jag kör hide");
     popup.classList.toggle("show");
   }
-  //testa
+  spansAccess.onclick = function() {
+    popupAccess.classList.toggle("show");
+  }
+  function changeAccess() {
+    popupAccess.classList.toggle("show");
+
+  }
+  socket.on('changedAccess', function(d) {
+    userInDB = d.thisUserInDB;
+    displayAccessChange(userInDB)
+
+  });
+  var displayAccessChange = (userInDB) => {
+    if (userInDB) {
+      divChangesAccess.innerHTML =" Access has been changed. Restart the server to use the new access ";
+      divChangesAccess.style.color = "green";
+
+    }
+    else {
+      divChangesAccess.innerHTML =" Access has not been changed. Username doesn't match any username in the database " ;
+      divChangesAccess.style.color = "red";
+    /*  divChangesAccess.style.padding= "0 0 0 10%";
+      divChangesAccess.style.display = "flex";
+      divChangesAccess.style.fontSize = "20px";
+      var op = 1;  // initial opacity
+      var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            divChangesAccess.style.display = 'none';
+        }
+        divChangesAccess.style.opacity = op;
+        divChangesAccess.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.3;
+    }, 300);*/
+    }
+
+
+  }
 
 
 

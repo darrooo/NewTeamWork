@@ -19,6 +19,7 @@ var firstrun = true;
 var passwordChange;
 var avatarChange;
 var nameChange;
+var userInDB =false;
 
 ////HÄR SKA CONST URI LIGGA!
 //var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -242,6 +243,47 @@ app.post('/signup', function(req, res){
 
   return res.redirect('/settings')
 });
+
+app.post('/change-access', function(req, res){
+  var username = req.body.username;
+  var admin = req.body.admin;
+  if (admin == "on") {
+    admin = true;
+  }
+  else {
+    admin = false;
+  }
+  console.log("admin "+ admin + "username" + username);
+  userInDB = false;
+  currentUsers.forEach((item) => {
+    if (item.username == username) {
+      userInDB = true;
+    }
+
+  });
+  if (userInDB) {
+    var data ={
+      "username": username,
+    }
+    var query = {
+      "admin": admin,
+    }
+    //change access
+    client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
+      if(err) throw err;
+      console.log("access changed Successfully");
+    });
+  }
+
+    io.on('connection', (socket) => {
+        console.log("userInDB:" + userInDB);
+        io.emit('changedAccess', { thisUserInDB: userInDB });
+    });
+  return res.redirect('/settings')
+});
+
+
+
 
 //To create an event and upload to mongodb
 app.post('/homepage-add', function(req, res){
