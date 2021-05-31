@@ -16,6 +16,9 @@ var currentUsers;
 var currentEvents;
 var access = false;
 var firstrun = true;
+var passwordChange;
+var avatarChange;
+var nameChange;
 
 ////HÄR SKA CONST URI LIGGA!
 //var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -270,7 +273,7 @@ console.log("post ADD EVENT " + currentEmail + " " + eventname + " " + starttime
   });
   return res.redirect('/homepage')
 });
-//To create an event and upload to mongodb
+//To delete  an event and upload to mongodb
 app.post('/homepage-delete', function(req, res){
   var currentEmail = email;
   var eventname = req.body.eventname;
@@ -288,6 +291,87 @@ app.post('/homepage-delete', function(req, res){
   });
   return res.redirect('/homepage')
 });
+
+app.post('/change-avatar', function(req, res){
+  var currentEmail = email;
+  var avatar =req.body.avatars;
+console.log("avatar i change avatar "+ avatar);
+  var data ={
+    "username": currentEmail,
+  }
+  var query = {
+    "image": avatar,
+  }
+  //change avatar
+  client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
+    if(err) throw err;
+    console.log("avatar changed Successfully");
+  });
+  io.on('connection', (socket) => {
+      avatarChange = avatar
+      io.emit('changedAvatar', { thisAvatarChange: avatarChange });
+  });
+  return res.redirect('/myProfile')
+});
+app.post('/change-name', function(req, res){
+  var currentEmail = email;
+  var name = req.body.name;
+  var data ={
+    "username": currentEmail,
+  }
+  var query = {
+    "name": name,
+  }
+  //change name on current user
+  client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
+    if(err) throw err;
+    console.log("name changed Successfully");
+
+
+  });
+  io.on('connection', (socket) => {
+      nameChange = name
+      io.emit('changedName', { thisNameChange: nameChange });
+  });
+  return res.redirect('/myProfile')
+});
+
+app.post('/change-password', function(req, res){
+  var currentEmail = email;
+  var pass = req.body.password;
+  var oldpass = req.body.oldpassword;
+  //console.log("GAMLA OCH Gamla LÖSEN jämförelse om: " + oldpass + " e samma som:" + password);
+
+  if (oldpass == password) {
+    passwordChange = true;
+    var data ={
+      "username": currentEmail,
+    }
+    var query = {
+      "password": pass,
+    }
+    //change password
+    client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
+      if(err) throw err;
+      console.log("password changed Successfully");
+    //  main();
+    });
+    io.on('connection', (socket) => {
+        io.emit('changedPassword', { thisPasswordChange: passwordChange });
+    });
+  }
+  else {
+    passwordChange = false;
+    io.on('connection', (socket) => {
+        io.emit('changedPassword', { thisPasswordChange: passwordChange });
+    });
+
+  }
+
+  return res.redirect('/myProfile')
+});
+
+
 
 io.on('connection', (socket) => {
   socket.on('getAllMyUsers', (getAllTheUsers) => {

@@ -381,7 +381,7 @@
   socket.on('getAllMyEvents', function(d) {
     getAllTheEvents = d.allCurrentEvents;
     getAllTheEvents.forEach(thisEvents =>{
-      console.log(thisEvents.eventname + "HÄMTAS");
+    //  console.log(thisEvents.eventname + "HÄMTAS");
 
     })
 
@@ -389,7 +389,7 @@
   });
   var allEvents = () =>{
     getAllTheEvents.forEach(events =>{
-      console.log(getAllTheEvents + "KÖRS");
+    //  console.log(getAllTheEvents + "KÖRS");
   //    console.log("eventname all users: " + events.username + " " + events.eventname + " " + events.starttime + " " + events.endtime);
     //  console.log(thisDate+ "i allevents");
       if (events.username == currentUser) { //HÄÄÄÄR

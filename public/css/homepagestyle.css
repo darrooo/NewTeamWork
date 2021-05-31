@@ -54,6 +54,7 @@ img{
   width: 200px;
 }
 
+
 .popup:hover{
   cursor: pointer;
   text-decoration: underline;
@@ -132,6 +133,38 @@ input[type=submit] {
   margin: 4px 2px;
   border-radius: 10px;
 }
+/*ändra avatar*/
+input[id=submitChangesAvatar] {
+  font-family: 'Bitter', serif;
+  width: 20%;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  margin: 4px 2px;
+  border-radius: 50px;
+}
+input[id=submitChangesPassword] {
+  font-family: 'Bitter', serif;
+  width: 20%;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  margin: 4px 2px;
+  border-radius: 50px;
+}
+input[id=submitChangesName] {
+  font-family: 'Bitter', serif;
+  width: 20%;
+  background-color: #767474;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  margin: 4px 2px;
+  border-radius: 50px;
+}
+
 
 #admin {
   text-align: left;
@@ -288,6 +321,9 @@ input[type=submit] {
   margin-left: 10px;
   margin-bottom: 10px;
   color: #767474;
+}
+.namebox{
+  width: 40%;
 }
 
 #eventname{width: 80%;
