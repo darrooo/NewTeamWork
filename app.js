@@ -255,7 +255,7 @@ app.post('/homepage-add', function(req, res){
   var month = req.body.month;
   var year = req.body.year;
 
-console.log("post ADD EVENT " + currentEmail + " " + eventname + " " + starttime + " " + endtime + " " +  date +" " + month +" "  + year);
+//console.log("post ADD EVENT " + currentEmail + " " + eventname + " " + starttime + " " + endtime + " " +  date +" " + month +" "  + year);
   var data = {
     "username": currentEmail,
     "eventname": eventname,

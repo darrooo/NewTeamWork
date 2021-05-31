@@ -49,6 +49,7 @@
 
         <div class="popup" >
           <button onclick="myFunction()" type="button" name="button" class="buttonAddColleague" > Add colleague </button>
+
         <!--  Add colleague-->
           <span class="popuptext" id="addColleagueModal">
               <div class="row">
@@ -107,7 +108,39 @@
 
             </div>
           </span>
+
         </div>
+        <!-- <div class="popupAccess" >
+        <button onclick="changeAccess()" type="button" name="button" class="buttonAddColleague" > Change access </button>
+
+        <span class="popuptext" id="changeAccessModal">
+            <div class="row">
+              <div class="col-md-3"> </div>
+
+              <div class="col-md-6 main">
+                <span class="closeAddColleagues"> &times; </span>
+                  <form action="/change-access" method="post">
+
+                  <h1> Change Access </h1>
+
+                  <input class="box" type="text" name="username" id="username"
+                  placeholder="Username"  required /><br>
+
+                  <label for="project">Admin access</label>
+                  <input class="checkbox" type="checkbox" name="admin"
+                  id="admin" checked />
+                  <br>
+                  <input type="submit" id="submitDetails" onclick="location.href='/settings';"
+                  name="submitDetails" value="Submit" /><br>
+
+                  </form>
+              </div>
+              <div class="col-md-3">
+              </div>
+
+          </div>
+        </span>
+        </div> -->
       </div>
       </nav>
 
@@ -118,12 +151,18 @@
   <script>
   var spans = document.getElementsByClassName("closeAddColleagues")[0];
   var popup = document.getElementById("addColleagueModal");
+  // var popupAccess = document.getElementById("changeAccessModal");
   // When the user clicks on div, open the popup
   function myFunction() {
-    console.log("jag kör");
+//    console.log("jag kör");
     popup.classList.toggle("show");
 
   }
+  // function changeAccess() {
+  //   //console.log("jag kör");
+  //   popupAccess.classList.toggle("show");
+  //
+  // }
   spans.onclick = function() {
     console.log("jag kör hide");
     popup.classList.toggle("show");
