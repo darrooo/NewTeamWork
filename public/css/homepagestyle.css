@@ -549,7 +549,7 @@ border-radius: 10px;
   margin-left: 50px;
 }
 
-.navProfile{height: 900px;}
+.navProfile{height: inherit;}
 
   /* CHAT - different page*/
   .wrapperChat{
