@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- the chat is for communication between the different colleagues. -->
 <html>
 <head>
   <title>Chat</title>
@@ -59,12 +60,10 @@
       <script src="/socket.io/socket.io.js"></script>
 
       <script>
+      //adds the different chats on the left hand side.
       var allChats = () => {
-
         const divChats = document.querySelector('.myChats');
-
         let myChats = '';
-
         for(let chat = 1; chat <= 10; chat++){
           myChats += `<div class = "myChats">${'Example chat: '+ chat}</div>`;
           divChats.innerHTML = myChats;
@@ -72,7 +71,7 @@
       }
 
       allChats();
-
+      //connects to app.js and creates the chat
       var socket = io();
 
       var messages = document.getElementById('messages');

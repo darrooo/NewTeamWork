@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+<!-- My profile gives the user a possibility o change features in their profile such as avatar, name and password.  -->
 <html lang="en" dir="ltr">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <!--  <link rel="stylesheet" href="public\views\style.css">-->
   <link rel="stylesheet" type="text/css" href="\css\homepagestyle.css">
   <script type="text/javascript" src="js/homepagescript.js"> </script>
   <script src="/socket.io/socket.io.js" defer></script>
@@ -97,8 +97,7 @@
             </form>
             <div class="changesMadePassword"></div>
           </div>
-
-
+        <!-- monthly calendar that we did not use now-->
 
         <!-- <div class="container">
           <div class="calendar">
@@ -139,7 +138,7 @@
     var divChangesName = document.querySelector('.changesMadeName');
     var divChangesAvatar = document.querySelector('.changesMadeAvatar');
 
-
+    //monthly calendar that we do not use right now
     function updateClock(){
       var now = new Date();
       var dname = now.getDay(),
@@ -164,20 +163,22 @@
       updateClock();
       windw.setInterval("updateClock()", 1);
     }
-
+    //gets information about the password change from app.js
     socket.on('changedPassword', function(d) {
       passwordChange = d.thisPasswordChange;
-      console.log("nu hämtas jag" +passwordChange);
       displayPasswordChange()
     });
+    //gets information about the name change from app.js
     socket.on('changedName', function(d) {
       nameChange = d.thisNameChange;
       displayNameChange()
     });
+    //gets information about the avatar change from app.js
     socket.on('changedAvatar', function(d) {
       avatarChange = d.thisAvatarChange;
       displayAvatarChange()
     });
+    //displays if the password ahs changed or not in the database
     var displayPasswordChange = () => {
     console.log("lösenordet har inte ändrats "+ passwordChange);
     if (passwordChange == true) {
@@ -189,10 +190,12 @@
       divChangesPassword.style.color = "red";
     }
     }
+    //displays the name change
     var displayNameChange = () => {
       divChangesName.innerHTML =" Name has been changed. Restart the server to use the new name: " + nameChange;
       divChangesName.style.color = "green";
     }
+    //displays the avatar change
     var displayAvatarChange = () => {
       divChangesAvatar.innerHTML =" Avatar has been changed. Restart the server to use the new avatar: " + avatarChange ;
       divChangesAvatar.style.color = "green";

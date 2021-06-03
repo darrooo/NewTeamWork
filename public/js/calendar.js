@@ -1,4 +1,4 @@
-//Calendar
+//javascript connected to the calendar.html file
 const date = new Date();
 
 const renderCalendar = () => {

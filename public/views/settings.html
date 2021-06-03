@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Settings gives the user a possibility to change access and add colleagues to the application.  -->
 <html lang="en" dir="ltr">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +49,7 @@
         <h1>Settings</h1>
 
         <div class="popup" >
-          <button onclick="myFunction()" type="button" name="button" class="buttonAddColleague" > Add colleague </button>
+          <button onclick="addColleague()" type="button" name="button" class="buttonAddColleague" > Add colleague </button>
         <!--  Add colleague-->
           <span class="popuptext" id="addColleagueModal">
               <div class="row">
@@ -88,7 +89,7 @@
 
                     <br>
 
-                    <!--vi vill göra en boolean av denna, att den kan skicka/hämta om det är true eller false i db också-->
+
                     <label for="project">Admin access</label>
                     <input class="checkbox" type="checkbox" name="admin"
                     id="admin" checked />
@@ -163,22 +164,25 @@
   var popupAccess = document.getElementById("changeAccessModal");
   var divChangesAccess = document.querySelector('.changesAccess');
   var userInDB;
-  // When the user clicks on div, open the popup
-  function myFunction() {
-    console.log("jag kör");
+  // When the user clicks add colleague, show the popup
+  function addColleague() {
     popup.classList.toggle("show");
 
   }
+  // When the user clicks on the cross of add colleague popup, hide the popup
   spans.onclick = function() {
     popup.classList.toggle("show");
   }
+  // When the user clicks on the cross of change access popup, hide the popup
   spansAccess.onclick = function() {
     popupAccess.classList.toggle("show");
   }
+  // When the user clicks change access, show the popup
   function changeAccess() {
     popupAccess.classList.toggle("show");
 
   }
+  //get informattion about the changed access from app.js
   socket.on('changedAccess', function(d) {
     userInDB = d.thisUserInDB;
     displayAccessChange(userInDB)
@@ -193,27 +197,8 @@
     else {
       divChangesAccess.innerHTML =" Access has not been changed. Username doesn't match any username in the database " ;
       divChangesAccess.style.color = "red";
-    /*  divChangesAccess.style.padding= "0 0 0 10%";
-      divChangesAccess.style.display = "flex";
-      divChangesAccess.style.fontSize = "20px";
-      var op = 1;  // initial opacity
-      var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            divChangesAccess.style.display = 'none';
-        }
-        divChangesAccess.style.opacity = op;
-        divChangesAccess.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.3;
-    }, 300);*/
     }
-
-
   }
-
-
-
-
   </script>
 
   <script src="js/homepagescript.js"></script>

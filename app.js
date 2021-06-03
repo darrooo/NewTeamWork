@@ -1,5 +1,7 @@
 'use strict';
-
+//app.js creates the localhost and all subpages to the localhost. It also connects to the database and imports all events and users.
+//it loads all users and events to the datahandler to save for future use.
+// it contains a collection of sockets to send and recieve information from the other pages.
 var express = require('express');
 const {MongoClient} = require('mongodb');
 var app = express();
@@ -10,8 +12,6 @@ const port = 3000;
 var bodyParser = require("body-parser");
 var email;
 var password;
-var dbPassword;
-var dbEmail;
 var currentUsers;
 var currentEvents;
 var access = false;
@@ -21,24 +21,24 @@ var avatarChange;
 var nameChange;
 var userInDB =false;
 
-////HÄR SKA CONST URI LIGGA!
+//the uri used for the connection to the database
+
 //var uri = "mongodb+srv://daniellatestar:JhaliiAfdSjiG13@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //var uri = 'mongodb+srv://hannetestar:BaDrisk32@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var uri = 'mongodb+srv://agnestestar:42Xrj55eAvMsWWX@teamwork.zuv9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
+//connects to the database mongoDB
 //Got it from this link: https://developer.mongodb.com/quickstart/node-crud-tutorial/
-//connects to database
 var client = new MongoClient(uri, { useUnifiedTopology: true});
 client.connect();
 //------------------------------------------------
 
 // allt som delas mellan komponenter vill man inte ha i en async. Bra för om man vill hämta namn etc.
 // main behövs egentligen inte, går att skriva om.
+//main function, the first function to load when entering the web application.
 async function main() {
 
-  //When running localhost (node app), the code starts from here
   try {
-    console.log("när körs jag?");
     //----------------
     //funktionen behövs för att kolla om en user har access. Bör egetligen göras när man
     //klickar på knappen, och inte på on page load som den gör nu.
@@ -47,8 +47,6 @@ async function main() {
     //funktion som returnar true eller false, inte två funktioner som kollar det ena
     // eller det andra.
     //----------------
-    //** SKA BÖRJA TESTA NUU
-    //data.clearAllEvents();
 
     if (firstrun) {
       console.log("first run runs");
@@ -63,76 +61,62 @@ async function main() {
   }
 }
 
-//Function for all users in the database
+//Function that laods all users downloaded from the database to the datahandler
 async function listAllUsers(client){
-  //This fetch information from mongodb
+  //Fetch from mongodb
   var allUsers = await client.db("teamwork").collection("teamworkcollection").find();
   allUsers.forEach(users => {
     data.addUserInData(users);
   });
 };
-//Function for all events in database
+//Function that laods all events downloaded from the database to the datahandler
 async function listAllEvents(client){
   //Fetch from mongodb
-  //
   var allEvents = await client.db("teamwork").collection("eventcollection").find();
-  //data.clearAllEvents();
-//  console.log(allEvents + "all events i app.js");
   allEvents.forEach(events => {
     data.addEventInData(events);
   });
 };
-
+// this function checks the authentification in the datahandler. Redirects to userLogin if successfull
 function findUser(email, password) {
   var valid =  data.checkIfUserInDB(email, password);
   if (valid == 1) {
-    console.log("testa ett annat lösenord");
+    console.log("try another password");
   }
   if (valid == 2) {
-    console.log("login lyckades!");
+    console.log("login successfull!");
     userLogin();
   }
   if (valid == 0) {
-    console.log("fel lösenord och användarnamn " + valid);
+    console.log("wrong password and username ");
   }
 }
 
-// ska redirectas till /homepage
-//detta är den andra funktionen som sätter access till true. kan vara bra att skriva ihop med false.
+//confirms the access and gets all events and users from datahandler. Sends login to vue_script
 function userLogin(){
   access = true
-  //console.log("är i userLogin" + access);
   currentUsers = data.getAllUsers();
   currentEvents = data.getAllEvents();
-  //console.log("Följande är alla användare tillgängliga i data => allMyUsers");
-  //console.log(currentUsers);
-
   io.emit('sendLogin', {
     userAccess: access,
     allCurrentUsers: currentUsers
 
   });
 }
-
+//connects to the datahandler. One accesses the dataHandler by typing data.function
 const teamworkData = require("./dataHandler.js");
 let data = new teamworkData();
 
 
-
-// tar emot information från vue_script skickar info till vue_script
+// Gets information about the user from vue_script and stores it locally and sends it to find user for confirmation
 io.on('connection', (socket) => {
-  // When a connected client emits an "addOrder" message
   socket.on('sendInformation', function (userInformation) {
-    //console.log(" user input information uname psw:  " + Object.values(userInformation)); // email , password
-    //data.addUser(userInformation); //skickas till datahandler.js
-    var loginArray = data.addUser(userInformation); //skickas till datahandler.js
-    email = loginArray[0]; //tilldelas globalt
-    password = loginArray[1]; //tilldelas globalt
+    var loginArray = data.addUser(userInformation); //sends to datahandler.js
+    email = loginArray[0];
+    password = loginArray[1];
     findUser(email, password);
-    //console.log("returnd array : " + loginArray); //fungerar
-    //main(); //laddar om main med nytt email och psw
   });
-
+//logs out the current user
   socket.on('sendLogout', function (userInformation){
     if(access){
       access= false;
@@ -141,14 +125,13 @@ io.on('connection', (socket) => {
       //userID:dbID,
       userAccess: access
     });
-    //console.log(" access i io app.js" + access + " psw: " + dbPassword + " email: " +  dbEmail  ); //fungerar
   });
 });
 
 
 
 
-//subdomäner
+//A collection of subdomains
 app.use(express.static(path.join(__dirname, 'public/')));
 
 // Serve vue from node_modules as vue/
@@ -170,9 +153,6 @@ app.get('/homepage', function (req, res) {
 app.get('/about', function (req, res) {
   res.sendFile(path.join(__dirname, 'public/views/about.html'));
 });
-app.get('/settings', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/settings.html'));
-});
 
 app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/views/chat.html');
@@ -189,16 +169,6 @@ app.get('/settings', (req, res) => {
 app.get('/calendar', (req, res) => {
   res.sendFile(__dirname + '/public/views/calendar.html');
 });
-app.get('/signup', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/signup.html'))
-});
-
-//anävnder inte denna i nuläget
-app.get('/signup_success', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/signup_success.html'))
-});
-
-
 
 
 //To create a (signup)user and upload it to database
@@ -210,7 +180,6 @@ app.use(bodyParser.urlencoded({
 
 //The one that uploads the updated information about a new user
 app.post('/signup', function(req, res){
-  console.log("signup kommer jag hit?");
   var username = req.body.username;
   var name = req.body.name;
   var pass = req.body.password;
@@ -243,7 +212,7 @@ app.post('/signup', function(req, res){
 
   return res.redirect('/settings')
 });
-
+// changes the admin access on the chosen user.
 app.post('/change-access', function(req, res){
   var username = req.body.username;
   var admin = req.body.admin;
@@ -253,8 +222,8 @@ app.post('/change-access', function(req, res){
   else {
     admin = false;
   }
-  console.log("admin "+ admin + "username" + username);
   userInDB = false;
+  //checks if the user is in the database.
   currentUsers.forEach((item) => {
     if (item.username == username) {
       userInDB = true;
@@ -268,13 +237,13 @@ app.post('/change-access', function(req, res){
     var query = {
       "admin": admin,
     }
-    //change access
+    //changes access in database
     client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
       if(err) throw err;
       console.log("access changed Successfully");
     });
   }
-
+    //sends information about the change of access to setting.html
     io.on('connection', (socket) => {
         console.log("userInDB:" + userInDB);
         io.emit('changedAccess', { thisUserInDB: userInDB });
@@ -287,7 +256,6 @@ app.post('/change-access', function(req, res){
 
 //To create an event and upload to mongodb
 app.post('/homepage-add', function(req, res){
-  console.log("adding event test");
   //creates each variable and returns an object
   var currentEmail = email;
   var eventname = req.body.eventname;
@@ -297,7 +265,6 @@ app.post('/homepage-add', function(req, res){
   var month = req.body.month;
   var year = req.body.year;
 
-//console.log("post ADD EVENT " + currentEmail + " " + eventname + " " + starttime + " " + endtime + " " +  date +" " + month +" "  + year);
   var data = {
     "username": currentEmail,
     "eventname": eventname,
@@ -315,7 +282,7 @@ app.post('/homepage-add', function(req, res){
   });
   return res.redirect('/homepage')
 });
-//To delete  an event and upload to mongodb
+//To delete an event and upload to mongodb
 app.post('/homepage-delete', function(req, res){
   var currentEmail = email;
   var eventname = req.body.eventname;
@@ -333,28 +300,29 @@ app.post('/homepage-delete', function(req, res){
   });
   return res.redirect('/homepage')
 });
-
+// changes the avatar of the user in mongoDB
 app.post('/change-avatar', function(req, res){
   var currentEmail = email;
   var avatar =req.body.avatars;
-console.log("avatar i change avatar "+ avatar);
   var data ={
     "username": currentEmail,
   }
   var query = {
     "image": avatar,
   }
-  //change avatar
+  //changes the avatar
   client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
     if(err) throw err;
     console.log("avatar changed Successfully");
   });
+  //sends information about the change to settings.html
   io.on('connection', (socket) => {
       avatarChange = avatar
       io.emit('changedAvatar', { thisAvatarChange: avatarChange });
   });
   return res.redirect('/myProfile')
 });
+// changes the name
 app.post('/change-name', function(req, res){
   var currentEmail = email;
   var name = req.body.name;
@@ -364,26 +332,24 @@ app.post('/change-name', function(req, res){
   var query = {
     "name": name,
   }
-  //change name on current user
+  //change name on current user in database
   client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
     if(err) throw err;
     console.log("name changed Successfully");
-
-
   });
+  //sends information about the change to settings.html
   io.on('connection', (socket) => {
       nameChange = name
       io.emit('changedName', { thisNameChange: nameChange });
   });
   return res.redirect('/myProfile')
 });
-
+  //change password on current user in database
 app.post('/change-password', function(req, res){
   var currentEmail = email;
   var pass = req.body.password;
   var oldpass = req.body.oldpassword;
-  //console.log("GAMLA OCH Gamla LÖSEN jämförelse om: " + oldpass + " e samma som:" + password);
-
+  //checks if the old password and the entered password matches
   if (oldpass == password) {
     passwordChange = true;
     var data ={
@@ -392,56 +358,50 @@ app.post('/change-password', function(req, res){
     var query = {
       "password": pass,
     }
-    //change password
+    //changes the password
     client.db('teamwork').collection('teamworkcollection').updateOne(data,{$set:query}, function(err, collection){
       if(err) throw err;
       console.log("password changed Successfully");
-    //  main();
     });
+    //sends information about the change if it has changed to settings.html
     io.on('connection', (socket) => {
         io.emit('changedPassword', { thisPasswordChange: passwordChange });
     });
   }
+  //sends information that the change has not been done
   else {
     passwordChange = false;
     io.on('connection', (socket) => {
         io.emit('changedPassword', { thisPasswordChange: passwordChange });
     });
-
   }
-
   return res.redirect('/myProfile')
 });
 
 
-
+//sends all the users to homepage.html
 io.on('connection', (socket) => {
   socket.on('getAllMyUsers', (getAllTheUsers) => {
-    //    io.emit('getAllMyUsers', currentUsers);   //Här vill vi lägga in typ "[userName]: + msg"
     io.emit('getAllMyUsers', { allCurrentUsers: currentUsers, thisUser: email });
 
   });
 });
-
+//sends all the events to homepage.html
 io.on('connection', (socket) => {
   socket.on('getAllMyEvents', (getAllTheEvents) => {
     io.emit('getAllMyEvents', { allCurrentEvents: currentEvents});
   });
 });
-
+//Sends and recieves information from the chat 
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
 io.on('connection', (socket) => {
-  //console.log('a user connected');
-  //socket.on('disconnect', () => {
-  //console.log('user disconnected');
-  //  });
   socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);   //Här vill vi lägga in typ "[userName]: + msg"
+    io.emit('chat message', msg);
     console.log('message: ' + msg);
   });
 });
-
+//starts the localhost
 http.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 });

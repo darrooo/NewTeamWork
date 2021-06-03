@@ -1,24 +1,22 @@
 var socket = io();
-
+// The vue script is used to get information added into the login field and send logout and login to other pages.
 var vm = new Vue({
   el: '#sendbuttons',
-  //el1: '#hamburgerbuttons',
   data: {
     userInformation: [],
-    dbID: "",
     access: false,
     allUsers: [],
   },
-  //kommer från index.html login
+
   methods: {
+    //activated when pressing login on index page.
     buttonClicked: function() { //från index send button
       this.userInformation = getUserInfo(); //skickas till script.js
-      console.log("i methods userinformation" + this.userInformation);
       this.sendInformation();
       if(window.location == "http://localhost:3000/"){
         this.timeOutFunction();}
     },
-    //skickar till app.js
+    //sends information to app.js
     sendInformation: function(event) {
       //console.log("i mwthods send information" + event);
       console.log("i mwthods send this.userInformation" + this.userInformation);
@@ -26,37 +24,28 @@ var vm = new Vue({
         userInfo: this.userInformation,
       });
     },
+    //sends information about logout to app.js
     logoutButtonClicked: function(event){
       socket.emit("sendLogout",{
         userInfo: this.userInformation,
       });
     },
+    //delays popup
     timeOutFunction: function () {
       setTimeout(function(){
          modal.style.display = "block";
        }, 100);
     },
-    // ----------------------
-    //här vill vi skapa en funktion som lägger till event
-    // addEventButton: function(){
-    //
-    // }
-    // ----------------------
   }
 });
 
 
-
+//gets information from app.js. redirects to the index page when logged out.
 socket.on('sendLogin',
 function(d){
-  //dbID = d.userID;
   access = d.userAccess;
   allUsers = d.allCurrentUsers;
-  console.log('testar om det skickas till vue_script. Access: ' + access );
 
-
-//  socket.on('sendLogin', function(access){
-//Vet inte hur det funkar, console log printar inte.
     if (window.location == "http://localhost:3000/" && access == true){
       window.location = "http://localhost:3000/homepage";
     }
@@ -75,15 +64,12 @@ function(d){
 
   });
 
-  // Get the modal
+  //popup that shows up when the wrong login information has ben entered
   var modal = document.getElementById("myModal");
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
-  // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
   }
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";

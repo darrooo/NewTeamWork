@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- homepage is the first view you get when you have logged into the webpage. It displays all colleagues and your schedule-->
 <html lang="en" dir="ltr">
 
 <head>
@@ -189,7 +190,7 @@
               </form>
                 <form action="/homepage-delete" method="post">
                   <input class="box" type="text" name="eventname" id="eventname" placeholder="Title" required /><br>
-                  <button type="submit" onclick="myFunctionEvent()" class="buttonAddEvent" value="Submit"> Delete event </button>
+                  <button type="submit" onclick="myFunctionEvent()" class="buttonAddEvent" value="Submit"> Remove event </button>
                 <!-- </div>  -->
               </form>
 
@@ -403,7 +404,7 @@
           var divTEST = document.querySelector("." + colorEvent);
         //  console.log("divTEST innan: " + divTEST.innerHTML);
           if (divTEST.innerHTML == events.starttime+":00") {
-            divTEST.innerHTML += ' Eventname: ' + events.eventname + " starting at: " + events.starttime + ":00 ending at: " + events.endtime +":00 ";
+            divTEST.innerHTML += ' Eventname: ' + events.eventname + " || Starting at: " + events.starttime + ":00. Ending at: " + events.endtime +":00 ";
           }
         //  console.log("divTEST efter: " + divTEST.innerHTML);
           var divMeeting = document.getElementsByClassName(colorEvent);

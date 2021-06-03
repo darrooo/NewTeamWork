@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- index is the first page you visit with the login fields when you open the page.-->
 
 
 <html lang="en" dir="ltr">
@@ -8,14 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <title>TeamWork</title>
-
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js"></script>
-<!--  <script src="/vue/vue.js" defer></script>-->
-
   <!--CSSen till index.html-->
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-
   <!--JS till index.html-->
   <script type="text/javascript" src="js/script.js"> </script>
   <script src="js/vue_script.js" defer></script>
@@ -40,7 +36,6 @@
     </div>
 
 
-<!--  TESTAR ATT LÄGGA TILL -->
 
   </div>
 
@@ -58,17 +53,10 @@
       <button type="button" class="button" v-on:click="buttonClicked()"> Login </button>
       <br>
 
-    <!--  <button onclick="location.href='/signup';" type="button" name="button" class="button">Sign Up</button> ska vi ta bort denna eller  /D -->
-
-
-      <!--<button id="signupButton" class="button">Sign up</button>
-      <button id="logoutButton" class="button hide">Log out</button>-->
     </form>
 
-      <!-- The Modal -->
       <div id="myModal" class="modal">
 
-        <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times; </span>
           <p>The login details were not correct.</p>
@@ -77,9 +65,6 @@
         </div>
 
       </div>
-
-
-
 
   </div>
 
@@ -95,12 +80,6 @@
 
   </div>
 
-<!--testar lite sockets här-->
-  <!-- <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-  </script> -->
-<!--fram till hit..-->
 
 </body>
 
