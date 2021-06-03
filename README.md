@@ -1,6 +1,4 @@
 
-Hejhej, vi ska också lägga in en beskrivning av projektet här så att de som går in på Github och kollar
-ser vad vi har gjort och varför typ. Så en beskrivning av vad det är och hur det funkar helt enkelt //Hanne
 
 
 ## This is a project made for the Independent Project in Sociotechnical Systems Engineering, 15c written by:
@@ -17,11 +15,11 @@ The function data stores the current user, all users and events in the database.
 It also does the authorisation of the logged in user.
 
 App.js: The file app.js creates the localhost and all subpages to the localhost. It also connects to the database and imports and exports all changes made to events and users.
-it loads the users and events to the datahandler to save for future use and it contains a collection of sockets to send and recieve information from the other pages.
+it loads the users and events to the dataHandler to save for future use and it contains a collection of sockets to send and receive information from the other pages.
 
 Settings.html: Settings gives the user a possibility to change access and add colleagues to the application.
 
-myProfile.html:  My profile gives the user a possibility o change features in their profile such as avatar, name and password.
+myProfile.html:  My profile gives the user a possibility to change features in their profile such as the avatar, name and password.
 
 index.html: index is the first page you visit with the login fields when you open the page.
 
@@ -35,7 +33,7 @@ calendar.html: the code for the month calendar that we created but ended up not 
 
 about.html: you can reach the about page from the index page, this is where the information about the website is written
 
-vue_script: The vue script is used to get information added into the login field and send logout and login.
+vue_script.js: The Vue script is used to get information added into the login field and send logout and login.
 
 overall styling: style.css
 ```
@@ -49,4 +47,5 @@ npm install mongodb
 npm install express --save
 npm install body-parser --save
 npm install mongoose --save
+npm install socket.io
 ```
